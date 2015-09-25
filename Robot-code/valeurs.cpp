@@ -1,0 +1,12 @@
+#include <valeurs.h>
+
+#define ARRET_DISTANCE 1
+#define ARRET_INFRAROUGE 2
+#define GAUCHE 1
+#define DROITE -1
+
+float vitesseDroitePRGauche = 1.073; 	//vitesseDroite / vitesseGauche
+float CIRCONFERENCE_ROUE = 25.1; 	// 3" * PI, en cm. a tweaker.
+float CIRCONFERENCE_ROTATION = 43.04; //distance parcourue par les roues lorsque le robot tourne de 360 degres sur lui-meme
+int NOMBRE_DIVISIONS_ROUES = 64; 	//nombre de coches sur la roue
+int DELAI_LECTURE = 100; 			//delai entre les lectures d'encodeur, en ms

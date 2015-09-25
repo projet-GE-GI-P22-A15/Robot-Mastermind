@@ -1,35 +1,21 @@
-/**
- * 	Code cree par l'equipe d'Ingenium Natus
- * 	
- * 	Pascal Vaillancourt
- * 	Marc-Antoine Lalonde
- * 	Cedrik Maillet
- * 	Pierre-Geoffroy 
- * 	Alexis Morel
- * 	Patrick Beaulieu
- * 	Amazigh Abibsi
- * 	Justin Beaulieu
- * 	Anthony Parris
+/*
+ * pid.h
+ *
+ *  Created on: 2015-09-25
+ *      Author: blood
  */
 
-#ifndef PID_H_   /* Include guard */
+#ifndef PID_H_
 #define PID_H_
 
-
-/**
- * @brief Correction proportionel pour l'avacement d'un moteur
- * @details Action proportionnelle : l'erreur est multipliee par un gain G 
- * 
- * @param cochesGauche Roue encodeur de gauche elle possede 64 encoches
- * @param cochesDroite Roue encodeur de droite elle possede 64 encoches
- * 
- * @return Valeur de l'erreur fois le gain
- */
-float correctionProportionnelle(int cochesGauche, int cochesDroite);
+//Déclaration des fonctions, obligatoire en C++
+void avancerDroit(int mode, int distance, int vitesse);
+float correctionProportionnelle(int erreur, int vitesse);
 float correctionIntegrative(int sommeErreurs);
-float correctionDerivative(int erreur, int erreurPrecedente, int delaiAdaptatif);
-void appliquerCorrection(int correctionP, int correctionI, int correctionD);
-void ajusterVitesseMoteurs();
+float correctionDerivative(int erreur, int erreurPrecedente);
+void appliquerCorrection(float correctionP, float correctionI, float correctionD);
+void ajusterVitesseMoteurs(int vitesse);
 
 
-#endif // PID_H_
+
+#endif /* PID_H_ */
