@@ -25,11 +25,16 @@
  * 
  * @return Valeur de l'erreur fois le gain
  */
-float correctionProportionnelle(int cochesGauche, int cochesDroite);
+//Déclaration des fonctions, obligatoire en C++
+
+
+void avancerDroit(int mode, int distance, int vitesse);
+float correctionProportionnelle(int erreur, int vitesse);
 float correctionIntegrative(int sommeErreurs);
-float correctionDerivative(int erreur, int erreurPrecedente, int delaiAdaptatif);
-void appliquerCorrection(int correctionP, int correctionI, int correctionD);
-void ajusterVitesseMoteurs();
+float correctionDerivative(int erreur, int erreurPrecedente);
+void appliquerCorrection(float correctionP, float correctionI, float correctionD);
+void ajusterVitesseMoteurs(int vitesse);
+void tourner(int angle, int direction);
 
 
 #endif // PID_H_
