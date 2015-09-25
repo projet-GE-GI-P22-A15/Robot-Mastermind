@@ -13,19 +13,11 @@
  */
 
 #include <libarmus.h>
-#include "pid.h"
+#include <pid.h>
 
 
 int main(){
-
-	while(1){
 		avancerDroit(1, 100, 100);
 
-
-
-		//Parcours semaine 7
-		//mainTrajet();	
-	}
-	
-	return 0
+	return 0;
 }
