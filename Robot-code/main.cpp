@@ -15,7 +15,6 @@
 #include <libarmus.h>
 #include <pid.h>
 
-
 int main(){
 		avancerDroit(1, 100, 100);
 
