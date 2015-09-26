@@ -1,6 +1,10 @@
+
 #include <libarmus.h>
 #include <pid.h>
 #include <valeurs.h>
+
+#include <pid.h>
+#include <libarmus.h>
 
 //mode: Définit la méthode d'arrêt
 //distance: la distance a parcourir en cm (pas important en mode IR)
