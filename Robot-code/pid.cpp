@@ -21,12 +21,14 @@ void avancerDroit(int mode, int distance, int vitesse) {
 	float correctionD = 0;
 
 	//Préparation a avancer
+
+	//Reset des encodeurs
+	ENCODER_Read(ENCODER_LEFT);
+	ENCODER_Read(ENCODER_RIGHT);
 	ajusterVitesseMoteurs(vitesse);
 	//Montée en charge des moteurs
 	THREAD_MSleep(50);
-	//Reset des encodeurs
-	cochesGauche = ENCODER_Read(ENCODER_LEFT);
-	cochesDroite = ENCODER_Read(ENCODER_RIGHT);
+
 	//Fin de la préparation
 
 	//2 façons d'arrêter: Soit on atteint la distance voulue, soit on détecte un mur

@@ -21,7 +21,9 @@ int roulerParcoursAller();
 int roulerParcoursRetour();
 
 int main() {
-	avancerDroit(1, 100, 100);
+	roulerParcoursAller();
+	tourner(180, GAUCHE);
+	roulerParcoursRetour();
 
 	return 0;
 }
@@ -51,7 +53,6 @@ int roulerParcoursAller() {
 
 int roulerParcoursRetour() {
 	//À l'envers
-	tourner(180, GAUCHE);
 
 	avancerDroit(ARRET_DISTANCE, 75, 100); 	//73.5
 	tourner(12, GAUCHE);		//12.5

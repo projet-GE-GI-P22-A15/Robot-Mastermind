@@ -20,7 +20,6 @@
  * @return Valeur de l'erreur fois le gain
  */
 //Déclaration des fonctions, obligatoire en C++
-
 void avancerDroit(int mode, int distance, int vitesse);
 float correctionProportionnelle(int erreur, int vitesse);
 float correctionIntegrative(int sommeErreurs);
