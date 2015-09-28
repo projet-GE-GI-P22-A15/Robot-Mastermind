@@ -8,7 +8,6 @@
 #ifndef ROTATION_H_
 #define ROTATION_H_
 
-
 void tourner(int angle, int direction);
 
 #endif /* ROTATION_H_ */

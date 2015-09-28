@@ -1,4 +1,3 @@
-
 #include <libarmus.h>
 #include <pid.h>
 #include <valeurs.h>
