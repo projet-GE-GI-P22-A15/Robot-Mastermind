@@ -28,9 +28,13 @@ void tourner(int angle, int direction) {
 
 		if (cochesGauche >= cochesATourner) {
 			MOTOR_SetSpeed(MOTOR_LEFT, 0);
+		} else if (cochesGauche >= cochesATourner - 10) {
+			MOTOR_SetSpeed(MOTOR_LEFT, 50);
 		}
 		if (cochesDroite >= cochesATourner) {
 			MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+		} else if (cochesDroite >= cochesATourner - 10) {
+			MOTOR_SetSpeed(MOTOR_RIGHT, 50);
 		}
 		THREAD_MSleep(25);
 	}
