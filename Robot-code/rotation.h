@@ -9,5 +9,6 @@
 #define ROTATION_H_
 
 void tourner(int angle, int direction);
+void tournerAlt(int angle, int direction);
 
 #endif /* ROTATION_H_ */

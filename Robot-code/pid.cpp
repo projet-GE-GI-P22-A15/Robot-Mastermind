@@ -23,11 +23,12 @@ void avancerDroit(int mode, int distance, int vitesse) {
 	//Préparation a avancer
 
 	//Reset des encodeurs
+
+	ajusterVitesseMoteurs(vitesse);
 	ENCODER_Read(ENCODER_LEFT);
 	ENCODER_Read(ENCODER_RIGHT);
-	ajusterVitesseMoteurs(vitesse);
 	//Montée en charge des moteurs
-	THREAD_MSleep(50);
+	THREAD_MSleep(100);
 
 	//Fin de la préparation
 
@@ -36,6 +37,8 @@ void avancerDroit(int mode, int distance, int vitesse) {
 			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0)) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
+
+		LCD_Printf("    %i    %i\n", cochesGauche, cochesDroite);
 
 		distanceParcourue = distanceParcourue
 				+ (((cochesGauche + cochesDroite) / 2)
@@ -47,13 +50,12 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 		correctionP = correctionProportionnelle(erreur, vitesse);
 		correctionI = correctionIntegrative(sommeErreurs);
-		//correctionD = correctionDerivative(erreur, erreurPrecedente);
+		correctionD = correctionDerivative(erreur, erreurPrecedente);
 
 		appliquerCorrection(correctionP, correctionI, correctionD);
 		ajusterVitesseMoteurs(vitesse);
 
-		//Debugging
-		LCD_Printf("Var: %f\n", vitesseDroitePRGauche);
+		LCD_Printf("      %f\n", vitesseDroitePRGauche);
 
 		THREAD_MSleep(DELAI_LECTURE);
 	}
@@ -63,11 +65,12 @@ void avancerDroit(int mode, int distance, int vitesse) {
 	}
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+	THREAD_MSleep(100);
 }
 
 //Determine l'importance de la proportion de l'erreur dans le PID
 float correctionProportionnelle(int erreur, int vitesse) {
-	float FACTEUR_CORRECTION_P = 0.015;
+	float FACTEUR_CORRECTION_P = 0.012;
 
 	float correction = erreur * FACTEUR_CORRECTION_P;
 	return correction;
@@ -75,7 +78,7 @@ float correctionProportionnelle(int erreur, int vitesse) {
 
 //Corrige l'erreur en prenant en compte les erreurs passees (offset)
 float correctionIntegrative(int sommeErreurs) {
-	float FACTEUR_CORRECTION_I = 0.009;
+	float FACTEUR_CORRECTION_I = 0.007;
 
 	float correction = sommeErreurs * FACTEUR_CORRECTION_I;
 	return correction;
@@ -83,7 +86,7 @@ float correctionIntegrative(int sommeErreurs) {
 
 //Corrige l'erreur en prevoyant les erreurs futures
 float correctionDerivative(int erreur, int erreurPrecedente) {
-	float FACTEUR_CORRECTION_D = 0.001;
+	float FACTEUR_CORRECTION_D = 0.010;
 
 	//correction = deltaErreur * temps. (mais tweake un peu)
 	float correction = (erreur - erreurPrecedente) * FACTEUR_CORRECTION_D;
@@ -93,7 +96,7 @@ float correctionDerivative(int erreur, int erreurPrecedente) {
 //Ajuste le facteur correctif des moteurs en fonction du PID
 void appliquerCorrection(float correctionP, float correctionI,
 		float correctionD) {
-	vitesseDroitePRGauche += correctionP + correctionI + correctionD;
+	vitesseDroitePRGauche += correctionP + correctionI - correctionD;
 }
 
 //
