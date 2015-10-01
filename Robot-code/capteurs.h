@@ -1,0 +1,6 @@
+#ifndef CAPTEURS_H_
+#define CAPTEURS_H_
+
+//FONCTION POUR LES CAPTEURS ICI	
+
+#endif // CAPTEURS_H_
