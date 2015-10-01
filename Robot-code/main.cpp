@@ -43,7 +43,7 @@ int main() {
 	return 0;
 }
 
-int roulerParcoursAller() {
+void roulerParcoursAller() {
 	// À l'endroit
 	avancerDroit(ARRET_DISTANCE, 193, 100); 	//200
 	tournerAlt(90, GAUCHE);		//90
@@ -62,13 +62,10 @@ int roulerParcoursAller() {
 	avancerDroit(ARRET_DISTANCE, 45, 100); 	// 47.5
 	tournerAlt(12, DROITE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 75, 100); 	// 73.5
-
-	return 0;
 }
 
-int roulerParcoursRetour() {
+void roulerParcoursRetour() {
 	//À l'envers
-
 	avancerDroit(ARRET_DISTANCE, 75, 100); 	//73.5
 	tournerAlt(12, GAUCHE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 39, 100); 	//47.5
@@ -86,6 +83,4 @@ int roulerParcoursRetour() {
 	avancerDroit(ARRET_DISTANCE, 38, 100); 	// 47.5 ou **
 	tournerAlt(90, DROITE);
 	avancerDroit(ARRET_DISTANCE, 193, 100);	//200
-
-	return 0;
 }

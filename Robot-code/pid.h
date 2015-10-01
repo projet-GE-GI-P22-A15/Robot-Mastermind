@@ -2,13 +2,12 @@
  * pid.h
  *
  *  Created on: 2015-09-25
- *      Author: blood
+ *      Author: bloodae & scoremoregoals
  */
 
 #ifndef PID_H_
 #define PID_H_
 
-//Déclaration des fonctions, obligatoire en C++
 
 /**
  * @brief Correction proportionel pour l'avacement d'un moteur
@@ -19,13 +18,55 @@
  * 
  * @return Valeur de l'erreur fois le gain
  */
-//Déclaration des fonctions, obligatoire en C++
 void avancerDroit(int mode, int distance, int vitesse);
+
+/**
+ * @brief Correction proportionnelle entre 2 roues
+ * @details La fonction fait la correction proportionnelle, donc un gain trouver en faisant des tests, de l'erreur entre les deux roues
+ * 
+ * @param erreur Erreur entre les deux lectures des roues
+ * @param vitesse Vitesse desiree entre 0 a 100
+ * 
+ * @return La valeur corrigee avec le gain Proportionnelle
+ */
 float correctionProportionnelle(int erreur, int vitesse);
+
+/**
+ * @brief Correction integrative
+ * @details Cela corrige la différence les roues avec un facteur correctif selon la somme des erreurs depuis le début.
+ * 
+ * @param sommeErreurs Les erreurs additionnes auparavant
+ * @return La valeur corrigee avec le gain Integrale
+ */
 float correctionIntegrative(int sommeErreurs);
+
+/**
+ * @brief Correction derivee
+ * @details A ne pas utiliser
+ * 
+ * @param erreur erreur present
+ * @param erreurPrecedente erreur calcule avant le tour d'avant
+ * 
+ * @return La valeur de la correction derivee
+ */
 float correctionDerivative(int erreur, int erreurPrecedente);
-void appliquerCorrection(float correctionP, float correctionI,
-		float correctionD);
+
+/**
+ * @brief Appliquer les corrections pour les moteurs
+ * @details La correction est fait comme ceci Vittesse de la roue = Correction Proportionnelle + Correction Integrale - Correction Derivee
+ *
+ * @param correctionP Correction proportionnelle
+ * @param correctionI Correction integrale
+ * @param correctionD Correction derivee
+ */
+void appliquerCorrection(float correctionP, float correctionI, float correctionD);
+
+/**
+ * @brief Change la vitesse selon avec le PID
+ * @details Change la vitesse d'une des 2 roues en aplliquant le resultat de la fonction appliquerCorrection
+ * 
+ * @param vitesse La vitesse voulue 
+ */
 void ajusterVitesseMoteurs(int vitesse);
 
 #endif // PID_H_
