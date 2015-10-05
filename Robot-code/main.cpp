@@ -17,7 +17,18 @@
 #include <rotation.h>
 #include <valeurs.h>
 
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
 int roulerParcoursAller();
+
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
 int roulerParcoursRetour();
 
 int main() {
