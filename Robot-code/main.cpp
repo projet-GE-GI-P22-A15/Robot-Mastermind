@@ -23,22 +23,22 @@ int roulerParcoursRetour();
 int main() {
 
 	/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 100);
-	THREAD_MSleep(8000);
-	MOTOR_SetSpeed(MOTOR_LEFT, 0);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
+	 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
+	 THREAD_MSleep(8000);
+	 MOTOR_SetSpeed(MOTOR_LEFT, 0);
+	 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
 
 	/*avancerDroit(1, 1000, 100);
-	tournerAlt(180, GAUCHE);
-	avancerDroit(1, 1000, 100);*/
+	 tournerAlt(180, GAUCHE);
+	 avancerDroit(1, 1000, 100);*/
 
 	roulerParcoursAller();
 
-	 tournerAlt(90, GAUCHE);
-	 avancerDroit(1, 14, -75);
-	 tournerAlt(90, GAUCHE);
+	tournerAlt(90, GAUCHE);
+	avancerDroit(1, 14, -75);
+	tournerAlt(90, GAUCHE);
 
-	 roulerParcoursRetour();
+	roulerParcoursRetour();
 
 	return 0;
 }

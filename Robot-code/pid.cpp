@@ -11,6 +11,9 @@
 void avancerDroit(int mode, int distance, int vitesse) {
 	float distanceParcourue = 0;
 	int cochesGauche = 0, cochesDroite = 0;
+	int cochesGauchePourCorrection = 0, cochesDroitePourCorrection = 0;
+	int cycleur = 1;
+	int nombreCyclesEntreCorrections = 5;
 
 	int erreur = 0;
 	int sommeErreurs = 0;
@@ -24,11 +27,11 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 	//Reset des encodeurs
 
-	ajusterVitesseMoteurs(vitesse);
 	ENCODER_Read(ENCODER_LEFT);
 	ENCODER_Read(ENCODER_RIGHT);
+	ajusterVitesseMoteurs(vitesse / 2);
 	//Montée en charge des moteurs
-	THREAD_MSleep(100);
+	THREAD_MSleep(50);
 
 	//Fin de la préparation
 
@@ -38,24 +41,33 @@ void avancerDroit(int mode, int distance, int vitesse) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
 
-		LCD_Printf("    %i    %i\n", cochesGauche, cochesDroite);
+		cochesGauchePourCorrection += cochesGauche;
+		cochesDroitePourCorrection += cochesDroite;
 
 		distanceParcourue = distanceParcourue
 				+ (((cochesGauche + cochesDroite) / 2)
 						* (CIRCONFERENCE_ROUE / NOMBRE_DIVISIONS_ROUES));
 
-		erreurPrecedente = erreur;
-		erreur = cochesGauche - cochesDroite;
-		sommeErreurs += erreur;
+		if (distance - distanceParcourue >= 4){
+			vitesse /= 2;
+		}
 
-		correctionP = correctionProportionnelle(erreur, vitesse);
-		correctionI = correctionIntegrative(sommeErreurs);
-		correctionD = correctionDerivative(erreur, erreurPrecedente);
+		cycleur = (cycleur + 1) % nombreCyclesEntreCorrections;
+		if (cycleur == 0) {
+			erreurPrecedente = erreur;
+			erreur = cochesGauchePourCorrection - cochesDroitePourCorrection;
+			sommeErreurs += erreur;
 
-		appliquerCorrection(correctionP, correctionI, correctionD);
-		ajusterVitesseMoteurs(vitesse);
+			correctionP = correctionProportionnelle(erreur, vitesse);
+			correctionI = correctionIntegrative(sommeErreurs);
+			correctionD = correctionDerivative(erreur, erreurPrecedente);
 
-		LCD_Printf("      %f\n", vitesseDroitePRGauche);
+			appliquerCorrection(correctionP, correctionI, correctionD);
+			ajusterVitesseMoteurs(vitesse);
+
+			LCD_Printf("%f\n", vitesseDroitePRGauche);
+		}
+
 
 		THREAD_MSleep(DELAI_LECTURE);
 	}
