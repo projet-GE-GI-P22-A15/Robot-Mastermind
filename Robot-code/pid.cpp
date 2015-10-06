@@ -11,9 +11,6 @@
 void avancerDroit(int mode, int distance, int vitesse) {
 	float distanceParcourue = 0;
 	int cochesGauche = 0, cochesDroite = 0;
-	int cochesGauchePourCorrection = 0, cochesDroitePourCorrection = 0;
-	int cycleur = 1;
-	int nombreCyclesEntreCorrections = 5;
 
 	int erreur = 0;
 	int sommeErreurs = 0;
@@ -29,7 +26,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 	ENCODER_Read(ENCODER_LEFT);
 	ENCODER_Read(ENCODER_RIGHT);
-	ajusterVitesseMoteurs(vitesse / 2);
+	ajusterVitesseMoteurs(vitesse / 1.7);
 	//Montée en charge des moteurs
 	THREAD_MSleep(50);
 
@@ -41,33 +38,27 @@ void avancerDroit(int mode, int distance, int vitesse) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
 
-		cochesGauchePourCorrection += cochesGauche;
-		cochesDroitePourCorrection += cochesDroite;
-
 		distanceParcourue = distanceParcourue
 				+ (((cochesGauche + cochesDroite) / 2)
 						* (CIRCONFERENCE_ROUE / NOMBRE_DIVISIONS_ROUES));
 
-		if (distance - distanceParcourue >= 4){
-			vitesse /= 2;
-		}
+		erreurPrecedente = erreur;
+		erreur = cochesGauche - cochesDroite;
+		sommeErreurs += erreur;
 
-		cycleur = (cycleur + 1) % nombreCyclesEntreCorrections;
-		if (cycleur == 0) {
-			erreurPrecedente = erreur;
-			erreur = cochesGauchePourCorrection - cochesDroitePourCorrection;
-			sommeErreurs += erreur;
+		correctionP = correctionProportionnelle(erreur, vitesse);
+		correctionI = correctionIntegrative(sommeErreurs);
+		correctionD = correctionDerivative(erreur, erreurPrecedente);
 
-			correctionP = correctionProportionnelle(erreur, vitesse);
-			correctionI = correctionIntegrative(sommeErreurs);
-			correctionD = correctionDerivative(erreur, erreurPrecedente);
+		appliquerCorrection(correctionP, correctionI, correctionD);
 
-			appliquerCorrection(correctionP, correctionI, correctionD);
+		if (distance - distanceParcourue <= 4) {
+			ajusterVitesseMoteurs(vitesse / 1.7);
+		} else {
 			ajusterVitesseMoteurs(vitesse);
-
-			LCD_Printf("%f\n", vitesseDroitePRGauche);
 		}
 
+		LCD_Printf("%f\n", vitesseDroitePRGauche);
 
 		THREAD_MSleep(DELAI_LECTURE);
 	}
@@ -82,7 +73,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 //Determine l'importance de la proportion de l'erreur dans le PID
 float correctionProportionnelle(int erreur, int vitesse) {
-	float FACTEUR_CORRECTION_P = 0.015;
+	float FACTEUR_CORRECTION_P = 0.013;
 
 	float correction = erreur * FACTEUR_CORRECTION_P;
 	return correction;
