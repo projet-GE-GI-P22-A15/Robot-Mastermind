@@ -37,8 +37,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 	//2 façons d'arrêter: Soit on atteint la distance voulue, soit on détecte un mur
 	while (((mode == ARRET_DISTANCE && distanceParcourue < distance)
-			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))
-			) {
+			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
 
@@ -77,7 +76,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 //Determine l'importance de la proportion de l'erreur dans le PID
 float correctionProportionnelle(int erreur, int vitesse) {
-	float FACTEUR_CORRECTION_P = 0.012;
+	float FACTEUR_CORRECTION_P = 0.010;
 
 	float correction = erreur * FACTEUR_CORRECTION_P;
 	return correction;
@@ -85,7 +84,7 @@ float correctionProportionnelle(int erreur, int vitesse) {
 
 //Corrige l'erreur en prenant en compte les erreurs passees (offset)
 float correctionIntegrative(int sommeErreurs) {
-	float FACTEUR_CORRECTION_I = 0.008;
+	float FACTEUR_CORRECTION_I = 0.007;
 
 	float correction = sommeErreurs * FACTEUR_CORRECTION_I;
 	return correction;
@@ -93,7 +92,7 @@ float correctionIntegrative(int sommeErreurs) {
 
 //Corrige l'erreur en prevoyant les erreurs futures
 float correctionDerivative(int erreur, int erreurPrecedente) {
-	float FACTEUR_CORRECTION_D = 0.006;
+	float FACTEUR_CORRECTION_D = 0.005;
 
 	//correction = deltaErreur * temps. (mais tweake un peu)
 	float correction = (erreur - erreurPrecedente) * FACTEUR_CORRECTION_D;

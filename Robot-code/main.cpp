@@ -48,7 +48,6 @@ int main() {
 
 			//tournerAlt(1080, DROITE);
 
-
 			//BumperStopper = THREAD_CreateSimple(BumperCommander);
 			/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
@@ -70,14 +69,14 @@ int main() {
 	return 0;
 }
 
-int roulerParcoursComplet(){
+int roulerParcoursComplet() {
 	roulerParcoursAller();
 
-				tournerAlt(90, GAUCHE);
-				avancerDroit(1, 12, -75);
-				tournerAlt(90, GAUCHE);
+	tournerAlt(90, GAUCHE);
+	avancerDroit(1, 15, -75);
+	tournerAlt(90, GAUCHE);
 
-				roulerParcoursRetour();
+	roulerParcoursRetour();
 
 	return 0;
 }
@@ -90,7 +89,7 @@ int roulerParcoursAller() {
 	tournerAlt(90, DROITE);		//90
 	avancerDroit(ARRET_DISTANCE, 28, 100);	//45
 	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 31, 100); 	//47.5 ou == **
+	avancerDroit(ARRET_DISTANCE, 29, 100); 	//47.5 ou == **
 	tournerAlt(90, GAUCHE);		//90
 	avancerDroit(ARRET_DISTANCE, 27, 100); 	//31.2
 	tournerAlt(45, DROITE);		//45
@@ -100,7 +99,7 @@ int roulerParcoursAller() {
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 47.5
 	tournerAlt(7, DROITE);		//12.5
-	avancerDroit(ARRET_DISTANCE, 85, 100); 	// 73.5
+	avancerDroit(ARRET_DISTANCE, 80, 100); 	// 73.5
 
 	return 0;
 }
@@ -108,11 +107,11 @@ int roulerParcoursAller() {
 int roulerParcoursRetour() {
 	//À l'envers
 
-	avancerDroit(ARRET_DISTANCE, 85, 100); 	//73.5
+	avancerDroit(ARRET_DISTANCE, 80, 100); 	//73.5
 	tournerAlt(7, GAUCHE);		//12.5
-	avancerDroit(ARRET_DISTANCE, 30, 100); 	//47.5
+	avancerDroit(ARRET_DISTANCE, 37, 100); 	//47.5
 	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 55, 100); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 69, 100); 	// 73.2
 	tournerAlt(90, DROITE);
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	//67.2
 	tournerAlt(45, GAUCHE);
