@@ -32,6 +32,13 @@ int roulerParcoursAller();
  */
 int roulerParcoursRetour();
 
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
+int roulerParcoursComplet();
+
 int main() {
 	//THREAD BumperStopper;
 
@@ -53,18 +60,24 @@ int main() {
 			 tournerAlt(180, GAUCHE);
 			 avancerDroit(1, 1000, 100);*/
 
-			roulerParcoursAller();
-
-			tournerAlt(90, GAUCHE);
-			avancerDroit(1, 12, -75);
-			tournerAlt(90, GAUCHE);
-
-			roulerParcoursRetour();
+			roulerParcoursComplet();
 
 			//THREAD_Destroy(&BumperStopper);
 		}
 		THREAD_MSleep(50);
 	}
+
+	return 0;
+}
+
+int roulerParcoursComplet(){
+	roulerParcoursAller();
+
+				tournerAlt(90, GAUCHE);
+				avancerDroit(1, 12, -75);
+				tournerAlt(90, GAUCHE);
+
+				roulerParcoursRetour();
 
 	return 0;
 }
@@ -79,14 +92,14 @@ int roulerParcoursAller() {
 	tournerAlt(90, DROITE);		//90
 	avancerDroit(ARRET_DISTANCE, 31, 100); 	//47.5 ou == **
 	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 23, 100); 	//31.2
+	avancerDroit(ARRET_DISTANCE, 27, 100); 	//31.2
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 67.2
 	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 58, 100); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 69, 100); 	// 73.2
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 47.5
-	tournerAlt(12, DROITE);		//12.5
+	tournerAlt(7, DROITE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 85, 100); 	// 73.5
 
 	return 0;
@@ -96,7 +109,7 @@ int roulerParcoursRetour() {
 	//À l'envers
 
 	avancerDroit(ARRET_DISTANCE, 85, 100); 	//73.5
-	tournerAlt(12, GAUCHE);		//12.5
+	tournerAlt(7, GAUCHE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	//47.5
 	tournerAlt(45, GAUCHE);
 	avancerDroit(ARRET_DISTANCE, 55, 100); 	// 73.2
