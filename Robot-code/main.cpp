@@ -32,24 +32,30 @@ int roulerParcoursAller();
 int roulerParcoursRetour();
 
 int main() {
+	int bumperPresse = 0;
+	while (bumperPresse == 0) {
+		bumperPresse = DIGITALIO_Read(BMP_REAR);
+		if ( bumperPresse != 0) {
+			/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
+			 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
+			 THREAD_MSleep(8000);
+			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
+			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
 
-	/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
-	 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
-	 THREAD_MSleep(8000);
-	 MOTOR_SetSpeed(MOTOR_LEFT, 0);
-	 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
+			/*avancerDroit(1, 1000, 100);
+			 tournerAlt(180, GAUCHE);
+			 avancerDroit(1, 1000, 100);*/
 
-	/*avancerDroit(1, 1000, 100);
-	 tournerAlt(180, GAUCHE);
-	 avancerDroit(1, 1000, 100);*/
+			roulerParcoursAller();
 
-	roulerParcoursAller();
+			tournerAlt(90, GAUCHE);
+			avancerDroit(1, 12, -75);
+			tournerAlt(90, GAUCHE);
 
-	tournerAlt(90, GAUCHE);
-	avancerDroit(1, 14, -75);
-	tournerAlt(90, GAUCHE);
-
-	roulerParcoursRetour();
+			roulerParcoursRetour();
+		}
+		THREAD_MSleep(50);
+	}
 
 	return 0;
 }
@@ -60,15 +66,15 @@ int roulerParcoursAller() {
 	tournerAlt(90, GAUCHE);		//90
 	avancerDroit(ARRET_DISTANCE, 27, 100); 	//47.5**
 	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 31, 100);	//45
+	avancerDroit(ARRET_DISTANCE, 28, 100);	//45
 	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 32, 100); 	//47.5 ou == **
+	avancerDroit(ARRET_DISTANCE, 29, 100); 	//47.5 ou == **
 	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 24, 100); 	//31.2
+	avancerDroit(ARRET_DISTANCE, 26, 100); 	//31.2
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 67.2
 	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 55, 100); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 58, 100); 	// 73.2
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 47.5
 	tournerAlt(5, DROITE);		//12.5
@@ -80,23 +86,23 @@ int roulerParcoursAller() {
 int roulerParcoursRetour() {
 	//À l'envers
 
-	avancerDroit(ARRET_DISTANCE, 55, 100); 	//73.5
+	avancerDroit(ARRET_DISTANCE, 85, 100); 	//73.5
 	tournerAlt(12, GAUCHE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	//47.5
 	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 64, 100); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 55, 100); 	// 73.2
 	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 40, 100); 	//67.2
+	avancerDroit(ARRET_DISTANCE, 30, 100); 	//67.2
 	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 22, 100); 	//31.2
+	avancerDroit(ARRET_DISTANCE, 26, 100); 	//31.2
 	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 38, 100); 	// 47.5**
+	avancerDroit(ARRET_DISTANCE, 31, 100); 	// 47.5**
 	tournerAlt(90, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 36, 100); 	// 45
+	avancerDroit(ARRET_DISTANCE, 28, 100); 	// 45
 	tournerAlt(90, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 38, 100); 	// 47.5 ou **
+	avancerDroit(ARRET_DISTANCE, 29, 100); 	// 47.5 ou **
 	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 200, 100);	//200
+	avancerDroit(ARRET_DISTANCE, 225, 100);	//200
 
 	return 0;
 }

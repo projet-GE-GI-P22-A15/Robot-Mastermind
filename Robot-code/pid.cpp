@@ -73,7 +73,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 //Determine l'importance de la proportion de l'erreur dans le PID
 float correctionProportionnelle(int erreur, int vitesse) {
-	float FACTEUR_CORRECTION_P = 0.013;
+	float FACTEUR_CORRECTION_P = 0.012;
 
 	float correction = erreur * FACTEUR_CORRECTION_P;
 	return correction;
@@ -81,7 +81,7 @@ float correctionProportionnelle(int erreur, int vitesse) {
 
 //Corrige l'erreur en prenant en compte les erreurs passees (offset)
 float correctionIntegrative(int sommeErreurs) {
-	float FACTEUR_CORRECTION_I = 0.009;
+	float FACTEUR_CORRECTION_I = 0.008;
 
 	float correction = sommeErreurs * FACTEUR_CORRECTION_I;
 	return correction;
