@@ -16,6 +16,7 @@
 #include <pid.h>
 #include <rotation.h>
 #include <valeurs.h>
+#include <logique.h>
 
 /**
  * @brief [brief description]
@@ -32,10 +33,13 @@ int roulerParcoursAller();
 int roulerParcoursRetour();
 
 int main() {
-	int bumperPresse = 0;
-	while (bumperPresse == 0) {
-		bumperPresse = DIGITALIO_Read(BMP_REAR);
-		if ( bumperPresse != 0) {
+	//THREAD BumperStopper;
+
+	while (execution == 0) {
+		execution = DIGITALIO_Read(BMP_REAR);
+		if (execution != 0) {
+
+			//BumperStopper = THREAD_CreateSimple(BumperCommander);
 			/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
 			 THREAD_MSleep(8000);
@@ -53,6 +57,8 @@ int main() {
 			tournerAlt(90, GAUCHE);
 
 			roulerParcoursRetour();
+
+			//THREAD_Destroy(&BumperStopper);
 		}
 		THREAD_MSleep(50);
 	}
@@ -87,7 +93,7 @@ int roulerParcoursRetour() {
 	//À l'envers
 
 	avancerDroit(ARRET_DISTANCE, 85, 100); 	//73.5
-	tournerAlt(12, GAUCHE);		//12.5
+	tournerAlt(5, GAUCHE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	//47.5
 	tournerAlt(45, GAUCHE);
 	avancerDroit(ARRET_DISTANCE, 55, 100); 	// 73.2

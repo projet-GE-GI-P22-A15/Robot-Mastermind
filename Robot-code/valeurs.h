@@ -38,4 +38,9 @@ extern int NOMBRE_DIVISIONS_ROUES;
  */
 extern int DELAI_LECTURE;
 
+/**
+ * sert au controle du robot avec les bumpers
+ */
+extern int execution;
+
 #endif /* VALEURS_H_ */

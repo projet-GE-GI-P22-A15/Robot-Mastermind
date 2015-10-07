@@ -26,15 +26,19 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 	ENCODER_Read(ENCODER_LEFT);
 	ENCODER_Read(ENCODER_RIGHT);
-	ajusterVitesseMoteurs(vitesse / 1.7);
+
 	//Montée en charge des moteurs
+	ajusterVitesseMoteurs(vitesse / 2.5);
+	THREAD_MSleep(50);
+	ajusterVitesseMoteurs(vitesse / 1.6);
 	THREAD_MSleep(50);
 
 	//Fin de la préparation
 
 	//2 façons d'arrêter: Soit on atteint la distance voulue, soit on détecte un mur
-	while ((mode == ARRET_DISTANCE && distanceParcourue < distance)
-			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0)) {
+	while (((mode == ARRET_DISTANCE && distanceParcourue < distance)
+			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))
+			) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
 

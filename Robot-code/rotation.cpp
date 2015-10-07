@@ -2,7 +2,8 @@
 #include <rotation.h>
 #include <valeurs.h>
 
-void tourner(int angle, int direction) {
+/*void tourner(int angle, int direction) {
+	int vitesse = 60;
 	int cochesGauche = 0, cochesDroite = 0;
 	int vitesseGauche = 0, vitesseDroite = 0;
 
@@ -16,19 +17,21 @@ void tourner(int angle, int direction) {
 	}
 
 	if (direction == GAUCHE) {
-		vitesseGauche = -75;
-		vitesseDroite = 75;
+		vitesseGauche = -vitesse;
+		vitesseDroite = vitesse;
 	} else if (direction == DROITE) {
-		vitesseGauche = 75;
-		vitesseDroite = -75;
+		vitesseGauche = vitesse;
+		vitesseDroite = -vitesse;
 	}
 
 	ENCODER_Read(ENCODER_LEFT);
 	ENCODER_Read(ENCODER_RIGHT);
 	MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche / 2);
 	MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite / 2);
+	THREAD_MSleep(30);
 
-	while (cochesGauche < cochesATourner || cochesDroite < cochesATourner) {
+	while ((cochesGauche < cochesATourner || cochesDroite < cochesATourner)
+			) {
 		cochesGauche += ENCODER_Read(ENCODER_LEFT);
 		cochesDroite += ENCODER_Read(ENCODER_RIGHT);
 
@@ -46,16 +49,17 @@ void tourner(int angle, int direction) {
 		} else {
 			MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite);
 		}
-		THREAD_MSleep(25);
+		THREAD_MSleep(10);
 	}
 
 	//Fail safe
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 	THREAD_MSleep(50);
-}
+}*/
 
 void tournerAlt(int angle, int direction) {
+	int vitesse = 75;
 	int cochesGauche = 0, cochesDroite = 0;
 	int vitesseGauche = 0, vitesseDroite = 0;
 
@@ -70,33 +74,42 @@ void tournerAlt(int angle, int direction) {
 
 	if (direction == GAUCHE) {
 		vitesseGauche = 0;
-		vitesseDroite = 75;
+		vitesseDroite = vitesse;
 	} else if (direction == DROITE) {
-		vitesseGauche = 75;
+		vitesseGauche = vitesse;
 		vitesseDroite = 0;
 	}
 
 	ENCODER_Read(ENCODER_LEFT);
 	ENCODER_Read(ENCODER_RIGHT);
-	MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche);
-	MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite);
+	MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche / 2);
+	MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite / 2);
+	THREAD_MSleep(30);
 
 	while (cochesGauche < cochesATourner && cochesDroite < cochesATourner) {
 		cochesGauche += ENCODER_Read(ENCODER_LEFT);
 		cochesDroite += ENCODER_Read(ENCODER_RIGHT);
 
 		if (cochesGauche >= cochesATourner) {
-			MOTOR_SetSpeed(MOTOR_LEFT, 0);
-		}
+					MOTOR_SetSpeed(MOTOR_LEFT, 0);
+				} else if (cochesGauche >= cochesATourner - 6) {
+					MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche / 2);
+				} else {
+					MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche);
+				}
 		if (cochesDroite >= cochesATourner) {
-			MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-		}
-		THREAD_MSleep(25);
+					MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+				} else if (cochesDroite >= cochesATourner - 6) {
+					MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite / 2);
+				} else {
+					MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite);
+				}
+		THREAD_MSleep(15);
 	}
 
 	//Fail safe
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-	THREAD_MSleep(100);
+	THREAD_MSleep(50);
 }
 

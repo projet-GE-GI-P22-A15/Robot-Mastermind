@@ -23,7 +23,8 @@ Robot-code/main.d Robot-code/main.o: ../Robot-code/main.cpp \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
   D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/pid.h \
   D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/rotation.h \
-  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/valeurs.h
+  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/valeurs.h \
+  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/logique.h
 
 C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h:
 
@@ -74,3 +75,5 @@ D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/pid.h
 D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/rotation.h:
 
 D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/valeurs.h:
+
+D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/logique.h:
