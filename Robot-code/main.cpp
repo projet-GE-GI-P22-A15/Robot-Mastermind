@@ -39,6 +39,9 @@ int main() {
 		execution = DIGITALIO_Read(BMP_REAR);
 		if (execution != 0) {
 
+			//tournerAlt(1080, DROITE);
+
+
 			//BumperStopper = THREAD_CreateSimple(BumperCommander);
 			/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
@@ -74,16 +77,16 @@ int roulerParcoursAller() {
 	tournerAlt(90, DROITE);		//90
 	avancerDroit(ARRET_DISTANCE, 28, 100);	//45
 	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 29, 100); 	//47.5 ou == **
+	avancerDroit(ARRET_DISTANCE, 31, 100); 	//47.5 ou == **
 	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 26, 100); 	//31.2
+	avancerDroit(ARRET_DISTANCE, 23, 100); 	//31.2
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 67.2
 	tournerAlt(90, GAUCHE);		//90
 	avancerDroit(ARRET_DISTANCE, 58, 100); 	// 73.2
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 47.5
-	tournerAlt(5, DROITE);		//12.5
+	tournerAlt(12, DROITE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 85, 100); 	// 73.5
 
 	return 0;
@@ -93,7 +96,7 @@ int roulerParcoursRetour() {
 	//À l'envers
 
 	avancerDroit(ARRET_DISTANCE, 85, 100); 	//73.5
-	tournerAlt(5, GAUCHE);		//12.5
+	tournerAlt(12, GAUCHE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 30, 100); 	//47.5
 	tournerAlt(45, GAUCHE);
 	avancerDroit(ARRET_DISTANCE, 55, 100); 	// 73.2
