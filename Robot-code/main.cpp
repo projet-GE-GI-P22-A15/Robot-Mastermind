@@ -93,7 +93,7 @@ int roulerParcoursAller() {
 	tournerAlt(90, GAUCHE);		//90
 	avancerDroit(ARRET_DISTANCE, 27, 100); 	//31.2
 	tournerAlt(45, DROITE);		//45
-	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 67.2
+	avancerDroit(ARRET_DISTANCE, 27, 100); 	// 67.2
 	tournerAlt(90, GAUCHE);		//90
 	avancerDroit(ARRET_DISTANCE, 69, 100); 	// 73.2
 	tournerAlt(45, DROITE);		//45
