@@ -18,6 +18,8 @@
 #include <valeurs.h>
 #include <logique.h>
 
+#define vitesse 80
+
 /**
  * @brief [brief description]
  * @details [long description]
@@ -83,23 +85,23 @@ int roulerParcoursComplet() {
 
 int roulerParcoursAller() {
 	// À l'endroit
-	avancerDroit(ARRET_DISTANCE, 216, 100); 	//200
+	avancerDroit(ARRET_DISTANCE, 216, vitesse); 	//200
 	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 27, 100); 	//47.5**
+	avancerDroit(ARRET_DISTANCE, 27, vitesse); 	//47.5**
 	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 28, 100);	//45
+	avancerDroit(ARRET_DISTANCE, 28, vitesse);	//45
 	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 29, 100); 	//47.5 ou == **
-	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 27, 100); 	//31.2
+	avancerDroit(ARRET_DISTANCE, 32, vitesse); 	//47.5 ou == **
+	tournerAlt(87, GAUCHE);		//90
+	avancerDroit(ARRET_DISTANCE, 23, vitesse); 	//31.2
 	tournerAlt(45, DROITE);		//45
-	avancerDroit(ARRET_DISTANCE, 27, 100); 	// 67.2
-	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 69, 100); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 27, vitesse); 	// 67.2
+	tournerAlt(85, GAUCHE);		//90
+	avancerDroit(ARRET_DISTANCE, 58, vitesse); 	// 73.2
 	tournerAlt(45, DROITE);		//45
-	avancerDroit(ARRET_DISTANCE, 30, 100); 	// 47.5
-	tournerAlt(7, DROITE);		//12.5
-	avancerDroit(ARRET_DISTANCE, 80, 100); 	// 73.5
+	avancerDroit(ARRET_DISTANCE, 30, vitesse); 	// 47.5
+	tournerAlt(10, DROITE);		//12.5
+	avancerDroit(ARRET_DISTANCE, 80, vitesse); 	// 73.5
 
 	return 0;
 }
@@ -107,23 +109,23 @@ int roulerParcoursAller() {
 int roulerParcoursRetour() {
 	//À l'envers
 
-	avancerDroit(ARRET_DISTANCE, 80, 100); 	//73.5
+	avancerDroit(ARRET_DISTANCE, 80, vitesse); 	//73.5
 	tournerAlt(7, GAUCHE);		//12.5
-	avancerDroit(ARRET_DISTANCE, 37, 100); 	//47.5
+	avancerDroit(ARRET_DISTANCE, 37, vitesse); 	//47.5
 	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 69, 100); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 63, vitesse); 	// 73.2
 	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 30, 100); 	//67.2
+	avancerDroit(ARRET_DISTANCE, 30, vitesse); 	//67.2
 	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 26, 100); 	//31.2
+	avancerDroit(ARRET_DISTANCE, 21, vitesse); 	//31.2
 	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 31, 100); 	// 47.5**
+	avancerDroit(ARRET_DISTANCE, 31, vitesse); 	// 47.5**
 	tournerAlt(90, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 28, 100); 	// 45
+	avancerDroit(ARRET_DISTANCE, 28, vitesse); 	// 45
 	tournerAlt(90, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 29, 100); 	// 47.5 ou **
+	avancerDroit(ARRET_DISTANCE, 29, vitesse); 	// 47.5 ou **
 	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 225, 100);	//200
+	avancerDroit(ARRET_DISTANCE, 225, vitesse);	//200
 
 	return 0;
 }

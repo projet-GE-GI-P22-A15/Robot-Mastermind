@@ -61,7 +61,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 			ajusterVitesseMoteurs(vitesse);
 		}
 
-		LCD_Printf("%f\n", vitesseDroitePRGauche);
+		//LCD_Printf("%f\n", vitesseDroitePRGauche);
 
 		THREAD_MSleep(DELAI_LECTURE);
 	}

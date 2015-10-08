@@ -39,7 +39,7 @@ extern int NOMBRE_DIVISIONS_ROUES;
 extern int DELAI_LECTURE;
 
 /**
- * sert au controle du robot avec les bumpers
+ * Sert au controle du robot avec les bumpers
  */
 extern int execution;
 
