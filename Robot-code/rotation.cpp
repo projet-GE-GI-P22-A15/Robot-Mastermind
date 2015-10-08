@@ -59,7 +59,7 @@
  }*/
 
 void tournerAlt(int angle, int direction) {
-	int vitesse = 64;
+	int vitesse = 60;
 	int cochesGauche = 0, cochesDroite = 0;
 	int vitesseGauche = 0, vitesseDroite = 0;
 
