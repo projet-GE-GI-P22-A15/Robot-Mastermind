@@ -97,11 +97,11 @@ int roulerParcoursAller() {
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 27, vitesse); 	// 67.2
 	tournerAlt(85, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 58, vitesse); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 53, vitesse); 	// 73.2
 	tournerAlt(45, DROITE);		//45
 	avancerDroit(ARRET_DISTANCE, 30, vitesse); 	// 47.5
 	tournerAlt(10, DROITE);		//12.5
-	avancerDroit(ARRET_DISTANCE, 80, vitesse); 	// 73.5
+	avancerDroit(ARRET_DISTANCE, 85, vitesse); 	// 73.5
 
 	return 0;
 }
@@ -109,11 +109,11 @@ int roulerParcoursAller() {
 int roulerParcoursRetour() {
 	//À l'envers
 
-	avancerDroit(ARRET_DISTANCE, 80, vitesse); 	//73.5
-	tournerAlt(7, GAUCHE);		//12.5
+	avancerDroit(ARRET_DISTANCE, 85, vitesse); 	//73.5
+	tournerAlt(12, GAUCHE);		//12.5
 	avancerDroit(ARRET_DISTANCE, 37, vitesse); 	//47.5
 	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 63, vitesse); 	// 73.2
+	avancerDroit(ARRET_DISTANCE, 58, vitesse); 	// 73.2
 	tournerAlt(90, DROITE);
 	avancerDroit(ARRET_DISTANCE, 30, vitesse); 	//67.2
 	tournerAlt(45, GAUCHE);
