@@ -11,13 +11,14 @@ int lectureMicro() //Lecture de l'entrée analogique du micro , donc le 5kHz pou
 	lectureEntree=ANALOG _Read(PORTMICRO);
 	if(lectureEntree!=0)
 	{
-		lectureEntree=SOBEIT;
+		lectureEntree=1;
 		LCD_Printf("SIGNAL 5kHz!\n");
 		return lectureEntree;
 	}
 	else
 	{
 		lectureEntree=0;
+		LCD_Printf("PAS DE SIGNAL!\n");
 		return lectureEntree;
 	}
 }
@@ -31,7 +32,7 @@ int SignalDepartSumo() //Pour le Sumo ET le Ninja
 		THREAD_MSleep(PAUSECAFE);
 		premierSignal=lectureMicro();
 	}
-	LCD_Printf("GO!!! I GOT YO BACK NINJA!!!");
+	LCD_Printf("GO!!! I GOT YO BACK NINJA!!!\n");
 	return premierSignal;
 }
 
