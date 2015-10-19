@@ -1,5 +1,6 @@
-Robot-code/capteurs.d Robot-code/capteurs.o: ../Robot-code/capteurs.cpp \
-  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/capteurs.h \
+Robot-code/capteurCouleur.d Robot-code/capteurCouleur.o:  \
+ ../Robot-code/capteurCouleur.cpp \
+  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/capteurCouleur.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/analog_api.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/audio_api.h \
@@ -23,7 +24,7 @@ Robot-code/capteurs.d Robot-code/capteurs.o: ../Robot-code/capteurs.cpp \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h
 
-D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/capteurs.h:
+D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/capteurCouleur.h:
 
 C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h:
 

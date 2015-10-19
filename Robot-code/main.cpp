@@ -50,20 +50,17 @@ int main() {
 
 			//tournerAlt(1080, DROITE);
 
-			//BumperStopper = THREAD_CreateSimple(BumperCommander);
 			/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
 			 THREAD_MSleep(8000);
 			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
 
-			/*avancerDroit(1, 1000, 100);
-			 tournerAlt(180, GAUCHE);
-			 avancerDroit(1, 1000, 100);*/
+			avancerDroit(1, 500, 100);
+			tournerAlt(180, GAUCHE);
+			avancerDroit(1, 500, 100);
 
-			roulerParcoursComplet();
-
-			//THREAD_Destroy(&BumperStopper);
+			//roulerParcoursComplet();
 		}
 		THREAD_MSleep(50);
 	}

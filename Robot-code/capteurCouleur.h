@@ -1,8 +1,6 @@
 #ifndef CAPTEURCOULEUR_H_
 #define CAPTEURCOULEUR_H_
 
-
-
 #define ADJD_S371_QR999_SADR 	0x74
 #define CAP_RED					0x6
 #define CAP_GREEN				0x7
@@ -25,6 +23,5 @@
 #define CONFIG_TOFS				0
 
 int adjd_dev;
-
 
 #endif // CAPTEURCOULEUR_H_
