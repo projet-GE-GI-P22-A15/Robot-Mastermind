@@ -8,7 +8,7 @@ int lectureMicro() //Lecture de l'entrée analogique du micro , donc le 5kHz pou
 {
 	int lectureEntree=0;
 		
-	lectureEntree=ANALOG _Read(PORTMICRO);
+	lectureEntree=ANALOG_Read(PORTMICRO);
 	if(lectureEntree!=0)
 	{
 		lectureEntree=1;
