@@ -2,14 +2,14 @@
 #include <libarmus.h>
 
 //code capteur ici!
-#define PORTMICRO 1
+#define PORTMICRO 17
 #define PAUSECAFE 200
 
 int lectureMicro() //Lecture de l'entrée analogique du micro , donc le 5kHz pour le signal de départ . Fonction utilisee pour les deux robots.
 {
 	int lectureEntree = 0;
 
-	lectureEntree = ANALOG_Read(PORTMICRO);
+	lectureEntree = DIGITALIO_Read(PORTMICRO);
 	if (lectureEntree != 0) {
 		lectureEntree = 1;
 		LCD_Printf("SIGNAL 5kHz!\n");
@@ -55,24 +55,6 @@ void grandeCourse(int mode, int position) //mode=1 :Sumo mode=2:Ninja , position
 		//Sumo(position);
 	} else if (mode == 2) {
 		//Ninja(position);
-	}
-}
-
-void Ninja(int position) {
-	SignalDepartNinja();
-	if (position == 1) {
-		//NinjaDroit();fonction à concevoir avec fonctions autres capteurs et mouvements du Ninja qui part de la droite!
-	} else if (position == 2) {
-		//NinjaGauche();fonction à concevoir avec fonctions autres capteurs et mouvements du Ninja qui part de la gauche!
-	}
-}
-
-void Sumo(int position) {
-	SignalDepartSumo();
-	if (position == 1) {
-		//SumoDroit();fonction à concevoir avec fonctions autres capteurs et mouvements du Ninja qui part de la droite!
-	} else if (position == 2) {
-//SumoGauche();fonction à concevoir avec fonctions autres capteurs et mouvements du Ninja qui part de la gauche!
 	}
 }
 

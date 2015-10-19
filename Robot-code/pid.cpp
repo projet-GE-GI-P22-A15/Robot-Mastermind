@@ -9,6 +9,7 @@
 //distance: la distance a parcourir en cm (pas important en mode IR)
 //vitesse: la vitesse en % a laquelle le robot doit aller
 void avancerDroit(int mode, int distance, int vitesse) {
+	conditionArret = 0;
 	float distanceParcourue = 0;
 	int cochesGauche = 0, cochesDroite = 0;
 
@@ -28,8 +29,6 @@ void avancerDroit(int mode, int distance, int vitesse) {
 	ENCODER_Read(ENCODER_RIGHT);
 
 	//Montée en charge des moteurs
-	ajusterVitesseMoteurs(vitesse / 2.5);
-	THREAD_MSleep(50);
 	ajusterVitesseMoteurs(vitesse / 1.6);
 	THREAD_MSleep(50);
 
@@ -37,7 +36,8 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 	//2 façons d'arrêter: Soit on atteint la distance voulue, soit on détecte un mur
 	while (((mode == ARRET_DISTANCE && distanceParcourue < distance)
-			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))) {
+			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))
+			|| (mode == ARRET_EXTERNE && conditionArret == 0)) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
 
@@ -55,13 +55,13 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 		appliquerCorrection(correctionP, correctionI, correctionD);
 
-		if (distance - distanceParcourue <= 4) {
-			ajusterVitesseMoteurs(vitesse / 1.7);
-		} else {
-			ajusterVitesseMoteurs(vitesse);
-		}
+		/*if (distance - distanceParcourue <= 5) {
+		 ajusterVitesseMoteurs(vitesse / 1.7);
+		 } else {
+		 ajusterVitesseMoteurs(vitesse);
+		 }*/
 
-		//LCD_Printf("%f\n", vitesseDroitePRGauche);
+		LCD_Printf("%f\n", vitesseDroitePRGauche);
 
 		THREAD_MSleep(DELAI_LECTURE);
 	}
@@ -76,7 +76,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 //Determine l'importance de la proportion de l'erreur dans le PID
 float correctionProportionnelle(int erreur, int vitesse) {
-	float FACTEUR_CORRECTION_P = 0.005;
+	float FACTEUR_CORRECTION_P = 0.04;
 
 	float correction = erreur * FACTEUR_CORRECTION_P;
 	return correction;
@@ -84,7 +84,7 @@ float correctionProportionnelle(int erreur, int vitesse) {
 
 //Corrige l'erreur en prenant en compte les erreurs passees (offset)
 float correctionIntegrative(int sommeErreurs) {
-	float FACTEUR_CORRECTION_I = 0.003;
+	float FACTEUR_CORRECTION_I = 0.01;
 
 	float correction = sommeErreurs * FACTEUR_CORRECTION_I;
 	return correction;
@@ -92,17 +92,21 @@ float correctionIntegrative(int sommeErreurs) {
 
 //Corrige l'erreur en prevoyant les erreurs futures
 float correctionDerivative(int erreur, int erreurPrecedente) {
-	float FACTEUR_CORRECTION_D = 0.001;
+	float FACTEUR_CORRECTION_D = 0.01;
 
 	//correction = deltaErreur * temps. (mais tweake un peu)
-	float correction = (erreur - erreurPrecedente) * FACTEUR_CORRECTION_D;
-	return correction;
+	if (erreur - erreurPrecedente > 1 || erreur - erreurPrecedente < -1) {
+		float correction = (erreur - erreurPrecedente) * FACTEUR_CORRECTION_D;
+		return correction;
+	} else {
+		return 0;
+	}
 }
 
 //Ajuste le facteur correctif des moteurs en fonction du PID
 void appliquerCorrection(float correctionP, float correctionI,
 		float correctionD) {
-	vitesseDroitePRGauche += correctionP + correctionI + correctionD;
+	vitesseDroitePRGauche += correctionP + correctionI - correctionD;
 }
 
 //

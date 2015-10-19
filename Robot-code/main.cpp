@@ -17,8 +17,9 @@
 #include <rotation.h>
 #include <valeurs.h>
 #include <logique.h>
+#include <capteurs.h>
 
-#define vitesse 80
+#define vitesse 85
 
 /**
  * @brief [brief description]
@@ -44,9 +45,9 @@ int roulerParcoursComplet();
 int main() {
 	//THREAD BumperStopper;
 
-	while (execution == 0) {
-		execution = DIGITALIO_Read(BMP_REAR);
-		if (execution != 0) {
+	while (conditionArret == 0) {
+		conditionArret = DIGITALIO_Read(BMP_REAR);
+		if (conditionArret != 0) {
 
 			//tournerAlt(1080, DROITE);
 
@@ -56,9 +57,9 @@ int main() {
 			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
 
-			avancerDroit(1, 500, 100);
+			//avancerDroit(1, 500, vitesse);
+			SignalDepartNinja();
 			tournerAlt(180, GAUCHE);
-			avancerDroit(1, 500, 100);
 
 			//roulerParcoursComplet();
 		}

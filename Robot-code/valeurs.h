@@ -10,6 +10,7 @@
 
 #define ARRET_DISTANCE 1
 #define ARRET_INFRAROUGE 2
+#define ARRET_EXTERNE 3
 #define GAUCHE 1
 #define DROITE -1
 
@@ -41,6 +42,6 @@ extern int DELAI_LECTURE;
 /**
  * Sert au controle du robot avec les bumpers
  */
-extern int execution;
+extern int conditionArret;
 
 #endif /* VALEURS_H_ */
