@@ -42,6 +42,9 @@ int roulerParcoursRetour();
  */
 int roulerParcoursComplet();
 
+int testMicro();
+int testCouleur();
+
 int main() {
 	//THREAD BumperStopper;
 
@@ -57,15 +60,38 @@ int main() {
 			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
 
+			testCouleur();
 			//avancerDroit(1, 500, vitesse);
-			SignalDepartNinja();
-			tournerAlt(180, GAUCHE);
+			//SignalDepartNinja();
+			//tournerAlt(180, GAUCHE);
 
 			//roulerParcoursComplet();
 		}
 		THREAD_MSleep(50);
 	}
 
+	return 0;
+}
+
+int testCouleur() {
+	int i = 0;
+	while (i < 20) {
+		lireCouleur();
+		THREAD_MSleep(1000);
+		++i;
+	}
+	return 0;
+}
+
+int testMicro() {
+
+	int i = 0;
+	while (i < 20) {
+		int lectureMicro = ANALOG_Read(1);
+		LCD_Printf("Valeur Micro: %i\n", lectureMicro);
+		THREAD_MSleep(200);
+		++i;
+	}
 	return 0;
 }
 
