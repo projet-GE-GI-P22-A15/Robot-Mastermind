@@ -21,7 +21,8 @@ Robot-code/capteurs.d Robot-code/capteurs.o: ../Robot-code/capteurs.cpp \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/spi_api.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
-  C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h
+  C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
+  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/valeurs.h
 
 D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/capteurs.h:
 
@@ -68,3 +69,5 @@ C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h:
 C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h:
 
 C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
+
+D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/valeurs.h:

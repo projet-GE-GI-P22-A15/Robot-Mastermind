@@ -12,3 +12,16 @@ float CIRCONFERENCE_ROTATION = 44.47; //44.462NE PAS MODIFIER. distance parcouru
 int NOMBRE_DIVISIONS_ROUES = 64; 	//nombre de coches sur la roue
 int DELAI_LECTURE = 100; 			//delai entre les lectures d'encodeur, en ms
 int conditionArret = 0;
+
+int couleurCible = 0;
+int avancer = 0;
+int couleur = 0;
+int ligneGauche = 0;
+int ligneCentre = 0;
+int ligneDroite = 0;
+int bumperAvant = 0;
+int bumperArriere = 0;
+int bumperDroite = 0;
+int bumperGauche = 0;
+
+

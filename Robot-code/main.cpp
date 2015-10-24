@@ -81,6 +81,7 @@ int testLigne() {
 		THREAD_MSleep(1000);
 		++i;
 	}
+	return 0;
 }
 
 int testCouleur() {

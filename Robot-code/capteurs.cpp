@@ -1,9 +1,18 @@
 #include <capteurs.h>
 #include <libarmus.h>
+#include <valeurs.h>
 
 //code capteur ici!
 #define PORTMICRO 1
 #define PAUSECAFE 200
+
+#define BLANC 0
+#define ROUGE 1
+#define VERT 2
+#define BLEU 3
+#define JAUNE 4
+#define GRIS 5
+#define ROSE 6
 
 int Lire5kHz() //Lecture de l'entrée analogique du micro , donc le 5kHz pour le signal de départ . Fonction utilisee pour les deux robots.
 {
@@ -33,30 +42,16 @@ int SignalDepartSumo() //Pour le Sumo ET le Ninja
 	return premierSignal;
 }
 
-int SignalDepartNinja() //Pour le Ninja seulement!!! Il utilise la fonction de signal de depart pour le Sumo pour justement partir apres le Sumo.
-{
+int SignalDepartNinja() { //Pour le Ninja seulement!!! Il utilise la fonction de signal de depart pour le Sumo pour justement partir apres le Sumo.
 	int deuxiemeSignal;
 	deuxiemeSignal = SignalDepartSumo();
-
-	LCD_Printf(
-			"THANKS M8!!!\nPremier Signal Detecte!!!\nDEPART IMMINENT M8!!!\n");
 
 	THREAD_MSleep(2000);
 	while (deuxiemeSignal != 2) {
 		THREAD_MSleep(PAUSECAFE);
 		deuxiemeSignal = deuxiemeSignal + Lire5kHz();
 	}
-	LCD_Printf("SO BE IT!!!");
 	return 1;
-}
-
-void grandeCourse(int mode, int position) //mode=1 :Sumo mode=2:Ninja , position=1:droite position=2:gauche FONCTION DANS LE MAIN
-		{
-	if (mode == 1) {
-		//Sumo(position);
-	} else if (mode == 2) {
-		//Ninja(position);
-	}
 }
 
 int lireCapteurLigne() {
@@ -64,7 +59,30 @@ int lireCapteurLigne() {
 	int centre = ANALOG_Read(6);
 	int droite = ANALOG_Read(5);
 
-	LCD_Printf("Gauche: %i, Centre: %i, Droite %i\n", gauche, centre, droite);
+	if (gauche < 500) {
+		ligneGauche = 1;
+	} else if (gauche > 500) {
+		ligneGauche = 0;
+	}
+	if (centre < 500) {
+		ligneCentre = 1;
+	} else if (centre > 500) {
+		ligneCentre = 0;
+	}
+	if (droite < 500) {
+		ligneDroite = 1;
+	} else if (droite > 500) {
+		ligneDroite = 0;
+	}
+	return 0;
+}
+
+int lireBumpers(){
+	bumperAvant = DIGITALIO_Read(BMP_FRONT);
+	bumperArriere = DIGITALIO_Read(BMP_REAR);
+	bumperGauche = DIGITALIO_Read(BMP_LEFT);
+	bumperDroite = DIGITALIO_Read(BMP_RIGHT);
+
 	return 0;
 }
 

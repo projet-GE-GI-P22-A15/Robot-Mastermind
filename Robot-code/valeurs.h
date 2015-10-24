@@ -44,4 +44,14 @@ extern int DELAI_LECTURE;
  */
 extern int conditionArret;
 
+extern int couleurCible;
+extern int avancer;
+extern int couleur;
+extern int ligneGauche;
+extern int ligneCentre;
+extern int ligneDroite;
+extern int bumperAvant;
+extern int bumperArriere;
+extern int bumperDroite;
+extern int bumperGauche;
 #endif /* VALEURS_H_ */

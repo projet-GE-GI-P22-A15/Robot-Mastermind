@@ -37,7 +37,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 	//2 façons d'arrêter: Soit on atteint la distance voulue, soit on détecte un mur
 	while (((mode == ARRET_DISTANCE && distanceParcourue < distance)
 			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))
-			|| (mode == ARRET_EXTERNE && conditionArret == 0)) {
+			|| (mode == ARRET_EXTERNE && avancer == 1)) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
 
@@ -60,14 +60,11 @@ void avancerDroit(int mode, int distance, int vitesse) {
 		 } else {
 		 ajusterVitesseMoteurs(vitesse);
 		 }*/
-
-		LCD_Printf("%f\n", vitesseDroitePRGauche);
-
 		THREAD_MSleep(DELAI_LECTURE);
 	}
 
 	if (mode == 2) {
-		avancerDroit(1, 180, vitesse);
+		avancerDroit(1, 18, vitesse);
 	}
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
