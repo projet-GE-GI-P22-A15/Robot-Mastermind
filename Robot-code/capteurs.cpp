@@ -70,7 +70,7 @@ int lireCouleur() {
 	int greenValue = ((vGreen * 130) / 22);
 	int blueValue = ((vBlue * 200) / 25);
 
-	LCD_Printf("(CUSTOM) RED: %i, GREEn: %i, BLUE: %i\n", vRed, vGreen, vBlue);
+	LCD_Printf("(CUSTOM) RED: %i, GREEn: %i, BLUE: %i\n", redValue, greenValue, blueValue);
 
 	/*if (redValue > greenValue && redValue > blueValue) {
 		if (greenValue > 2.6)
