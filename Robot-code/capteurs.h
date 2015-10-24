@@ -7,5 +7,6 @@ int SignalDepartSumo();
 int SignalDepartNinja();
 void grandeCourse(int mode, int position);
 int lireCouleur();
+int lireCapteurLigne();
 
 #endif // CAPTEURS_H_

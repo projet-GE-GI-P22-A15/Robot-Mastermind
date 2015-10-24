@@ -59,34 +59,42 @@ void grandeCourse(int mode, int position) //mode=1 :Sumo mode=2:Ninja , position
 	}
 }
 
+int lireCapteurLigne() {
+	int gauche = ANALOG_Read(7);
+	int centre = ANALOG_Read(6);
+	int droite = ANALOG_Read(5);
+
+	LCD_Printf("Gauche: %i, Centre: %i, Droite %i\n", gauche, centre, droite);
+	return 0;
+}
+
 int lireCouleur() {
 	int vRed = ANALOG_Read(2);
 	int vGreen = ANALOG_Read(3);
 	int vBlue = ANALOG_Read(4);
 
-	LCD_Printf("RED: %i, GREEn: %i, BLUE: %i\n", vRed, vGreen, vBlue);
-
 	int redValue = ((vRed * 100) / 16);
 	int greenValue = ((vGreen * 130) / 22);
 	int blueValue = ((vBlue * 200) / 25);
 
-	LCD_Printf("(CUSTOM) RED: %i, GREEn: %i, BLUE: %i\n", redValue, greenValue, blueValue);
+	LCD_Printf("RED: %i, GREEN: %i, BLUE: %i\n", redValue, greenValue,
+			blueValue);
 
 	/*if (redValue > greenValue && redValue > blueValue) {
-		if (greenValue > 2.6)
-			LCD_Printf("Object is Orange.");
-		else
-			LCD_Printf("Object is Red.");
-	} else if (greenValue > blueValue && greenValue > redValue) {
-		if (redValue > 2)
-			LCD_Printf("Object is Yellow.");
-		else
-			LCD_Printf("Object is Green.");
-	} else {
-		if (redValue > 2)
-			LCD_Printf("Object is Purple.");
-		else
-			LCD_Printf("Object is Blue.");
-	}*/
+	 if (greenValue > 2.6)
+	 LCD_Printf("Object is Orange.");
+	 else
+	 LCD_Printf("Object is Red.");
+	 } else if (greenValue > blueValue && greenValue > redValue) {
+	 if (redValue > 2)
+	 LCD_Printf("Object is Yellow.");
+	 else
+	 LCD_Printf("Object is Green.");
+	 } else {
+	 if (redValue > 2)
+	 LCD_Printf("Object is Purple.");
+	 else
+	 LCD_Printf("Object is Blue.");
+	 }*/
 	return 0;
 }

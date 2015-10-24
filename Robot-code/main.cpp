@@ -44,6 +44,7 @@ int roulerParcoursComplet();
 
 int testMicro();
 int testCouleur();
+int testLigne();
 
 int main() {
 	//THREAD BumperStopper;
@@ -60,7 +61,7 @@ int main() {
 			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
 
-			testCouleur();
+			testLigne();
 			//avancerDroit(1, 500, vitesse);
 			//SignalDepartNinja();
 			//tournerAlt(180, GAUCHE);
@@ -71,6 +72,15 @@ int main() {
 	}
 
 	return 0;
+}
+
+int testLigne() {
+	int i = 0;
+	while (i < 20) {
+		lireCapteurLigne();
+		THREAD_MSleep(1000);
+		++i;
+	}
 }
 
 int testCouleur() {
