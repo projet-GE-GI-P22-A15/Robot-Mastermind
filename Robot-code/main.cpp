@@ -61,7 +61,7 @@ int main() {
 			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
 
-			testLigne();
+			testMicro();
 			//avancerDroit(1, 500, vitesse);
 			//SignalDepartNinja();
 			//tournerAlt(180, GAUCHE);
