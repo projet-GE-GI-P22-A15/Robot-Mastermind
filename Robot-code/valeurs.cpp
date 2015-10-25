@@ -1,11 +1,5 @@
 #include <valeurs.h>
 
-#define ARRET_DISTANCE 1
-#define ARRET_INFRAROUGE 2
-#define ARRET_EXTERNE 3
-#define GAUCHE 1
-#define DROITE -1
-
 float vitesseDroitePRGauche = 1.18; 	//46: 1.18  --  47: 1.1
 float CIRCONFERENCE_ROUE = 24.462; 	// NE PAS MODIFIER CETTE VALEUR
 float CIRCONFERENCE_ROTATION = 44.47; //44.462NE PAS MODIFIER. distance parcourue par les roues lorsque le robot tourne de 360 degres sur lui-meme.
@@ -23,5 +17,4 @@ int bumperAvant = 0;
 int bumperArriere = 0;
 int bumperDroite = 0;
 int bumperGauche = 0;
-
 

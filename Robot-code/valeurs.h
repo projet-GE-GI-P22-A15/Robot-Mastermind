@@ -14,6 +14,24 @@
 #define GAUCHE 1
 #define DROITE -1
 
+#define BLANC 0
+#define ROUGE 1
+#define VERT 2
+#define BLEU 3
+#define JAUNE 4
+#define ROSE 5
+#define GRIS 6
+#define NOIR 7
+
+#define AUCUN_OBSTACLE  0
+#define PERPENDICULAIRE 1
+#define LIGNE_AU_CENTRE 2
+#define LIGNE_A_GAUCHE  3
+#define LIGNE_A_DROITE  4
+
+#define PORTMICRO 1
+#define PAUSECAFE 200
+
 /**
  * vitesseDroite / vitesseGauche
  */

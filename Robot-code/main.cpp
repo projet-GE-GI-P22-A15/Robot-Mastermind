@@ -44,11 +44,10 @@ int roulerParcoursComplet();
 
 int testMicro();
 int testCouleur();
-int testLigne();
+void testLigne();
 
 int main() {
-	//THREAD BumperStopper;
-
+	THREAD thread;
 	int depart = 0;
 	while (depart == 0) {
 		depart = DIGITALIO_Read(BMP_REAR);
@@ -61,36 +60,84 @@ int main() {
 			 THREAD_MSleep(8000);
 			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
 			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
-
-			testMicro();
+			thread = THREAD_CreateSimple(partirThreadCapteurs);
+			MOTOR_SetSpeed(MOTOR_RIGHT, 100);
+			MOTOR_SetSpeed(MOTOR_LEFT, 100);
+			testLigne();
+			//testCouleur();
 			//avancerDroit(1, 500, vitesse);
 			//SignalDepartNinja();
 			//tournerAlt(180, GAUCHE);
 
 			//roulerParcoursComplet();
 		}
+	}
+
+	THREAD_Destroy(&thread);
+	return 0;
+}
+
+void testLineFollower(){
+				MOTOR_SetSpeed(MOTOR_RIGHT, 100);
+				MOTOR_SetSpeed(MOTOR_LEFT, 100);
+				THREAD t = THREAD_CreateSimple(testLigne);
+				testLigne();
+}
+
+void testLigne() {
+	while (bumperAvant == 0) {
+		int lignePosition = 0;
+		//lireCapteurLigne();
+		lignePosition = lineFollower();
+
+		if (lignePosition == 4) {	//droite
+			MOTOR_SetSpeed(MOTOR_RIGHT, 55);
+			MOTOR_SetSpeed(MOTOR_LEFT, 70);
+		}
+		if (lignePosition == 2) {	//center
+			MOTOR_SetSpeed(MOTOR_RIGHT, 70);
+			MOTOR_SetSpeed(MOTOR_LEFT, 70);
+		}
+		if (lignePosition == 3) {	//gauche
+			MOTOR_SetSpeed(MOTOR_RIGHT, 70);
+			MOTOR_SetSpeed(MOTOR_LEFT, 55);
+		}
 		THREAD_MSleep(50);
 	}
 
-	return 0;
-}
-
-int testLigne() {
-	int i = 0;
-	while (i < 20) {
-		lireCapteurLigne();
-		THREAD_MSleep(1000);
-		++i;
-	}
-	return 0;
 }
 
 int testCouleur() {
-	int i = 0;
-	while (i < 20) {
-		lireCouleur();
+	while (bumperAvant == 0) {
+		int couleur = lireCouleur();
+		switch (couleur) {
+		case 0:
+			LCD_Printf("BLANC\n");
+			break;
+		case 1:
+			LCD_Printf("ROUGE\n");
+			break;
+		case 2:
+			LCD_Printf("GREEN\n");
+			break;
+		case 3:
+			LCD_Printf("BLUE\n");
+			break;
+		case 4:
+			LCD_Printf("YELLOW\n");
+			break;
+		case 5:
+			LCD_Printf("ROSE\n");
+			break;
+		case 6:
+			LCD_Printf("GRIS\n");
+			break;
+		case 7:
+			LCD_Printf("NOIR\n");
+			break;
+		}
+
 		THREAD_MSleep(1000);
-		++i;
 	}
 	return 0;
 }

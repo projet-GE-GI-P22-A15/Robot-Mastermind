@@ -5,11 +5,9 @@
 int Lire5kHz();
 int SignalDepartSumo();
 int SignalDepartNinja();
-void grandeCourse(int mode, int position);
+
 int lireCouleur();
 int lireCapteurLigne();
 int lireBumpers();
-int mainNinja(int positon);
-int lineFollower();
 
 #endif // CAPTEURS_H_

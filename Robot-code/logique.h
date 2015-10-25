@@ -2,6 +2,9 @@
 #define LOGIQUE_H_
 
 //FONCTIONS POUR LA LOGIQUE DU ROBOT
-void BumperCommander();
+int mainNinja(int positon);
+void partirThreadCapteurs();
+int StratNinja();
+int lineFollower();
 
 #endif // LOGIQUE_H_
