@@ -5,7 +5,6 @@
 #include <pid.h>
 
 //code pour logique ici
-
 int StratNinja(){
 	SignalDepartNinja();
 	avancer = 1;

@@ -49,9 +49,10 @@ int testLigne();
 int main() {
 	//THREAD BumperStopper;
 
-	while (conditionArret == 0) {
-		conditionArret = DIGITALIO_Read(BMP_REAR);
-		if (conditionArret != 0) {
+	int depart = 0;
+	while (depart == 0) {
+		depart = DIGITALIO_Read(BMP_REAR);
+		if (depart != 0) {
 
 			//tournerAlt(1080, DROITE);
 

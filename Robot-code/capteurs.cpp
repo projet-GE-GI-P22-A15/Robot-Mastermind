@@ -1,6 +1,8 @@
 #include <capteurs.h>
 #include <libarmus.h>
 #include <valeurs.h>
+#include <pid.h>
+#include <rotation.h>
 
 //code capteur ici!
 #define PORTMICRO 1
@@ -13,6 +15,12 @@
 #define JAUNE 4
 #define GRIS 5
 #define ROSE 6
+
+#define AUCUN_OBSTACLE  0
+#define PERPENDICULAIRE 1
+#define LIGNE_AU_CENTRE 2
+#define LIGNE_A_GAUCHE  3
+#define LIGNE_A_DROITE  4
 
 int Lire5kHz() //Lecture de l'entr√©e analogique du micro , donc le 5kHz pour le signal de d√©part . Fonction utilisee pour les deux robots.
 {
@@ -55,29 +63,13 @@ int SignalDepartNinja() { //Pour le Ninja seulement!!! Il utilise la fonction de
 }
 
 int lireCapteurLigne() {
-	int gauche = ANALOG_Read(7);
-	int centre = ANALOG_Read(6);
-	int droite = ANALOG_Read(5);
-
-	if (gauche < 500) {
-		ligneGauche = 1;
-	} else if (gauche > 500) {
-		ligneGauche = 0;
-	}
-	if (centre < 500) {
-		ligneCentre = 1;
-	} else if (centre > 500) {
-		ligneCentre = 0;
-	}
-	if (droite < 500) {
-		ligneDroite = 1;
-	} else if (droite > 500) {
-		ligneDroite = 0;
-	}
+	ligneGauche = DIGITALIO_Read(8);
+	ligneCentre = DIGITALIO_Read(9);
+	ligneDroite = DIGITALIO_Read(10);
 	return 0;
 }
 
-int lireBumpers(){
+int lireBumpers() {
 	bumperAvant = DIGITALIO_Read(BMP_FRONT);
 	bumperArriere = DIGITALIO_Read(BMP_REAR);
 	bumperGauche = DIGITALIO_Read(BMP_LEFT);
@@ -115,4 +107,74 @@ int lireCouleur() {
 	 LCD_Printf("Object is Blue.");
 	 }*/
 	return 0;
+}
+
+#define AUCUN_OBSTACLE  0
+#define PERPENDICULAIRE 1
+#define LIGNE_AU_CENTRE 2
+#define LIGNE_A_GAUCHE  3
+#define LIGNE_A_DROITE  4
+
+//Position : 1 pour tourner a gauche  2 pour tourner a droite
+int mainNinja(int positon) {
+	int position = 1;
+
+	// attendre le 3 sec 5khz
+
+	while (lineFollower() != PERPENDICULAIRE)
+		avancerDroit(1, 1, 90);
+
+	if (position == 1 && lineFollower() == PERPENDICULAIRE) {
+		while (lineFollower() < LIGNE_AU_CENTRE) {
+			MOTOR_SetSpeed(MOTOR_LEFT, -60);
+			MOTOR_SetSpeed(MOTOR_RIGHT, 60);
+		}
+	}
+	if (position == 2 && lineFollower() == PERPENDICULAIRE) {
+		while (lineFollower() < LIGNE_AU_CENTRE) {
+			MOTOR_SetSpeed(MOTOR_LEFT, 60);
+			MOTOR_SetSpeed(MOTOR_RIGHT, -60);
+		}
+
+	}
+
+	if (lineFollower() == LIGNE_AU_CENTRE) {
+		tournerAlt(15, DROITE);
+		while (lineFollower() != LIGNE_A_GAUCHE) {
+			avancerDroit(1, 1, 90);
+		}
+	}
+
+	//jusqu'‡ ce que le robot dÈtecte sa couleur:
+
+	if (lineFollower() == LIGNE_A_DROITE) {
+		tournerAlt(30, DROITE);
+		while (lineFollower() != LIGNE_A_GAUCHE) {
+			avancerDroit(1, 1, 90);
+		}
+
+	} else if (lineFollower() == LIGNE_A_GAUCHE) {
+		tournerAlt(30, GAUCHE);
+		while (lineFollower() != LIGNE_A_DROITE) {
+			avancerDroit(1, 1, 90);
+		}
+	}
+return 0;
+}
+
+int lineFollower() {
+	// 0 = noir  1 = blanc
+
+	if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 1) // avant d arriver sur la ligne                        (AUCUN_OBSTACLE)
+		return 0;
+	else if (ligneGauche == 0 && ligneCentre == 0 && ligneDroite == 0) // lorsqu il croise la ligne pour la premiere fois (PERPENDICULAIRE)
+		return 1;
+	else if (ligneGauche == 1 && ligneCentre == 0 && ligneDroite == 1) // ligne au centre                                (LIGNE_AU_CENTRE)
+		return 2;
+	else if (ligneGauche == 0 && ligneCentre == 1 && ligneDroite == 1) // ligne a gauche                                 (LIGNE_A_GAUCHE)
+		return 3;
+	else if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 0) // ligne a droite                                  (LIGNE_A_DROITE)
+		return 4;
+	else
+		return -1;
 }
