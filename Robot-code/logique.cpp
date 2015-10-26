@@ -29,36 +29,40 @@ int StratNinja() {
 	}
 	arreterMouvement();
 	THREAD_MSleep(4000);
-	tourner(60, GAUCHE); // Cote a modifier selon l<emplacement de depart
-	while (couleur != couleurCible) {
+	tourner(45, GAUCHE); // Cote a modifier selon l<emplacement de depart
+	while (couleur != couleurCible && conditionArret == 0) {
 		lireCapteurs();
 		int lignePosition = lineFollower();
-		if (couleur == ROUGE){
+		if (couleur == couleurCible) {
+			avancerDroit(1, 20, 70);
+		} else if (couleur == ROUGE) {
 			arreterMouvement();
-			avancerDroit(1, 10, -80);
+			avancerDroit(1, 30, -80);
 			tourner(180, DROITE);
 			avancerThread(70);
-		} else if (lignePosition == 2){
+		} else if (lignePosition == 2) {
 			arreterMouvement();
 			avancerThread(70);
-		} else if (lignePosition == 3){
+		} else if (lignePosition == 3) {
 			arreterMouvement();
 			tournerAlt(25, GAUCHE);
-		} else if (lignePosition == 40){
+		} else if (lignePosition == 40) {
 			arreterMouvement();
 			tournerAlt(25, DROITE);
-		} else if (couleur != BLANC && couleur != couleurCible){
-			avancerDroit(1, 10, 70);
+		} else if (couleur != BLANC && couleur != couleurCible) {
+			avancerDroit(1, 20, 70);
 			tournerThread(90, DROITE);
 			avancerThread(70);
-		} else if (avancer == 0){
+		} else if (avancer == 0) {
 			avancerThread(70);
 		}
 
 		THREAD_MSleep(50);
 	}
 	arreterMouvement();
-	avancerDroit(1, 10, 70);
+	MOTOR_SetSpeed(MOTOR_LEFT, 0);
+	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+	LCD_Printf("FIN!");
 
 	return 0;
 }
@@ -73,8 +77,7 @@ void lireCapteurs() {
 }
 void arreterMouvement() {
 	avancer = 0;
-	MOTOR_SetSpeed(MOTOR_LEFT, 0);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+	THREAD_MSleep(100);
 	THREAD_Destroy(&thread1);
 }
 

@@ -72,7 +72,7 @@ int lireCouleur() {
 	int green = ((vGreen * 130) / 22);
 	int blue = ((vBlue * 200) / 25);
 
-	LCD_Printf("RED: %i, GREEN: %i, BLUE: %i\n", red, green, blue);
+	//LCD_Printf("RED: %i, GREEN: %i, BLUE: %i\n", red, green, blue);
 	if (red > 200 && red < 350 && green > 100 && green < 175 && blue > 50
 			&& blue < 150) {
 		return ROUGE;

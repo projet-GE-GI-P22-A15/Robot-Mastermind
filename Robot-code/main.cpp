@@ -52,7 +52,8 @@ int main() {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 
-			testCouleur();
+			StratNinja();
+			//testCouleur();
 		}
 	}
 
