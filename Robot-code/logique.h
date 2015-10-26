@@ -8,5 +8,7 @@ int StratNinja();
 int lineFollower();
 void arreterMouvement();
 void avancerThread();
+void tournerThread(int angle, int direction);
+void tournerAltThread(int angle, int direction);
 
 #endif // LOGIQUE_H_

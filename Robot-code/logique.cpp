@@ -30,6 +30,7 @@ void arreterMouvement(){
 }
 
 void avancerThread(int vitesse){
+	avancer = 1;
 	vitesseGlobale = vitesse;
 	THREAD t = THREAD_CreateSimple(partirPIDThread);
 	THREAD_Destroy(&t);
@@ -39,6 +40,13 @@ void tournerThread(int angle, int direction){
 	angleGlobal = angle;
 	directionGlobale = direction;
 	THREAD t = THREAD_CreateSimple(tournerThreaded);
+	THREAD_Destroy(&t);
+}
+
+void tournerAltThread(int angle, int direction){
+	angleGlobal = angle;
+	directionGlobale = direction;
+	THREAD t = THREAD_CreateSimple(tournerAltThreaded);
 	THREAD_Destroy(&t);
 }
 
