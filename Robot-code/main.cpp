@@ -53,23 +53,9 @@ int main() {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 
-			//tournerAlt(1080, DROITE);
-
-			/*MOTOR_SetSpeed(MOTOR_LEFT, 100);
-			 MOTOR_SetSpeed(MOTOR_RIGHT, 100);
-			 THREAD_MSleep(8000);
-			 MOTOR_SetSpeed(MOTOR_LEFT, 0);
-			 MOTOR_SetSpeed(MOTOR_RIGHT, 0);*/
-			thread = THREAD_CreateSimple(partirThreadCapteurs);
-			MOTOR_SetSpeed(MOTOR_RIGHT, 100);
-			MOTOR_SetSpeed(MOTOR_LEFT, 100);
-			testLigne();
+			//thread = THREAD_CreateSimple(partirThreadCapteurs);
+			testCouleur();
 			//testCouleur();
-			//avancerDroit(1, 500, vitesse);
-			//SignalDepartNinja();
-			//tournerAlt(180, GAUCHE);
-
-			//roulerParcoursComplet();
 		}
 	}
 
