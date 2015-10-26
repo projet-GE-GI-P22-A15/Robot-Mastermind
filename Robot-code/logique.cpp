@@ -6,44 +6,91 @@
 #include <rotation.h>
 
 //code pour logique ici
+
+THREAD thread1;
 int StratNinja() {
+	couleurCible = lireCouleur();
 	SignalDepartNinja();
-	avancer = 1;
-	avancerDroit(ARRET_EXTERNE, 50, 60);
-	THREAD_MSleep(2000);
-	avancer = 0;
+	avancerThread(80);
+	while (couleur != ROUGE) {
+		lireCapteurs();
+		THREAD_MSleep(50);
+	}
+	while (couleur != BLANC) {
+		lireCapteurs();
+		THREAD_MSleep(50);
+	}
+	arreterMouvement();
+	avancerDroit(ARRET_DISTANCE, 15, 60);
+	avancerThread(60);
+	while (couleur == BLANC) {
+		lireCapteurs();
+		THREAD_MSleep(50);
+	}
+	arreterMouvement();
+	THREAD_MSleep(4000);
+	tourner(60, GAUCHE); // Cote a modifier selon l<emplacement de depart
+	while (couleur != couleurCible) {
+		lireCapteurs();
+		int lignePosition = lineFollower();
+		if (couleur == ROUGE){
+			arreterMouvement();
+			avancerDroit(1, 10, -80);
+			tourner(180, DROITE);
+			avancerThread(70);
+		} else if (lignePosition == 2){
+			arreterMouvement();
+			avancerThread(70);
+		} else if (lignePosition == 3){
+			arreterMouvement();
+			tournerAlt(25, GAUCHE);
+		} else if (lignePosition == 40){
+			arreterMouvement();
+			tournerAlt(25, DROITE);
+		} else if (couleur != BLANC && couleur != couleurCible){
+			avancerDroit(1, 10, 70);
+			tournerThread(90, DROITE);
+			avancerThread(70);
+		} else if (avancer == 0){
+			avancerThread(70);
+		}
+
+		THREAD_MSleep(50);
+	}
+	arreterMouvement();
+	avancerDroit(1, 10, 70);
 
 	return 0;
 }
 
 void lireCapteurs() {
-		conditionArret = Lire5kHz();
-		couleur = lireCouleur();
-		lireCapteurLigne();
-		lireBumpers();
-		THREAD_MSleep(25);
-
+	conditionArret = Lire5kHz();
+	couleur = lireCouleur();
+	lireCapteurLigne();
+	lireBumpers();
+	THREAD_MSleep(25);
 
 }
-void arreterMouvement(){
+void arreterMouvement() {
 	avancer = 0;
-	THREAD_MSleep(100);
+	MOTOR_SetSpeed(MOTOR_LEFT, 0);
+	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 	THREAD_Destroy(&thread1);
 }
 
-void avancerThread(int vitesse){
+void avancerThread(int vitesse) {
 	avancer = 1;
 	vitesseGlobale = vitesse;
 	thread1 = THREAD_CreateSimple(partirPIDThread);
 }
 
-void tournerThread(int angle, int direction){
+void tournerThread(int angle, int direction) {
 	angleGlobal = angle;
 	directionGlobale = direction;
 	thread1 = THREAD_CreateSimple(tournerThreaded);
 }
 
-void tournerAltThread(int angle, int direction){
+void tournerAltThread(int angle, int direction) {
 	angleGlobal = angle;
 	directionGlobale = direction;
 	thread1 = THREAD_CreateSimple(tournerAltThreaded);

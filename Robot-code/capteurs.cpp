@@ -29,7 +29,7 @@ int SignalDepartSumo() { //Pour le Sumo ET le Ninja
 		THREAD_MSleep(PAUSECAFE);
 		premierSignal = Lire5kHz();
 	}
-	LCD_Printf("GO!!! I GOT YO BACK NINJA!!!\n");
+	LCD_Printf("Premier Signal!\n");
 	return premierSignal;
 }
 
@@ -42,6 +42,7 @@ int SignalDepartNinja() { //Pour le Ninja seulement!!! Il utilise la fonction de
 		THREAD_MSleep(PAUSECAFE);
 		deuxiemeSignal = deuxiemeSignal + Lire5kHz();
 	}
+	LCD_Printf("Deuxième signal!");
 	return 1;
 }
 
