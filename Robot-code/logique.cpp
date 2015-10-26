@@ -12,19 +12,17 @@ int StratNinja() {
 	avancerDroit(ARRET_EXTERNE, 50, 60);
 	THREAD_MSleep(2000);
 	avancer = 0;
-	THREAD t = THREAD_CreateSimple(partirThreadCapteurs);
 
 	return 0;
 }
 
 void partirThreadCapteurs() {
-	while (conditionArret == 0) {
 		conditionArret = Lire5kHz();
 		couleur = lireCouleur();
 		lireCapteurLigne();
 		lireBumpers();
 		THREAD_MSleep(25);
-	}
+
 
 }
 
