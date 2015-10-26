@@ -6,5 +6,7 @@ int mainNinja(int positon);
 void partirThreadCapteurs();
 int StratNinja();
 int lineFollower();
+void arreterMouvement();
+void avancerThread();
 
 #endif // LOGIQUE_H_

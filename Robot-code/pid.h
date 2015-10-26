@@ -68,5 +68,6 @@ void appliquerCorrection(float correctionP, float correctionI,
  * @param vitesse La vitesse voulue 
  */
 void ajusterVitesseMoteurs(int vitesse);
+void partirPIDThread();
 
 #endif // PID_H_

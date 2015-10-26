@@ -25,6 +25,22 @@ void partirThreadCapteurs() {
 
 
 }
+void arreterMouvement(){
+	avancer = 0;
+}
+
+void avancerThread(int vitesse){
+	vitesseGlobale = vitesse;
+	THREAD t = THREAD_CreateSimple(partirPIDThread);
+	THREAD_Destroy(&t);
+}
+
+void tournerThread(int angle, int direction){
+	angleGlobal = angle;
+	directionGlobale = direction;
+	THREAD t = THREAD_CreateSimple(tournerThreaded);
+	THREAD_Destroy(&t);
+}
 
 int lineFollower() {
 	// 0 = noir  1 = blanc

@@ -72,4 +72,7 @@ extern int bumperAvant;
 extern int bumperArriere;
 extern int bumperDroite;
 extern int bumperGauche;
+extern int vitesseGlobale;
+extern int angleGlobal;
+extern int directionGlobale;
 #endif /* VALEURS_H_ */

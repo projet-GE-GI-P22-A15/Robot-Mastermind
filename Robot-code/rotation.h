@@ -26,4 +26,6 @@ void tourner(int angle, int direction);
  */
 void tournerAlt(int angle, int direction);
 
+void tournerThreaded();
+void tournerAltThreaded();
 #endif /* ROTATION_H_ */

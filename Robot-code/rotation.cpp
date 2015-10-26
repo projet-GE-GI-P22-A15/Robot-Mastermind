@@ -2,6 +2,15 @@
 #include <rotation.h>
 #include <valeurs.h>
 
+
+void tournerThreaded(){
+	tourner(angleGlobal, directionGlobale);
+}
+
+void tournerAltThreaded(){
+	tournerAlt(angleGlobal, directionGlobale);
+}
+
 void tourner(int angle, int direction) {
 	int vitesse = 60;
 	int cochesGauche = 0, cochesDroite = 0;
