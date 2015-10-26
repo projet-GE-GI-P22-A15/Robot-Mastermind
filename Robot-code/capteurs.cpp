@@ -96,15 +96,5 @@ int lireCouleur() {
 	} else {
 		return BLANC;
 	}
-
-	/*#define BLANC 662, 774, 752
-	 #define ROUGE 256, 141, 104
-	 #define VERT 81, 147, 112 - 75, 135, 104
-	 #define BLEU 106, 159, 272
-	 #define JAUNE 556, 561, 216
-	 #define GRIS 356, 437, 432
-	 #define ROSE 400, 230, 200
-	 #define NOIR 68, 82, 72
-	 */
 	return 0;
 }

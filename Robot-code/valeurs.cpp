@@ -20,4 +20,5 @@ int bumperGauche = 0;
 int vitesseGlobale = 0;
 int angleGlobal = 0;;
 int directionGlobale = 0;
+THREAD thread1;
 

@@ -47,27 +47,16 @@ int testCouleur();
 void testLigne();
 
 int main() {
-	THREAD thread;
 	int depart = 0;
 	while (depart == 0) {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 
-			//thread = THREAD_CreateSimple(partirThreadCapteurs);
 			testCouleur();
-			//testCouleur();
 		}
 	}
 
-	THREAD_Destroy(&thread);
 	return 0;
-}
-
-void testLineFollower(){
-				MOTOR_SetSpeed(MOTOR_RIGHT, 100);
-				MOTOR_SetSpeed(MOTOR_LEFT, 100);
-				THREAD t = THREAD_CreateSimple(testLigne);
-				testLigne();
 }
 
 void testLigne() {

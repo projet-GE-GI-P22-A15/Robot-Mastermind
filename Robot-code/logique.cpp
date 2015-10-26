@@ -16,7 +16,7 @@ int StratNinja() {
 	return 0;
 }
 
-void partirThreadCapteurs() {
+void lireCapteurs() {
 		conditionArret = Lire5kHz();
 		couleur = lireCouleur();
 		lireCapteurLigne();
@@ -27,27 +27,26 @@ void partirThreadCapteurs() {
 }
 void arreterMouvement(){
 	avancer = 0;
+	THREAD_MSleep(100);
+	THREAD_Destroy(&thread1);
 }
 
 void avancerThread(int vitesse){
 	avancer = 1;
 	vitesseGlobale = vitesse;
-	THREAD t = THREAD_CreateSimple(partirPIDThread);
-	THREAD_Destroy(&t);
+	thread1 = THREAD_CreateSimple(partirPIDThread);
 }
 
 void tournerThread(int angle, int direction){
 	angleGlobal = angle;
 	directionGlobale = direction;
-	THREAD t = THREAD_CreateSimple(tournerThreaded);
-	THREAD_Destroy(&t);
+	thread1 = THREAD_CreateSimple(tournerThreaded);
 }
 
 void tournerAltThread(int angle, int direction){
 	angleGlobal = angle;
 	directionGlobale = direction;
-	THREAD t = THREAD_CreateSimple(tournerAltThreaded);
-	THREAD_Destroy(&t);
+	thread1 = THREAD_CreateSimple(tournerAltThreaded);
 }
 
 int lineFollower() {

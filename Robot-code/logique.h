@@ -3,7 +3,7 @@
 
 //FONCTIONS POUR LA LOGIQUE DU ROBOT
 int mainNinja(int positon);
-void partirThreadCapteurs();
+void lireCapteurs();
 int StratNinja();
 int lineFollower();
 void arreterMouvement();
