@@ -7,7 +7,7 @@ void lireCapteurs();
 int StratNinja();
 int lineFollower();
 void arreterMouvement();
-void avancerThread();
+void avancerThread(int vitesse);
 void tournerThread(int angle, int direction);
 void tournerAltThread(int angle, int direction);
 
