@@ -33,13 +33,7 @@ int main() {
 	while (depart == 0) {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
-
-			//testLigne();
-			//testMicro();
-			//testCapteurCouleurI2C();
 			StratNinja();
-			//testCouleur();
-			//testCapteurCouleurI2C();
 		}
 	}
 

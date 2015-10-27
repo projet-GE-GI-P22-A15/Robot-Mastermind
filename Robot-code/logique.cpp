@@ -42,50 +42,72 @@ int StratNinja() {
 	}
 	arreterMouvement();
 	avancerDroit(ARRET_DISTANCE, 30, 60);
-	THREAD_MSleep(4000);
+	THREAD_MSleep(1000);
 	tourner(40, directionDepart);
 	int lignePosition = 0;
 	avancerThread(vitesseNinja);
-	while (conditionArret == 0) {
+	while (couleur != couleurCible && conditionArret == 0) {
 		lastCouleur = couleur;
 		lireCapteurs();
 		lignePosition = lineFollower();
+
 		if (couleur != lastCouleur || lignePosition != 0) {
 			printCouleur(couleur);
-
 			if (couleur == couleurCible) {
 				arreterMouvement();
+				THREAD_MSleep(300);
+				lireCapteurs();
 				avancerDroit(1, 15, vitesseNinja);
 			} else if (couleur == ROUGE) {
 				arreterMouvement();
-				avancerDroit(1, 10, -100);
+				THREAD_MSleep(50);
+				avancerDroit(1, 10, -80);
+				THREAD_MSleep(50);
 				tourner(180, directionDepart);
+				THREAD_MSleep(50);
 				avancerThread(vitesseNinja);
-			} else if (lignePosition == 1) {
+				THREAD_MSleep(50);
+			} /*else if (lignePosition == 1) {
+			 arreterMouvement();
+			 THREAD_MSleep(50);
+			 tourner(45, DROITE);
+			 THREAD_MSleep(50);
+			 } else if (lignePosition == 3) {
+			 arreterMouvement();
+			 THREAD_MSleep(50);
+			 tourner(45, GAUCHE);
+			 THREAD_MSleep(50);
+			 }*/
+			else if (couleur == BLANC) {
 				arreterMouvement();
-				tourner(45, DROITE);
-			} else if (lignePosition == 3) {
+				THREAD_MSleep(50);
+				avancerThread(vitesseNinja);
+				THREAD_MSleep(50);
+			} else if (couleur == GRIS) {
+				tourner(135, directionDepart);
+			} else if (couleur != NOIR) {
+
 				arreterMouvement();
-				tourner(45, GAUCHE);
-			} else if (couleur != BLANC
-					&& couleur
-							!= couleurCible&& couleur != NOIR && couleur != GRIS) {
-				arreterMouvement();
+				THREAD_MSleep(50);
 				avancerDroit(1, 10, 70);
+				THREAD_MSleep(50);
 				avancerDroit(1, 10, -70);
+				THREAD_MSleep(50);
 				tourner(90, directionDepart);
+				THREAD_MSleep(50);
 				avancerThread(vitesseNinja);
-			} else {
-				arreterMouvement();
-				avancerThread(vitesseNinja);
+				THREAD_MSleep(50);
 			}
+		} else if (couleur == BLANC || avancer == 0 || threadQuiRoule == 0) {
+			avancerThread(vitesseNinja);
 		}
-		THREAD_MSleep(50);
+		THREAD_MSleep(100);
 	}
 	arreterMouvement();
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 	LCD_Printf("FIN!\n");
+	THREAD_MSleep(50);
 
 	return 0;
 }
@@ -163,7 +185,7 @@ void tournerAltThread(int angle, int direction) {
 }
 
 int lineFollower() {
-	// 0 = noir  1 = blanc
+// 0 = noir  1 = blanc
 
 	/*if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 1) // avant d arriver sur la ligne                        (AUCUN_OBSTACLE)
 	 return 0;
@@ -192,7 +214,7 @@ int lineFollower() {
 int mainNinja(int positon) {
 	int position = 1;
 
-	// attendre le 3 sec 5khz
+// attendre le 3 sec 5khz
 
 	while (lineFollower() != PERPENDICULAIRE)
 		avancerDroit(1, 1, 90);
@@ -218,7 +240,7 @@ int mainNinja(int positon) {
 		}
 	}
 
-	//jusqu'à ce que le robot détecte sa couleur:
+//jusqu'à ce que le robot détecte sa couleur:
 
 	if (lineFollower() == LIGNE_A_DROITE) {
 		tournerAlt(30, DROITE);
