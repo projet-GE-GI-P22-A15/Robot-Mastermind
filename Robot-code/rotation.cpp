@@ -44,15 +44,11 @@ void tourner(int angle, int direction) {
 
 		if (cochesGauche >= cochesATourner) {
 			MOTOR_SetSpeed(MOTOR_LEFT, 0);
-		} else if (cochesGauche >= cochesATourner - 10) {
-			MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche / 2);
 		} else {
 			MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche);
 		}
 		if (cochesDroite >= cochesATourner) {
 			MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-		} else if (cochesDroite >= cochesATourner - 10) {
-			MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite / 2);
 		} else {
 			MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite);
 		}
@@ -62,7 +58,6 @@ void tourner(int angle, int direction) {
 	//Fail safe
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-	THREAD_MSleep(50);
 }
 
 void tournerAlt(int angle, int direction) {
@@ -99,15 +94,11 @@ void tournerAlt(int angle, int direction) {
 
 		if (cochesGauche >= cochesATourner) {
 			MOTOR_SetSpeed(MOTOR_LEFT, 0);
-		} else if (cochesGauche >= cochesATourner - 6) {
-			MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche / 2);
 		} else {
 			MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche);
 		}
 		if (cochesDroite >= cochesATourner) {
 			MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-		} else if (cochesDroite >= cochesATourner - 6) {
-			MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite / 2);
 		} else {
 			MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite);
 		}
@@ -117,6 +108,5 @@ void tournerAlt(int angle, int direction) {
 	//Fail safe
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-	THREAD_MSleep(50);
 }
 

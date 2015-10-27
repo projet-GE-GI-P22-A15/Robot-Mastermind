@@ -34,9 +34,10 @@ int main() {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 
-			testMicro();
+			//testLigne();
+			//testMicro();
 			//testCapteurCouleurI2C();
-			//StratNinja();
+			StratNinja();
 			//testCouleur();
 			//testCapteurCouleurI2C();
 		}
@@ -48,55 +49,18 @@ int main() {
 void testLigne() {
 	while (bumperAvant == 0) {
 		int lignePosition = 0;
-		//lireCapteurLigne();
-		lignePosition = lineFollower();
+		lireCapteurLigne();
+		printf("%i", lineFollower());
 
-		if (lignePosition == 4) {	//droite
-			MOTOR_SetSpeed(MOTOR_RIGHT, 55);
-			MOTOR_SetSpeed(MOTOR_LEFT, 70);
-		}
-		if (lignePosition == 2) {	//center
-			MOTOR_SetSpeed(MOTOR_RIGHT, 70);
-			MOTOR_SetSpeed(MOTOR_LEFT, 70);
-		}
-		if (lignePosition == 3) {	//gauche
-			MOTOR_SetSpeed(MOTOR_RIGHT, 70);
-			MOTOR_SetSpeed(MOTOR_LEFT, 55);
-		}
-		THREAD_MSleep(50);
+		THREAD_MSleep(1000);
 	}
 
 }
 
 int testCouleur() {
 	while (bumperAvant == 0) {
-		int couleur = lireCouleur();
-		switch (couleur) {
-		case 0:
-			LCD_Printf("BLANC\n");
-			break;
-		case 1:
-			LCD_Printf("ROUGE\n");
-			break;
-		case 2:
-			LCD_Printf("GREEN\n");
-			break;
-		case 3:
-			LCD_Printf("BLUE\n");
-			break;
-		case 4:
-			LCD_Printf("YELLOW\n");
-			break;
-		case 5:
-			LCD_Printf("ROSE\n");
-			break;
-		case 6:
-			LCD_Printf("GRIS\n");
-			break;
-		case 7:
-			LCD_Printf("NOIR\n");
-			break;
-		}
+		couleur = lireCouleur();
+		printCouleur(couleur);
 
 		THREAD_MSleep(1000);
 	}

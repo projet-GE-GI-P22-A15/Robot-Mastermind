@@ -10,6 +10,7 @@ int conditionArret = 0;
 int couleurCible = 0;
 int avancer = 0;
 int couleur = 0;
+int lastCouleur = 0;
 int ligneGauche = 0;
 int ligneCentre = 0;
 int ligneDroite = 0;

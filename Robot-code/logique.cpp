@@ -25,9 +25,12 @@ int StratSumo1() {
 }
 
 int StratNinja() {
+	int directionDepart = GAUCHE;
+
+	int vitesseNinja = 60;
 	couleurCible = lireCouleur();
 	printCouleur(couleurCible);
-	SignalDepartNinja();
+	//SignalDepartNinja();
 	avancerThread(80);
 	while (couleur != ROUGE) {
 		lireCapteurs();
@@ -40,41 +43,49 @@ int StratNinja() {
 	arreterMouvement();
 	avancerDroit(ARRET_DISTANCE, 30, 60);
 	THREAD_MSleep(4000);
-	tourner(35, GAUCHE); // Cote a modifier selon l<emplacement de depart
-	while (couleur != couleurCible && conditionArret == 0) {
+	tourner(40, directionDepart);
+	int lignePosition = 0;
+	avancerThread(vitesseNinja);
+	while (conditionArret == 0) {
+		lastCouleur = couleur;
 		lireCapteurs();
-		printCouleur(couleur);
-		int lignePosition = lineFollower();
-		if (couleur == couleurCible) {
-			avancerDroit(1, 20, 60);
-		} else if (couleur == ROUGE) {
-			arreterMouvement();
-			avancerDroit(1, 30, -80);
-			tourner(180, DROITE);
-			avancerThread(60);
-		} else if (lignePosition == 2) {
-			arreterMouvement();
-			avancerThread(60);
-		} else if (lignePosition == 3) {
-			arreterMouvement();
-			tournerAlt(25, GAUCHE);
-		} else if (lignePosition == 40) {
-			arreterMouvement();
-			tournerAlt(25, DROITE);
-		} else if (couleur != BLANC && couleur != couleurCible) {
-			avancerDroit(1, 20, 70);
-			tournerThread(90, DROITE);
-			avancerThread(60);
-		} else if (couleur == BLANC) {
-			avancerThread(60);
-		}
+		lignePosition = lineFollower();
+		if (couleur != lastCouleur || lignePosition != 0) {
+			printCouleur(couleur);
 
-		THREAD_MSleep(100);
+			if (couleur == couleurCible) {
+				arreterMouvement();
+				avancerDroit(1, 15, vitesseNinja);
+			} else if (couleur == ROUGE) {
+				arreterMouvement();
+				avancerDroit(1, 10, -100);
+				tourner(180, directionDepart);
+				avancerThread(vitesseNinja);
+			} else if (lignePosition == 1) {
+				arreterMouvement();
+				tourner(45, DROITE);
+			} else if (lignePosition == 3) {
+				arreterMouvement();
+				tourner(45, GAUCHE);
+			} else if (couleur != BLANC
+					&& couleur
+							!= couleurCible&& couleur != NOIR && couleur != GRIS) {
+				arreterMouvement();
+				avancerDroit(1, 10, 70);
+				avancerDroit(1, 10, -70);
+				tourner(90, directionDepart);
+				avancerThread(vitesseNinja);
+			} else {
+				arreterMouvement();
+				avancerThread(vitesseNinja);
+			}
+		}
+		THREAD_MSleep(50);
 	}
 	arreterMouvement();
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-	LCD_Printf("FIN!");
+	LCD_Printf("FIN!\n");
 
 	return 0;
 }
@@ -106,7 +117,7 @@ void printCouleur(int couleur) {
 		LCD_Printf("NOIR\n");
 		break;
 	case -1:
-		LCD_Printf("ERREUR");
+		LCD_Printf("ERREUR\n");
 		break;
 	}
 
@@ -125,6 +136,7 @@ void arreterMouvement() {
 		threadQuiRoule = 0;
 	}
 	avancer = 0;
+	THREAD_MSleep(100);
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 }
@@ -153,18 +165,27 @@ void tournerAltThread(int angle, int direction) {
 int lineFollower() {
 	// 0 = noir  1 = blanc
 
-	if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 1) // avant d arriver sur la ligne                        (AUCUN_OBSTACLE)
-		return 0;
-	else if (ligneGauche == 0 && ligneCentre == 0 && ligneDroite == 0) // lorsqu il croise la ligne pour la premiere fois (PERPENDICULAIRE)
-		return 1;
-	else if (ligneGauche == 1 && ligneCentre == 0 && ligneDroite == 1) // ligne au centre                                (LIGNE_AU_CENTRE)
+	/*if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 1) // avant d arriver sur la ligne                        (AUCUN_OBSTACLE)
+	 return 0;
+	 else if (ligneGauche == 0 && ligneCentre == 0 && ligneDroite == 0) // lorsqu il croise la ligne pour la premiere fois (PERPENDICULAIRE)
+	 return 1;
+	 else if (ligneGauche == 1 && ligneCentre == 0 && ligneDroite == 1) // ligne au centre                                (LIGNE_AU_CENTRE)
+	 return 2;
+	 else if (ligneGauche == 0 && ligneCentre == 1 && ligneDroite == 1) // ligne a gauche                                 (LIGNE_A_GAUCHE)
+	 return 3;
+	 else if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 0) // ligne a droite                                  (LIGNE_A_DROITE)
+	 return 4;
+	 else
+	 return -1;*/
+	if (ligneCentre == 0) {
 		return 2;
-	else if (ligneGauche == 0 && ligneCentre == 1 && ligneDroite == 1) // ligne a gauche                                 (LIGNE_A_GAUCHE)
+	} else if (ligneGauche == 0) {
+		return 1;
+	} else if (ligneDroite == 0) {
 		return 3;
-	else if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 0) // ligne a droite                                  (LIGNE_A_DROITE)
-		return 4;
-	else
-		return -1;
+	} else {
+		return 0;
+	}
 }
 
 //Position : 1 pour tourner a gauche  2 pour tourner a droite

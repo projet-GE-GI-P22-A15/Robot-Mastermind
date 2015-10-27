@@ -69,7 +69,6 @@ void avancerDroit(int mode, int distance, int vitesse) {
 	}
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-	THREAD_MSleep(100);
 }
 
 //Determine l'importance de la proportion de l'erreur dans le PID
