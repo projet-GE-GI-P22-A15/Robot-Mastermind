@@ -23,4 +23,4 @@ int angleGlobal = 0;
 int directionGlobale = 0;
 int threadQuiRoule = 0;
 
-
+int adjd_dev = 0;

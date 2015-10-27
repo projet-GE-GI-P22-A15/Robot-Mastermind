@@ -18,11 +18,11 @@
 #include <valeurs.h>
 #include <logique.h>
 #include <capteurs.h>
-#include <capteurCouleur.h>
+#include <couleuri2c.h>
 
 #define vitesse 85
 
-int testCapteurCouleurI2C();
+//int testCapteurCouleurI2C();
 
 int testMicro();
 int testCouleur();
@@ -105,36 +105,35 @@ int testCouleur() {
 
 int testMicro() {
 	while (1) {
-		LCD_Printf("Bruit: %i, 5kHz: %i\n", ANALOG_Read(2), ANALOG_Read(1));
+		LCD_Printf("Diff: %i, Bruit: %i, 5kHz: %i\n",
+				ANALOG_Read(1) - ANALOG_Read(5), ANALOG_Read(5),
+				ANALOG_Read(1));
 		THREAD_MSleep(1000);
 	}
 	return 0;
 }
 
-/*int testCapteurCouleurI2C(){
+int testCapteurCouleurI2C() {
 
 	int red, blue, green, clear;
 
-	 //initialisation du capteur
-	 //ERROR_CHECK(color_Init(adjd_dev));
+	//initialisation du capteur
 
+	cap_SetValue(CAP_RED, 15);
+	cap_SetValue(CAP_GREEN, 15);
+	cap_SetValue(CAP_BLUE, 15);
+	cap_SetValue(CAP_CLEAR, 15);
 
-	 cap_SetValue(CAP_RED, 15);
-	 cap_SetValue(CAP_GREEN, 15);
-	 cap_SetValue(CAP_BLUE, 15);
-	 cap_SetValue(CAP_CLEAR, 15);
+	integrationTime_SetValue(INTEGRATION_RED, 255);
+	integrationTime_SetValue(INTEGRATION_GREEN, 255);
+	integrationTime_SetValue(INTEGRATION_BLUE, 255);
+	integrationTime_SetValue(INTEGRATION_CLEAR, 255);
 
-	 integrationTime_SetValue(INTEGRATION_RED, 255);
-	 integrationTime_SetValue(INTEGRATION_GREEN, 255);
-	 integrationTime_SetValue(INTEGRATION_BLUE, 255);
-	 integrationTime_SetValue(INTEGRATION_CLEAR, 255);
+	while (1) {
+		color_Read(red, blue, green, clear);
+		LCD_ClearAndPrint("R=%d, G=%d, B=%d, C=%d", red, green, blue, clear);
+		THREAD_MSleep(1000);
+	}
 
-	 while (1) {
-
-	 color_Read(red, blue, green, clear);
-
-	 LCD_ClearAndPrint("R=%d, G=%d, B=%d, C=%d", red, green, blue, clear);
-	 THREAD_MSleep(1000);
-	 }
-	 return 0;
-}*/
+	return 0;
+}

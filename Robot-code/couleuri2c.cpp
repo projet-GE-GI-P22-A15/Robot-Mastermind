@@ -1,6 +1,5 @@
-/*#include <capteurCouleur.h>
 #include <libarmus.h>
-#include <stdio.h>
+#include <valeurs.h>
 
 // fonctions globales
 
@@ -120,7 +119,6 @@ void color_Read(int& data_red, int& data_blue, int& data_green,
 	data_clear = adjd_ReadRegister16(DATA_CLEAR_LO);
 }
 
-
 void color_ReadToCalibrate(int& data_red, int& data_blue, int& data_green,
 		int& data_clear) {
 	led_TurnOn();
@@ -139,17 +137,15 @@ void color_ReadToCalibrate(int& data_red, int& data_blue, int& data_green,
 }
 
 // l argument est un integer qui ne doit pas etre modifie
-/*int color_Init(int& dev_handle) {
- int error;
- error = armus::i2c_RegisterDevice(ADJD_S371_QR999_SADR, 100000, 1000,
- dev_handle);
+int color_Init(int& dev_handle) {
+	int error;
+	//error = armus::i2c_RegisterDevice(ADJD_S371_QR999_SADR, 100000, 1000, dev_handle);
 
- return error;
- }*/
-
-// thats how we do it
+	return error;
+}
 /*
- int main() {
+ int main()
+ {
  int red, blue, green, clear;
 
  //initialisation du capteur
@@ -165,11 +161,16 @@ void color_ReadToCalibrate(int& data_red, int& data_blue, int& data_green,
  integrationTime_SetValue(INTEGRATION_BLUE, 255);
  integrationTime_SetValue(INTEGRATION_CLEAR, 255);
 
- while (1) {
+ while(1)
+ {
  color_Read(red, blue, green, clear);
  LCD_ClearAndPrint("R=%d, G=%d, B=%d, C=%d", red, green, blue, clear);
  THREAD_MSleep(1000);
  }
 
+
+
  return 0;
- }*/
+ }
+ */
+

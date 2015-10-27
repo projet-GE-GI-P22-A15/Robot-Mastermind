@@ -4,8 +4,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Robot-code/capteurCouleur.cpp \
 ../Robot-code/capteurs.cpp \
+../Robot-code/couleuri2c.cpp \
 ../Robot-code/logique.cpp \
 ../Robot-code/main.cpp \
 ../Robot-code/pid.cpp \
@@ -13,8 +13,8 @@ CPP_SRCS += \
 ../Robot-code/valeurs.cpp 
 
 OBJS += \
-./Robot-code/capteurCouleur.o \
 ./Robot-code/capteurs.o \
+./Robot-code/couleuri2c.o \
 ./Robot-code/logique.o \
 ./Robot-code/main.o \
 ./Robot-code/pid.o \
@@ -22,8 +22,8 @@ OBJS += \
 ./Robot-code/valeurs.o 
 
 CPP_DEPS += \
-./Robot-code/capteurCouleur.d \
 ./Robot-code/capteurs.d \
+./Robot-code/couleuri2c.d \
 ./Robot-code/logique.d \
 ./Robot-code/main.d \
 ./Robot-code/pid.d \
