@@ -27,7 +27,7 @@ int StratSumo1() {
 int StratNinja() {
 	couleurCible = lireCouleur();
 	SignalDepartNinja();
-	avancerThread(80);
+	avancerThread(70);
 	while (couleur != ROUGE) {
 		lireCapteurs();
 		THREAD_MSleep(100);
@@ -38,7 +38,7 @@ int StratNinja() {
 	}
 	arreterMouvement();
 	avancerDroit(ARRET_DISTANCE, 30, 70);
-	avancerThread(60);
+	avancerThread(50);
 	while (couleur == BLANC) {
 		lireCapteurs();
 		THREAD_MSleep(50);
@@ -81,6 +81,39 @@ int StratNinja() {
 	LCD_Printf("FIN!");
 
 	return 0;
+}
+
+void printCouleur(int couleur) {
+	switch (couleur) {
+	case 0:
+		LCD_Printf("BLANC\n");
+		break;
+	case 1:
+		LCD_Printf("ROUGE\n");
+		break;
+	case 2:
+		LCD_Printf("VERT\n");
+		break;
+	case 3:
+		LCD_Printf("BLEU\n");
+		break;
+	case 4:
+		LCD_Printf("JAUNE\n");
+		break;
+	case 5:
+		LCD_Printf("ROSE\n");
+		break;
+	case 6:
+		LCD_Printf("GRIS\n");
+		break;
+	case 7:
+		LCD_Printf("NOIR\n");
+		break;
+	case -1:
+		LCD_Printf("ERREUR");
+		break;
+	}
+
 }
 
 void lireCapteurs() {

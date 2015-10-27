@@ -18,6 +18,7 @@
 #include <valeurs.h>
 #include <logique.h>
 #include <capteurs.h>
+#include <capteurCouleur.h>
 
 #define vitesse 85
 
@@ -27,6 +28,9 @@
  * @return [description]
  */
 int roulerParcoursAller();
+
+
+int testCapteurCouleurI2C();
 
 /**
  * @brief [brief description]
@@ -52,8 +56,9 @@ int main() {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 
-			StratNinja();
+			//StratNinja();
 			//testCouleur();
+			testCapteurCouleurI2C();
 		}
 	}
 
@@ -187,4 +192,31 @@ int roulerParcoursRetour() {
 	avancerDroit(ARRET_DISTANCE, 225, vitesse);	//200
 
 	return 0;
+}
+
+
+
+int testCapteurCouleurI2C(){
+
+	int red, blue, green, clear;
+
+	 //initialisation du capteur
+	 //ERROR_CHECK(color_Init(adjd_dev));
+
+	 cap_SetValue(CAP_RED, 15);
+	 cap_SetValue(CAP_GREEN, 15);
+	 cap_SetValue(CAP_BLUE, 15);
+	 cap_SetValue(CAP_CLEAR, 15);
+
+	 integrationTime_SetValue(INTEGRATION_RED, 255);
+	 integrationTime_SetValue(INTEGRATION_GREEN, 255);
+	 integrationTime_SetValue(INTEGRATION_BLUE, 255);
+	 integrationTime_SetValue(INTEGRATION_CLEAR, 255);
+
+	 while (1) {
+	 color_Read(red, blue, green, clear);
+	 LCD_ClearAndPrint("R=%d, G=%d, B=%d, C=%d", red, green, blue, clear);
+	 THREAD_MSleep(1000);
+	 }
+	 return 0;
 }

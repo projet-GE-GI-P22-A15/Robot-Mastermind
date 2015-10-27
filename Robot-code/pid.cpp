@@ -59,11 +59,8 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 		appliquerCorrection(correctionP, correctionI, correctionD);
 
-		/*if (distance - distanceParcourue <= 5) {
-		 ajusterVitesseMoteurs(vitesse / 1.7);
-		 } else {
-		 ajusterVitesseMoteurs(vitesse);
-		 }*/
+		ajusterVitesseMoteurs(vitesse);
+
 		THREAD_MSleep(DELAI_LECTURE);
 	}
 

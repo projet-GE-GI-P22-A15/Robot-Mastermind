@@ -1,5 +1,6 @@
 #include <capteurCouleur.h>
 #include <libarmus.h>
+#include <stdio.h>
 
 // fonctions globales
 
@@ -118,6 +119,7 @@ void color_Read(int& data_red, int& data_blue, int& data_green,
 	data_blue = adjd_ReadRegister16(DATA_BLUE_LO);
 	data_clear = adjd_ReadRegister16(DATA_CLEAR_LO);
 }
+
 
 void color_ReadToCalibrate(int& data_red, int& data_blue, int& data_green,
 		int& data_clear) {
