@@ -5,9 +5,7 @@
 #include <pid.h>
 #include <libarmus.h>
 
-
-
-void partirPIDThread(){
+void partirPIDThread() {
 	avancerDroit(ARRET_EXTERNE, 0, vitesseGlobale);
 
 }

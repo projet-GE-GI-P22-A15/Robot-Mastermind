@@ -2,12 +2,11 @@
 #include <rotation.h>
 #include <valeurs.h>
 
-
-void tournerThreaded(){
+void tournerThreaded() {
 	tourner(angleGlobal, directionGlobale);
 }
 
-void tournerAltThreaded(){
+void tournerAltThreaded() {
 	tournerAlt(angleGlobal, directionGlobale);
 }
 

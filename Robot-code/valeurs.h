@@ -75,5 +75,5 @@ extern int bumperGauche;
 extern int vitesseGlobale;
 extern int angleGlobal;
 extern int directionGlobale;
-
+extern int threadQuiRoule;
 #endif /* VALEURS_H_ */

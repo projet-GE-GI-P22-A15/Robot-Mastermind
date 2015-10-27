@@ -30,11 +30,11 @@ int StratNinja() {
 	avancerThread(80);
 	while (couleur != ROUGE) {
 		lireCapteurs();
-		THREAD_MSleep(50);
+		THREAD_MSleep(100);
 	}
 	while (couleur != BLANC) {
 		lireCapteurs();
-		THREAD_MSleep(50);
+		THREAD_MSleep(100);
 	}
 	arreterMouvement();
 	avancerDroit(ARRET_DISTANCE, 30, 70);
@@ -73,7 +73,7 @@ int StratNinja() {
 			avancerThread(70);
 		}
 
-		THREAD_MSleep(50);
+		THREAD_MSleep(100);
 	}
 	arreterMouvement();
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
@@ -88,31 +88,37 @@ void lireCapteurs() {
 	couleur = lireCouleur();
 	lireCapteurLigne();
 	lireBumpers();
-	THREAD_MSleep(25);
-
 }
 void arreterMouvement() {
+
+	if (threadQuiRoule == 1) {
+		THREAD_Destroy(&thread1);
+		threadQuiRoule = 0;
+	}
 	avancer = 0;
-	THREAD_MSleep(100);
-	THREAD_Destroy(&thread1);
+	MOTOR_SetSpeed(MOTOR_LEFT, 0);
+	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 }
 
 void avancerThread(int vitesse) {
 	avancer = 1;
 	vitesseGlobale = vitesse;
 	thread1 = THREAD_CreateSimple(partirPIDThread);
+	threadQuiRoule = 1;
 }
 
 void tournerThread(int angle, int direction) {
 	angleGlobal = angle;
 	directionGlobale = direction;
 	thread1 = THREAD_CreateSimple(tournerThreaded);
+	threadQuiRoule = 1;
 }
 
 void tournerAltThread(int angle, int direction) {
 	angleGlobal = angle;
 	directionGlobale = direction;
 	thread1 = THREAD_CreateSimple(tournerAltThreaded);
+	threadQuiRoule = 1;
 }
 
 int lineFollower() {
