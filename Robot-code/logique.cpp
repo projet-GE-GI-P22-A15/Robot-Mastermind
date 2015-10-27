@@ -28,7 +28,7 @@ int StratNinja() {
 	couleurCible = lireCouleur();
 	printCouleur(couleurCible);
 	SignalDepartNinja();
-	avancerThread(70);
+	avancerThread(80);
 	while (couleur != ROUGE) {
 		lireCapteurs();
 		THREAD_MSleep(100);
@@ -38,29 +38,23 @@ int StratNinja() {
 		THREAD_MSleep(100);
 	}
 	arreterMouvement();
-	avancerDroit(ARRET_DISTANCE, 30, 70);
-	avancerThread(50);
-	while (couleur == BLANC) {
-		lireCapteurs();
-		THREAD_MSleep(50);
-	}
-	arreterMouvement();
+	avancerDroit(ARRET_DISTANCE, 30, 60);
 	THREAD_MSleep(4000);
-	tourner(45, GAUCHE); // Cote a modifier selon l<emplacement de depart
+	tourner(35, GAUCHE); // Cote a modifier selon l<emplacement de depart
 	while (couleur != couleurCible && conditionArret == 0) {
 		lireCapteurs();
 		printCouleur(couleur);
 		int lignePosition = lineFollower();
 		if (couleur == couleurCible) {
-			avancerDroit(1, 20, 70);
+			avancerDroit(1, 20, 60);
 		} else if (couleur == ROUGE) {
 			arreterMouvement();
 			avancerDroit(1, 30, -80);
 			tourner(180, DROITE);
-			avancerThread(70);
+			avancerThread(60);
 		} else if (lignePosition == 2) {
 			arreterMouvement();
-			avancerThread(70);
+			avancerThread(60);
 		} else if (lignePosition == 3) {
 			arreterMouvement();
 			tournerAlt(25, GAUCHE);
@@ -70,9 +64,9 @@ int StratNinja() {
 		} else if (couleur != BLANC && couleur != couleurCible) {
 			avancerDroit(1, 20, 70);
 			tournerThread(90, DROITE);
-			avancerThread(70);
-		} else if (avancer == 0) {
-			avancerThread(70);
+			avancerThread(60);
+		} else if (couleur == BLANC) {
+			avancerThread(60);
 		}
 
 		THREAD_MSleep(100);

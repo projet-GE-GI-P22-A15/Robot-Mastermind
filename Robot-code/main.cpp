@@ -105,9 +105,7 @@ int testCouleur() {
 
 int testMicro() {
 	while (1) {
-		LCD_Printf("Diff: %i, Bruit: %i, 5kHz: %i\n",
-				ANALOG_Read(1) - ANALOG_Read(5), ANALOG_Read(5),
-				ANALOG_Read(1));
+		Lire5kHz();
 		THREAD_MSleep(1000);
 	}
 	return 0;

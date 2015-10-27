@@ -8,17 +8,11 @@
 
 int Lire5kHz() //Lecture de l'entrée analogique du micro , donc le 5kHz pour le signal de départ . Fonction utilisee pour les deux robots.
 {
-	int lectureEntree = 0;
-
-	lectureEntree = ANALOG_Read(PORTMICRO);
-	if (lectureEntree >= 500) {
-		lectureEntree = 1;
-		LCD_Printf("SIGNAL 5kHz!\n");
-		return lectureEntree;
-	} else {
-		lectureEntree = 0;
-		//LCD_Printf("PAS DE SIGNAL!\n");
-		return lectureEntree;
+	if (ANALOG_Read(1) - ANALOG_Read(5) > 60) {
+		//LCD_Printf("%i\n", ANALOG_Read(1) - ANALOG_Read(5));
+		return 1;
+	} else{
+		return 0;
 	}
 }
 
