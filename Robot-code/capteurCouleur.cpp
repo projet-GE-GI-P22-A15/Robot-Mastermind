@@ -1,4 +1,4 @@
-#include <capteurCouleur.h>
+/*#include <capteurCouleur.h>
 #include <libarmus.h>
 #include <stdio.h>
 

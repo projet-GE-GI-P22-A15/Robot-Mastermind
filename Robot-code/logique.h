@@ -10,5 +10,6 @@ void arreterMouvement();
 void avancerThread(int vitesse);
 void tournerThread(int angle, int direction);
 void tournerAltThread(int angle, int direction);
+void printCouleur(int couleur);
 
 #endif // LOGIQUE_H_

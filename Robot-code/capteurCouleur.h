@@ -1,4 +1,4 @@
-#ifndef CAPTEURCOULEUR_H_
+/*#ifndef CAPTEURCOULEUR_H_
 #define CAPTEURCOULEUR_H_
 
 #define ADJD_S371_QR999_SADR 	0x74
@@ -36,6 +36,7 @@ unsigned char adjd_ReadRegister(unsigned char reg);
 void adjd_SetRegister16(unsigned char reg, int val);
 void adjd_SetRegister(unsigned char reg, unsigned char val);
 
-int adjd_dev;
+int adjd_dev = 0;
 
 #endif // CAPTEURCOULEUR_H_
+*/

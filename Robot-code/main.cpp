@@ -22,29 +22,7 @@
 
 #define vitesse 85
 
-/**
- * @brief [brief description]
- * @details [long description]
- * @return [description]
- */
-int roulerParcoursAller();
-
-
 int testCapteurCouleurI2C();
-
-/**
- * @brief [brief description]
- * @details [long description]
- * @return [description]
- */
-int roulerParcoursRetour();
-
-/**
- * @brief [brief description]
- * @details [long description]
- * @return [description]
- */
-int roulerParcoursComplet();
 
 int testMicro();
 int testCouleur();
@@ -56,9 +34,11 @@ int main() {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 
+			testMicro();
+			//testCapteurCouleurI2C();
 			//StratNinja();
 			//testCouleur();
-			testCapteurCouleurI2C();
+			//testCapteurCouleurI2C();
 		}
 	}
 
@@ -124,84 +104,20 @@ int testCouleur() {
 }
 
 int testMicro() {
-
-	int i = 0;
-	while (i < 20) {
-		int lectureMicro = ANALOG_Read(1);
-		LCD_Printf("Valeur Micro: %i\n", lectureMicro);
-		THREAD_MSleep(200);
-		++i;
+	while (1) {
+		LCD_Printf("Bruit: %i, 5kHz: %i\n", ANALOG_Read(2), ANALOG_Read(1));
+		THREAD_MSleep(1000);
 	}
 	return 0;
 }
 
-int roulerParcoursComplet() {
-	roulerParcoursAller();
-
-	tournerAlt(90, GAUCHE);
-	avancerDroit(1, 15, -75);
-	tournerAlt(90, GAUCHE);
-
-	roulerParcoursRetour();
-
-	return 0;
-}
-
-int roulerParcoursAller() {
-	// À l'endroit
-	avancerDroit(ARRET_DISTANCE, 216, vitesse); 	//200
-	tournerAlt(90, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 27, vitesse); 	//47.5**
-	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 28, vitesse);	//45
-	tournerAlt(90, DROITE);		//90
-	avancerDroit(ARRET_DISTANCE, 32, vitesse); 	//47.5 ou == **
-	tournerAlt(87, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 23, vitesse); 	//31.2
-	tournerAlt(45, DROITE);		//45
-	avancerDroit(ARRET_DISTANCE, 27, vitesse); 	// 67.2
-	tournerAlt(85, GAUCHE);		//90
-	avancerDroit(ARRET_DISTANCE, 53, vitesse); 	// 73.2
-	tournerAlt(45, DROITE);		//45
-	avancerDroit(ARRET_DISTANCE, 30, vitesse); 	// 47.5
-	tournerAlt(10, DROITE);		//12.5
-	avancerDroit(ARRET_DISTANCE, 85, vitesse); 	// 73.5
-
-	return 0;
-}
-
-int roulerParcoursRetour() {
-	//À l'envers
-
-	avancerDroit(ARRET_DISTANCE, 85, vitesse); 	//73.5
-	tournerAlt(12, GAUCHE);		//12.5
-	avancerDroit(ARRET_DISTANCE, 37, vitesse); 	//47.5
-	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 58, vitesse); 	// 73.2
-	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 30, vitesse); 	//67.2
-	tournerAlt(45, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 21, vitesse); 	//31.2
-	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 31, vitesse); 	// 47.5**
-	tournerAlt(90, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 28, vitesse); 	// 45
-	tournerAlt(90, GAUCHE);
-	avancerDroit(ARRET_DISTANCE, 29, vitesse); 	// 47.5 ou **
-	tournerAlt(90, DROITE);
-	avancerDroit(ARRET_DISTANCE, 225, vitesse);	//200
-
-	return 0;
-}
-
-
-
-int testCapteurCouleurI2C(){
+/*int testCapteurCouleurI2C(){
 
 	int red, blue, green, clear;
 
 	 //initialisation du capteur
 	 //ERROR_CHECK(color_Init(adjd_dev));
+
 
 	 cap_SetValue(CAP_RED, 15);
 	 cap_SetValue(CAP_GREEN, 15);
@@ -214,9 +130,11 @@ int testCapteurCouleurI2C(){
 	 integrationTime_SetValue(INTEGRATION_CLEAR, 255);
 
 	 while (1) {
+
 	 color_Read(red, blue, green, clear);
+
 	 LCD_ClearAndPrint("R=%d, G=%d, B=%d, C=%d", red, green, blue, clear);
 	 THREAD_MSleep(1000);
 	 }
 	 return 0;
-}
+}*/

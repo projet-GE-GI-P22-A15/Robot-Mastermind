@@ -26,6 +26,7 @@ int StratSumo1() {
 
 int StratNinja() {
 	couleurCible = lireCouleur();
+	printCouleur(couleurCible);
 	SignalDepartNinja();
 	avancerThread(70);
 	while (couleur != ROUGE) {
@@ -48,6 +49,7 @@ int StratNinja() {
 	tourner(45, GAUCHE); // Cote a modifier selon l<emplacement de depart
 	while (couleur != couleurCible && conditionArret == 0) {
 		lireCapteurs();
+		printCouleur(couleur);
 		int lignePosition = lineFollower();
 		if (couleur == couleurCible) {
 			avancerDroit(1, 20, 70);
