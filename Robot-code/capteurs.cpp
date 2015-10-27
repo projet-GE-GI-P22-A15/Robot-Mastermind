@@ -73,29 +73,32 @@ int lireCouleur() {
 	int blue = ((vBlue * 200) / 25);
 
 	//LCD_Printf("RED: %i, GREEN: %i, BLUE: %i\n", red, green, blue);
-	if (red > 200 && red < 350 && green > 100 && green < 175 && blue > 50
+	if (red > 175 && red < 350 && green > 100 && green < 175 && blue > 50
 			&& blue < 150) {
 		return ROUGE;
-	} else if (red > 50 && red < 120 && green > 120 && green < 200 && blue > 80
+	} else if (red > 50 && red < 120 && green > 100 && green < 200 && blue > 80
 			&& blue < 150) {
 		return VERT;
-	} else if (red > 75 && red < 150 && green > 120 && green < 225 && blue > 175
+	} else if (red > 75 && red < 150 && green > 100 && green < 225 && blue > 150
 			&& blue < 400) {
 		return BLEU;
-	} else if (red > 375 && red < 600 && green > 350 && green < 610
+	} else if (red > 325 && red < 600 && green > 300 && green < 610
 			&& blue > 150 && blue < 300) {
 		return JAUNE;
-	} else if (red > 300 && red < 500 && green > 175 && green < 300
+	} else if (red > 250 && red < 500 && green > 150 && green < 300
 			&& blue > 150 && blue < 250) {
 		return ROSE;
 	} else if (red > 200 && red < 450 && green > 200 && green < 450
-			&& blue > 250 && blue < 450) {
+			&& blue > 200 && blue < 450) {
 		return GRIS;
 	} else if (red > 0 && red < 150 && green > 0 && green < 150 && blue > 0
 			&& blue < 150) {
 		return NOIR;
-	} else {
+	} else if (red > 400 && red < 1000 && green > 400 && green < 1000
+			&& blue > 400 && blue < 1000) {
 		return BLANC;
+	} else {
+		return -1;
 	}
 	return 0;
 }
