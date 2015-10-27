@@ -8,6 +8,22 @@
 //code pour logique ici
 
 THREAD thread1;
+
+int StratSumo1() {
+	SignalDepartSumo();
+	avancer = 1;
+	while (!(lireCouleur() == GRIS && bumperAvant == 1)) {
+		avancerThread(60);
+	}
+	arreterMouvement();
+	tournerThread(15, GAUCHE);
+	tournerThread(30, DROITE);
+	THREAD_MSleep(2000);
+	avancer = 0;
+
+	return 0;
+}
+
 int StratNinja() {
 	couleurCible = lireCouleur();
 	SignalDepartNinja();
@@ -21,7 +37,7 @@ int StratNinja() {
 		THREAD_MSleep(50);
 	}
 	arreterMouvement();
-	avancerDroit(ARRET_DISTANCE, 15, 60);
+	avancerDroit(ARRET_DISTANCE, 30, 70);
 	avancerThread(60);
 	while (couleur == BLANC) {
 		lireCapteurs();
