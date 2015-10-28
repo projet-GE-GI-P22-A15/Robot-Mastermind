@@ -20,6 +20,7 @@ int bumperDroite = 0;
 int bumperGauche = 0;
 int vitesseGlobale = 0;
 int angleGlobal = 0;
+int lastLignePosition;
 
 int directionGlobale = 0;
 int threadQuiRoule = 0;

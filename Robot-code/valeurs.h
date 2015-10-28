@@ -100,4 +100,5 @@ extern int angleGlobal;
 extern int directionGlobale;
 extern int threadQuiRoule;
 extern int lastCouleur;
+extern int lastLignePosition;
 #endif /* VALEURS_H_ */

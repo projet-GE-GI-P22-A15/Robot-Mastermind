@@ -26,8 +26,8 @@ int StratSumo1() {
 
 int StratNinja() {
 	int directionDepart = GAUCHE;
+	int vitesseNinja = 80;
 
-	int vitesseNinja = 60;
 	couleurCible = lireCouleur();
 	printCouleur(couleurCible);
 	//SignalDepartNinja();
@@ -48,60 +48,46 @@ int StratNinja() {
 	avancerThread(vitesseNinja);
 	while (couleur != couleurCible && conditionArret == 0) {
 		lastCouleur = couleur;
+		lastLignePosition = lignePosition;
 		lireCapteurs();
 		lignePosition = lineFollower();
 
-		if (couleur != lastCouleur || lignePosition != 0) {
+		if (couleur != lastCouleur || (lignePosition == 0 && lastLignePosition != 0)) {
 			printCouleur(couleur);
 			if (couleur == couleurCible) {
 				arreterMouvement();
 				THREAD_MSleep(300);
 				lireCapteurs();
-				avancerDroit(1, 15, vitesseNinja);
+				avancerDroit(1, 5, vitesseNinja);
+				lireCouleur();
 			} else if (couleur == ROUGE) {
 				arreterMouvement();
-				THREAD_MSleep(50);
 				avancerDroit(1, 10, -80);
-				THREAD_MSleep(50);
 				tourner(180, directionDepart);
-				THREAD_MSleep(50);
 				avancerThread(vitesseNinja);
-				THREAD_MSleep(50);
-			} /*else if (lignePosition == 1) {
-			 arreterMouvement();
-			 THREAD_MSleep(50);
-			 tourner(45, DROITE);
-			 THREAD_MSleep(50);
-			 } else if (lignePosition == 3) {
-			 arreterMouvement();
-			 THREAD_MSleep(50);
-			 tourner(45, GAUCHE);
-			 THREAD_MSleep(50);
-			 }*/
-			else if (couleur == BLANC) {
+			} else if (lignePosition == 1) {
 				arreterMouvement();
-				THREAD_MSleep(50);
+				tourner(45, DROITE);
 				avancerThread(vitesseNinja);
-				THREAD_MSleep(50);
+			} else if (lignePosition == 3) {
+				arreterMouvement();
+				tourner(45, GAUCHE);
+				avancerThread(vitesseNinja);
+			} else if (couleur == BLANC) {
+				arreterMouvement();
+				avancerThread(vitesseNinja);
 			} else if (couleur == GRIS) {
 				tourner(135, directionDepart);
 			} else if (couleur != NOIR) {
-
 				arreterMouvement();
-				THREAD_MSleep(50);
 				avancerDroit(1, 10, 70);
-				THREAD_MSleep(50);
 				avancerDroit(1, 10, -70);
-				THREAD_MSleep(50);
 				tourner(90, directionDepart);
-				THREAD_MSleep(50);
 				avancerThread(vitesseNinja);
-				THREAD_MSleep(50);
+
 			}
-		} else if (couleur == BLANC || avancer == 0 || threadQuiRoule == 0) {
-			avancerThread(vitesseNinja);
 		}
-		THREAD_MSleep(100);
+		THREAD_MSleep(50);
 	}
 	arreterMouvement();
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
