@@ -83,7 +83,7 @@ int StratNinja() {
 				arreterMouvement();
 				avancerThread(vitesseNinja);
 			} else if (couleur == GRIS) {
-				tourner(135, directionDepart);
+				tourner(75, directionDepart);
 			} else if (couleur != NOIR) {
 				arreterMouvement();
 				avancerDroit(1, 10, 70);
