@@ -25,7 +25,13 @@ int StratSumo1() {
 }
 
 int StratNinja() {
-	int directionDepart = GAUCHE;
+
+	int directionDepart;
+	if (DIGITALIO_Read==BMP_LEFT)
+		directionDepart=GAUCHE;
+	else
+		directionDepart=DROITE;
+
 	int vitesseNinja = 80;
 
 	couleurCible = lireCouleur();
