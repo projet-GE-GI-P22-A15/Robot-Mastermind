@@ -11,15 +11,16 @@ THREAD thread1;
 
 int StratSumo1() {
 	SignalDepartSumo();
-	avancer = 1;
-	while (!(lireCouleur() == GRIS && bumperAvant == 1)) {
-		avancerThread(60);
+	avancerDroit(1, 130, 90);
+
+	int i = 0;
+	while (i < 5){
+		tournerSumo(45, DROITE);
+		tournerSumo(90, GAUCHE);
+		tournerSumo(45, DROITE);
+		avancerDroit(1, 10, 90);
+		++i;
 	}
-	arreterMouvement();
-	tournerThread(15, GAUCHE);
-	tournerThread(30, DROITE);
-	THREAD_MSleep(2000);
-	avancer = 0;
 
 	return 0;
 }

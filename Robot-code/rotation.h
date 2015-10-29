@@ -28,4 +28,5 @@ void tournerAlt(int angle, int direction);
 
 void tournerThreaded();
 void tournerAltThreaded();
+void tournerSumo(int angle, int direction);
 #endif /* ROTATION_H_ */
