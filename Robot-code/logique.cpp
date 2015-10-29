@@ -64,6 +64,9 @@ int StratNinja() {
 			printCouleur(couleur);
 
 			if (couleur == couleurCible) {
+				THREAD_MSleep(100);
+				lireCapteurs();
+				if (couleur == couleurCible){
 				arreterMouvement();
 				avancerThread(60);
 				while (couleur == couleurCible) {
@@ -73,6 +76,7 @@ int StratNinja() {
 				arreterMouvement();
 				avancerDroit(1, 5, -70);
 				lireCapteurs();
+				}
 			} else if (couleur == ROUGE) {
 				arreterMouvement();
 				avancerDroit(1, 10, -100);

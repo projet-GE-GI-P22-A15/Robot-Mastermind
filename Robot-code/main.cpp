@@ -34,7 +34,6 @@ int main() {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 
-			//avancerDroit(1, 500, 100);
 			StratNinja();
 		}
 	}
