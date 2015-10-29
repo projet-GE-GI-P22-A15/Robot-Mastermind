@@ -25,61 +25,70 @@ int StratSumo1() {
 }
 
 int StratNinja() {
-
-	int directionDepart;
-	if (DIGITALIO_Read==BMP_LEFT)
-		directionDepart=GAUCHE;
-	else
-		directionDepart=DROITE;
+	vitesseDroitePRGauche = 1.05;
+	int directionDepart = DROITE;
 
 	int vitesseNinja = 80;
 
 	couleurCible = lireCouleur();
 	printCouleur(couleurCible);
-	//SignalDepartNinja();
-	avancerThread(80);
+
+	SignalDepartNinja();
+	avancerThread(vitesseNinja);
+
 	while (couleur != ROUGE) {
 		lireCapteurs();
 		THREAD_MSleep(100);
 	}
-	while (couleur != BLANC) {
+	while (couleur == ROUGE) {
 		lireCapteurs();
 		THREAD_MSleep(100);
 	}
-	arreterMouvement();
-	avancerDroit(ARRET_DISTANCE, 30, 60);
-	THREAD_MSleep(1000);
-	tourner(40, directionDepart);
-	int lignePosition = 0;
-	avancerThread(vitesseNinja);
-	while (couleur != couleurCible && conditionArret == 0) {
-		lastCouleur = couleur;
-		lastLignePosition = lignePosition;
+	while (couleur != ROUGE && couleur != GRIS && couleur != couleurCible) {
 		lireCapteurs();
-		lignePosition = lineFollower();
+		THREAD_MSleep(100);
+	}
+	couleur = 0;
 
-		if (couleur != lastCouleur || (lignePosition == 0 && lastLignePosition != 0)) {
+	int lignePosition = 0;
+	int lastLignePosition = 0;
+
+	avancerThread(vitesseNinja);
+	while (conditionArret == 0) {
+		lastCouleur = couleur;
+
+		lireCapteurs();
+		//lignePosition = lineFollower();
+
+		if (couleur != lastCouleur) {
 			printCouleur(couleur);
+
 			if (couleur == couleurCible) {
 				arreterMouvement();
-				THREAD_MSleep(300);
+				avancerThread(60);
+				while (couleur == couleurCible) {
+					lireCapteurs();
+					THREAD_MSleep(100);
+				}
+				arreterMouvement();
+				avancerDroit(1, 5, -70);
 				lireCapteurs();
-				avancerDroit(1, 5, vitesseNinja);
-				lireCouleur();
 			} else if (couleur == ROUGE) {
 				arreterMouvement();
-				avancerDroit(1, 10, -80);
-				tourner(180, directionDepart);
+				avancerDroit(1, 10, -100);
+				tourner(160, directionDepart);
 				avancerThread(vitesseNinja);
-			} else if (lignePosition == 1) {
-				arreterMouvement();
-				tourner(45, DROITE);
-				avancerThread(vitesseNinja);
-			} else if (lignePosition == 3) {
-				arreterMouvement();
-				tourner(45, GAUCHE);
-				avancerThread(vitesseNinja);
-			} else if (couleur == BLANC) {
+			} /*else if (lignePosition == 1) {
+			 arreterMouvement();
+			 tourner(30, DROITE);
+			 avancerThread(vitesseNinja);
+			 THREAD_MSleep(100);
+			 } else if (lignePosition == 3) {
+			 arreterMouvement();
+			 tourner(30, GAUCHE);
+			 avancerThread(vitesseNinja);
+			 THREAD_MSleep(100);
+			 }*/else if (couleur == BLANC) {
 				arreterMouvement();
 				avancerThread(vitesseNinja);
 			} else if (couleur == GRIS) {
@@ -90,16 +99,14 @@ int StratNinja() {
 				avancerDroit(1, 10, -70);
 				tourner(90, directionDepart);
 				avancerThread(vitesseNinja);
-
 			}
 		}
-		THREAD_MSleep(50);
+		THREAD_MSleep(100);
 	}
 	arreterMouvement();
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 	LCD_Printf("FIN!\n");
-	THREAD_MSleep(50);
 
 	return 0;
 }
