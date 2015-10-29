@@ -64,11 +64,9 @@ int StratNinja() {
 			printCouleur(couleur);
 
 			if (couleur == couleurCible) {
-				THREAD_MSleep(100);
-				lireCapteurs();
-				if (couleur == couleurCible){
 				arreterMouvement();
 				avancerThread(60);
+				THREAD_MSleep(100);
 				while (couleur == couleurCible) {
 					lireCapteurs();
 					THREAD_MSleep(100);
@@ -76,26 +74,20 @@ int StratNinja() {
 				arreterMouvement();
 				avancerDroit(1, 5, -70);
 				lireCapteurs();
-				}
 			} else if (couleur == ROUGE) {
 				arreterMouvement();
-				avancerDroit(1, 10, -100);
+				THREAD_MSleep(50);
+				avancerDroit(1, 10, -80);
+				THREAD_MSleep(100);
 				tourner(160, directionDepart);
+				THREAD_MSleep(100);
 				avancerThread(vitesseNinja);
-			} /*else if (lignePosition == 1) {
-			 arreterMouvement();
-			 tourner(30, DROITE);
-			 avancerThread(vitesseNinja);
-			 THREAD_MSleep(100);
-			 } else if (lignePosition == 3) {
-			 arreterMouvement();
-			 tourner(30, GAUCHE);
-			 avancerThread(vitesseNinja);
-			 THREAD_MSleep(100);
-			 }*/else if (couleur == BLANC) {
+			} else if (couleur == BLANC) {
 				arreterMouvement();
 				avancerThread(vitesseNinja);
 			} else if (couleur == GRIS) {
+				arreterMouvement();
+				avancerDroit(1, 15, -70);
 				tourner(75, directionDepart);
 			} else if (couleur != NOIR) {
 				arreterMouvement();
@@ -155,7 +147,6 @@ void lireCapteurs() {
 	lireBumpers();
 }
 void arreterMouvement() {
-
 	if (threadQuiRoule == 1) {
 		THREAD_Destroy(&thread1);
 		threadQuiRoule = 0;

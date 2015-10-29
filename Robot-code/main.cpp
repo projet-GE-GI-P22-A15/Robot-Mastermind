@@ -27,18 +27,26 @@
 int testMicro();
 int testCouleur();
 void testLigne();
+void testMoteurs();
 
 int main() {
 	int depart = 0;
 	while (depart == 0) {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
-
 			StratNinja();
 		}
 	}
 
 	return 0;
+}
+
+void testMoteurs() {
+	MOTOR_SetSpeed(MOTOR_LEFT, 100);
+	MOTOR_SetSpeed(MOTOR_RIGHT, 100);
+	THREAD_MSleep(5000);
+	MOTOR_SetSpeed(MOTOR_LEFT, 0);
+	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 }
 
 void testLigne() {
