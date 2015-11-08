@@ -1,67 +1,10 @@
 #include <libarmus.h>
-#include <rotation.h>
-#include <valeurs.h>
+#include "rotation.h"
+#include "valeurs.h"
 
-void tournerThreaded() {
-	tourner(angleGlobal, directionGlobale);
-}
-
-void tournerAltThreaded() {
-	tournerAlt(angleGlobal, directionGlobale);
-}
 
 void tourner(int angle, int direction) {
 	int vitesse = 60;
-	int cochesGauche = 0, cochesDroite = 0;
-	int vitesseGauche = 0, vitesseDroite = 0;
-
-	float cochesATournerTemp = (angle * CIRCONFERENCE_ROTATION)
-			/ (CIRCONFERENCE_ROUE / NOMBRE_DIVISIONS_ROUES) / 360;
-
-	int cochesATourner = cochesATournerTemp;
-
-	if (cochesATournerTemp - cochesATourner >= 0.500) {
-		cochesATourner += 1;
-	}
-
-	if (direction == GAUCHE) {
-		vitesseGauche = -vitesse;
-		vitesseDroite = vitesse;
-	} else if (direction == DROITE) {
-		vitesseGauche = vitesse;
-		vitesseDroite = -vitesse;
-	}
-
-	ENCODER_Read(ENCODER_LEFT);
-	ENCODER_Read(ENCODER_RIGHT);
-	MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche / 2);
-	MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite / 2);
-	THREAD_MSleep(30);
-
-	while ((cochesGauche < cochesATourner || cochesDroite < cochesATourner)) {
-		cochesGauche += ENCODER_Read(ENCODER_LEFT);
-		cochesDroite += ENCODER_Read(ENCODER_RIGHT);
-
-		if (cochesGauche >= cochesATourner) {
-			MOTOR_SetSpeed(MOTOR_LEFT, 0);
-		} else {
-			MOTOR_SetSpeed(MOTOR_LEFT, vitesseGauche);
-		}
-		if (cochesDroite >= cochesATourner) {
-			MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-		} else {
-			MOTOR_SetSpeed(MOTOR_RIGHT, vitesseDroite);
-		}
-		THREAD_MSleep(10);
-	}
-
-	//Fail safe
-	MOTOR_SetSpeed(MOTOR_LEFT, 0);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-}
-
-void tournerSumo(int angle, int direction) {
-	int vitesse = 80;
 	int cochesGauche = 0, cochesDroite = 0;
 	int vitesseGauche = 0, vitesseDroite = 0;
 

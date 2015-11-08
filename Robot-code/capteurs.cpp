@@ -1,43 +1,8 @@
-#include <capteurs.h>
+#include "capteurs.h"
 #include <libarmus.h>
-#include <valeurs.h>
-#include <pid.h>
-#include <rotation.h>
-
-//code capteur ici!
-
-int Lire5kHz() //Lecture de l'entrée analogique du micro , donc le 5kHz pour le signal de départ . Fonction utilisee pour les deux robots.
-{
-	if (ANALOG_Read(1) - ANALOG_Read(5) > 60) {
-		return 1;
-	} else {
-		return 0;
-	}
-}
-
-int SignalDepartSumo() { //Pour le Sumo ET le Ninja
-	int premierSignal = 0;
-
-	while (premierSignal != 1) {
-		THREAD_MSleep(PAUSECAFE);
-		premierSignal = Lire5kHz();
-	}
-	//LCD_Printf("Premier Signal!\n");
-	return premierSignal;
-}
-
-int SignalDepartNinja() { //Pour le Ninja seulement!!! Il utilise la fonction de signal de depart pour le Sumo pour justement partir apres le Sumo.
-	int deuxiemeSignal;
-	deuxiemeSignal = SignalDepartSumo();
-
-	THREAD_MSleep(3000);
-	while (deuxiemeSignal != 2) {
-		THREAD_MSleep(PAUSECAFE);
-		deuxiemeSignal = deuxiemeSignal + Lire5kHz();
-	}
-	//LCD_Printf("Deuxi�me signal!");
-	return 1;
-}
+#include "valeurs.h"
+#include "pid.h"
+#include "rotation.h"
 
 int lireCapteurLigne() {
 	ligneGauche = DIGITALIO_Read(11);
@@ -97,4 +62,10 @@ int lireCouleur() {
 		return 0;
 	}
 	return 0;
+}
+
+int lireBoutonPhysique(){
+	//Lire un front montant et apres 15ms lire ensuite un front descendant pour detecter une activation du bouton
+
+	//Return la valeur 1 pour bouton 1 et 2 pour bouton 2 NE PAS FAIRE DE BOUCLE WHILE
 }

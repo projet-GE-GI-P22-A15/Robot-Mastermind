@@ -13,92 +13,53 @@
  */
 
 #include <libarmus.h>
-#include <pid.h>
-#include <rotation.h>
-#include <valeurs.h>
-#include <logique.h>
-#include <capteurs.h>
-#include <couleuri2c.h>
+#include "valeurs.h"
+#include "logique.h"
 
-#define vitesse 85
 
-//int testCapteurCouleurI2C();
+void threadCapteur();
+void threadCRJ();
 
-int testMicro();
-int testCouleur();
-void testLigne();
-void testMoteurs();
+/**
+ * @brief Demarre la lecture des capteurs
+ * @details Lit Le suiveur de lignes, le capteur de couleur et ....
+ */
+void threadCapteur(){
+	int mainCapteur = 0;
+	LCD_Printf("Debut du thread Capteur\n\r");
+	while(mainCapteur !=1){
+		mainCapteur = mainCRJ();	
+	}
+	// THREAD DESTROY HERE
+	LCD_Printf("Thread Capteur = DEAD\n\r");
+}
+
+/**
+ * @brief Execute la fonction mainCRJ
+ * @details Appelle la fonction mainCRJ de logique.h et l'executer en parallele
+ */
+void threadCRJ(){
+	int mainCRJEtat = 0;
+	LCD_Printf("Debut du thread CRJ\n\r");
+	while(mainCRJEtat !=1){
+		mainCRJEtat = mainCRJ();	
+	}
+	// THREAD DESTROY HERE
+	LCD_Printf("Thread CRJ = DEAD\n\r");
+}
 
 int main() {
 	int depart = 0;
 	while (depart == 0) {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
-			StratNinja();
+			LCD_Printf("Bumper ON == Main ON\n\r");
+			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
+			
 		}
 	}
 
 	return 0;
 }
 
-void testMoteurs() {
-	MOTOR_SetSpeed(MOTOR_LEFT, 100);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 100);
-	THREAD_MSleep(5000);
-	MOTOR_SetSpeed(MOTOR_LEFT, 0);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-}
 
-void testLigne() {
-	while (bumperAvant == 0) {
-		int lignePosition = 0;
-		lireCapteurLigne();
-		printf("%i", lineFollower());
-
-		THREAD_MSleep(1000);
-	}
-
-}
-
-int testCouleur() {
-	while (bumperAvant == 0) {
-		couleur = lireCouleur();
-		printCouleur(couleur);
-
-		THREAD_MSleep(1000);
-	}
-	return 0;
-}
-
-int testMicro() {
-	while (1) {
-		Lire5kHz();
-		THREAD_MSleep(1000);
-	}
-	return 0;
-}
-
-int testCapteurCouleurI2C() {
-
-	int red, blue, green, clear;
-
-	//initialisation du capteur
-
-	cap_SetValue(CAP_RED, 15);
-	cap_SetValue(CAP_GREEN, 15);
-	cap_SetValue(CAP_BLUE, 15);
-	cap_SetValue(CAP_CLEAR, 15);
-
-	integrationTime_SetValue(INTEGRATION_RED, 255);
-	integrationTime_SetValue(INTEGRATION_GREEN, 255);
-	integrationTime_SetValue(INTEGRATION_BLUE, 255);
-	integrationTime_SetValue(INTEGRATION_CLEAR, 255);
-
-	while (1) {
-		color_Read(red, blue, green, clear);
-		LCD_ClearAndPrint("R=%d, G=%d, B=%d, C=%d", red, green, blue, clear);
-		THREAD_MSleep(1000);
-	}
-
-	return 0;
-}

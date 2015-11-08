@@ -1,199 +1,110 @@
 #include "logique.h"
 #include <libarmus.h>
-#include <valeurs.h>
-#include <capteurs.h>
-#include <pid.h>
-#include <rotation.h>
+#include "valeurs.h"
+#include "capteurs.h"
+#include "pid.h"
+#include "rotation.h"
+#include "matrixLED.h"
 
 //code pour logique ici
+int mainCRJ(){
+	//ne pas faire une boucle while, car je fais letat du fonctionnement dans le main!!!!!! et la boucle est dans le main
+	//Si return == 1 DESTROY LE THREAD, si 0 sa continue le thread
 
-THREAD thread1;
+	//faire le code general de notre robot final
 
-int StratSumo1() {
-	SignalDepartSumo();
-	avancerDroit(1, 130, 90);
+	//Checker si gestionAvantDeCommencer() == 1 avant de commencer
 
-	int i = 0;
-	while (i < 5){
-		tournerSumo(45, DROITE);
-		tournerSumo(90, GAUCHE);
-		tournerSumo(45, DROITE);
-		avancerDroit(1, 10, 90);
-		++i;
-	}
+	//checker si les boutons de depart sont clique pour lire ligne
+	//checker si le bouton ligne fini est clique
 
+	//faire rouler sur la premiere ligne de couleur
+
+	//tableau de leds a affronter et l'assigner a le tableau formatter jeuxLedCouleurContreHumain(tableau)
+	//il va etre faite comme ci a gauche cest lindice 0 du tableau  jusqua 4 vers la droite
+
+	//Nbr de couleurOK
+	//Nbr de couleur a bonne place
+	//Est ce quil a gagner? selon le nombre de fois / afficher victoire et petite danse
+	//Est ce quil a perdu? selon le nombre de fois / afficher defaite et faire quelque chose
+
+	//Set tableau premiere ligne, deuxieme ligne, etc. ou dans un genre de list ou hashmap
+
+	//Format la matrice de dels
+	//Affiche la matrice de dels
+
+	//Compte le nombre de fois qu'il a fait une ranger pour savoir le tableau a utilise ou dans le hashmap/list
+
+	//fait la ligne de l'autre bord et dire a une variable de faire le trajet inverse pour que les tableaux soit bien fait
+	
+	//et boucler le tout jusqu'a temps qu'il y a une victoire / defaite
+
+
+	THREAD_MSleep(50);	// Sleep for 50ms
 	return 0;
 }
 
-int StratNinja() {
-	vitesseDroitePRGauche = 1.05;
-	int directionDepart = DROITE;
+int mainCapteur(){
+	//ne pas faire une boucle while, car je fais letat du fonctionnement dans le main!!!!!! et la boucle est dans le main
+	//Si return == 1 DESTROY LE THREAD, si 0 sa continue le thread
 
-	int vitesseNinja = 80;
+	//appeller toutes les fonctions de capteurs!!!
 
-	couleurCible = lireCouleur();
-	printCouleur(couleurCible);
-
-	SignalDepartNinja();
-	avancerThread(vitesseNinja);
-
-	while (couleur != ROUGE) {
-		lireCapteurs();
-		THREAD_MSleep(100);
-	}
-	while (couleur == ROUGE) {
-		lireCapteurs();
-		THREAD_MSleep(100);
-	}
-	while (couleur != ROUGE && couleur != GRIS && couleur != couleurCible) {
-		lireCapteurs();
-		THREAD_MSleep(100);
-	}
-	couleur = 0;
-
-	int lignePosition = 0;
-	int lastLignePosition = 0;
-
-	avancerThread(vitesseNinja);
-	while (conditionArret == 0) {
-		lastCouleur = couleur;
-
-		lireCapteurs();
-		//lignePosition = lineFollower();
-
-		if (couleur != lastCouleur) {
-			printCouleur(couleur);
-
-			if (couleur == couleurCible) {
-				arreterMouvement();
-				avancerThread(60);
-				THREAD_MSleep(100);
-				while (couleur == couleurCible) {
-					lireCapteurs();
-					THREAD_MSleep(100);
-				}
-				arreterMouvement();
-				avancerDroit(1, 5, -70);
-				lireCapteurs();
-			} else if (couleur == ROUGE) {
-				arreterMouvement();
-				THREAD_MSleep(50);
-				avancerDroit(1, 10, -80);
-				THREAD_MSleep(100);
-				tourner(160, directionDepart);
-				THREAD_MSleep(100);
-				avancerThread(vitesseNinja);
-			} else if (couleur == BLANC) {
-				arreterMouvement();
-				avancerThread(vitesseNinja);
-			} else if (couleur == GRIS) {
-				arreterMouvement();
-				avancerDroit(1, 15, -70);
-				tourner(75, directionDepart);
-			} else if (couleur != NOIR) {
-				arreterMouvement();
-				avancerDroit(1, 10, 70);
-				avancerDroit(1, 10, -70);
-				tourner(90, directionDepart);
-				avancerThread(vitesseNinja);
-			}
-		}
-		THREAD_MSleep(100);
-	}
-	arreterMouvement();
-	MOTOR_SetSpeed(MOTOR_LEFT, 0);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-	LCD_Printf("FIN!\n");
-
+	THREAD_MSleep(10);	// Execute a tous les 10ms
 	return 0;
 }
 
-void printCouleur(int couleur) {
-	switch (couleur) {
-	case 0:
-		LCD_Printf("BLANC\n");
-		break;
-	case 1:
-		LCD_Printf("ROUGE\n");
-		break;
-	case 2:
-		LCD_Printf("VERT\n");
-		break;
-	case 3:
-		LCD_Printf("BLEU\n");
-		break;
-	case 4:
-		LCD_Printf("JAUNE\n");
-		break;
-	case 5:
-		LCD_Printf("ROSE\n");
-		break;
-	case 6:
-		LCD_Printf("GRIS\n");
-		break;
-	case 7:
-		LCD_Printf("NOIR\n");
-		break;
-	case -1:
-		LCD_Printf("ERREUR\n");
-		break;
-	}
+/*****************************************************************/
+
+
+int randomGeneratedNumbers(){
+	// Probablement utiliser des pointeurs pour le tableau ou le mettre en variable global. 
+	// Il y a une libraire en C pour faire des randoms generated numbers je l'ai deja fait :P
+
+
+	// retourne la valeur du nombre generer
+	return 0;
+}
+
+void jeuxLedCouleurContreHumain(int &ledsJeux[4]){
+	// Appelle 5 fois selon la largeur du jeu pour avoir les couleurs contre quoi on va jouer
+	// Cree le tableau et apres que tout est formatter le tableau passe en pointeur.  http://www.hermetic.ch/cfunlib/ast_amp2.htm en bas de la page sa explique le tout
 
 }
 
-void lireCapteurs() {
-	conditionArret = Lire5kHz();
-	couleur = lireCouleur();
-	lireCapteurLigne();
-	lireBumpers();
-}
-void arreterMouvement() {
-	if (threadQuiRoule == 1) {
-		THREAD_Destroy(&thread1);
-		threadQuiRoule = 0;
-	}
-	avancer = 0;
-	THREAD_MSleep(100);
-	MOTOR_SetSpeed(MOTOR_LEFT, 0);
-	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+int verifNbrCouleurOK(int direction, int &tableauAVerif[4], int &tableauDeJeu[4]){
+	//Retourne le nombre de couleur qui sont correct
+	return 0;
 }
 
-void avancerThread(int vitesse) {
-	avancer = 1;
-	vitesseGlobale = vitesse;
-	thread1 = THREAD_CreateSimple(partirPIDThread);
-	threadQuiRoule = 1;
+int verifNbrCouleurABonnePlace(int direction,int &tableauAVerif[4], int &tableauDeJeu[4]){
+	//Retourne le nombre de couleur qui sont correct et a la bonne place
+	return 0;
 }
 
-void tournerThread(int angle, int direction) {
-	angleGlobal = angle;
-	directionGlobale = direction;
-	thread1 = THREAD_CreateSimple(tournerThreaded);
-	threadQuiRoule = 1;
+void victoire(){
+	//faire la danse et etc
 }
 
-void tournerAltThread(int angle, int direction) {
-	angleGlobal = angle;
-	directionGlobale = direction;
-	thread1 = THREAD_CreateSimple(tournerAltThreaded);
-	threadQuiRoule = 1;
+void defaite(){
+	//faire X
+}
+
+int debugAffichage(int direction,int &tableauAVerif[4], int &tableauDeJeu[4], int nbrLecture, int nbrCouleurOK, int nbrBonnePosition){
+	//affiche toutes les choses possible
+	return 0;
+}
+
+int gestionAvantDeCommencer(){
+	//Ici cest le setup de game et les parametres de gestion avant de commencer la lecture et toute
+	return 0;
+}
+
+int easterEgg(){
+	return 0;
 }
 
 int lineFollower() {
-// 0 = noir  1 = blanc
-
-	/*if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 1) // avant d arriver sur la ligne                        (AUCUN_OBSTACLE)
-	 return 0;
-	 else if (ligneGauche == 0 && ligneCentre == 0 && ligneDroite == 0) // lorsqu il croise la ligne pour la premiere fois (PERPENDICULAIRE)
-	 return 1;
-	 else if (ligneGauche == 1 && ligneCentre == 0 && ligneDroite == 1) // ligne au centre                                (LIGNE_AU_CENTRE)
-	 return 2;
-	 else if (ligneGauche == 0 && ligneCentre == 1 && ligneDroite == 1) // ligne a gauche                                 (LIGNE_A_GAUCHE)
-	 return 3;
-	 else if (ligneGauche == 1 && ligneCentre == 1 && ligneDroite == 0) // ligne a droite                                  (LIGNE_A_DROITE)
-	 return 4;
-	 else
-	 return -1;*/
 	if (ligneCentre == 0) {
 		return 2;
 	} else if (ligneGauche == 0) {
@@ -204,51 +115,3 @@ int lineFollower() {
 		return 0;
 	}
 }
-
-//Position : 1 pour tourner a gauche  2 pour tourner a droite
-int mainNinja(int positon) {
-	int position = 1;
-
-// attendre le 3 sec 5khz
-
-	while (lineFollower() != PERPENDICULAIRE)
-		avancerDroit(1, 1, 90);
-
-	if (position == 1 && lineFollower() == PERPENDICULAIRE) {
-		while (lineFollower() < LIGNE_AU_CENTRE) {
-			MOTOR_SetSpeed(MOTOR_LEFT, -60);
-			MOTOR_SetSpeed(MOTOR_RIGHT, 60);
-		}
-	}
-	if (position == 2 && lineFollower() == PERPENDICULAIRE) {
-		while (lineFollower() < LIGNE_AU_CENTRE) {
-			MOTOR_SetSpeed(MOTOR_LEFT, 60);
-			MOTOR_SetSpeed(MOTOR_RIGHT, -60);
-		}
-
-	}
-
-	if (lineFollower() == LIGNE_AU_CENTRE) {
-		tournerAlt(15, DROITE);
-		while (lineFollower() != LIGNE_A_GAUCHE) {
-			avancerDroit(1, 1, 90);
-		}
-	}
-
-//jusqu'à ce que le robot détecte sa couleur:
-
-	if (lineFollower() == LIGNE_A_DROITE) {
-		tournerAlt(30, DROITE);
-		while (lineFollower() != LIGNE_A_GAUCHE) {
-			avancerDroit(1, 1, 90);
-		}
-
-	} else if (lineFollower() == LIGNE_A_GAUCHE) {
-		tournerAlt(30, GAUCHE);
-		while (lineFollower() != LIGNE_A_DROITE) {
-			avancerDroit(1, 1, 90);
-		}
-	}
-	return 0;
-}
-

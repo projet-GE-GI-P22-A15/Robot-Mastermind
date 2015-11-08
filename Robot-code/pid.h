@@ -1,8 +1,8 @@
-/*
- * pid.h
+/** @file capteurs.h
+ *  @brief Les prototypes de function pour le code du pid des moteurs.
  *
- *  Created on: 2015-09-25
- *      Author: bloodae & scoremoregoals
+ *  @author Marc-Antoine Lalonde (Bloodae) 
+ *  @bug No known bugs.
  */
 
 #ifndef PID_H_
@@ -68,6 +68,5 @@ void appliquerCorrection(float correctionP, float correctionI,
  * @param vitesse La vitesse voulue 
  */
 void ajusterVitesseMoteurs(int vitesse);
-void partirPIDThread();
 
 #endif // PID_H_

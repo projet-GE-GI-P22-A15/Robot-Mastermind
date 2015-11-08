@@ -1,8 +1,9 @@
-/*
- * rotation.h
+/** @file capteurs.h
+ *  @brief Les prototypes de function pour les capteurs.
  *
- *  Created on: 2015-09-25
- *      Author: blood & scoremoregoals
+ *  @author Marc-Antoine Lalonde (Bloodae)
+ *  
+ *  @bug No known bugs.
  */
 
 #ifndef ROTATION_H_
@@ -26,7 +27,4 @@ void tourner(int angle, int direction);
  */
 void tournerAlt(int angle, int direction);
 
-void tournerThreaded();
-void tournerAltThreaded();
-void tournerSumo(int angle, int direction);
 #endif /* ROTATION_H_ */

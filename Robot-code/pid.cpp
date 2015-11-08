@@ -1,14 +1,10 @@
 #include <libarmus.h>
-#include <pid.h>
-#include <valeurs.h>
+#include "pid.h"
+#include "valeurs.h"
 
-#include <pid.h>
-#include <libarmus.h>
 
-void partirPIDThread() {
-	avancerDroit(ARRET_EXTERNE, 0, vitesseGlobale);
 
-}
+
 //mode: Définit la méthode d'arrêt
 //distance: la distance a parcourir en cm (pas important en mode IR)
 //vitesse: la vitesse en % a laquelle le robot doit aller

@@ -1,8 +1,11 @@
-/*
- * valeurs.h
+/** @file capteurs.h
+ *  @brief Les prototypes de function pour les capteurs.
  *
- *  Created on: 2015-09-25
- *      Author: blood
+ *  @author Marc-Antoine Lalonde (Bloodae) 
+ *  @author Pascal Vaillancourt (scoremoregoals)
+ *  @author Anthony Parris (MrParris)
+ *  
+ *  @bug No known bugs.
  */
 
 #ifndef VALEURS_H_
@@ -32,28 +35,6 @@
 #define PORTMICRO 1
 #define PAUSECAFE 200
 
-#define ADJD_S371_QR999_SADR 	0x74
-#define CAP_RED					0x6
-#define CAP_GREEN				0x7
-#define CAP_BLUE				0x8
-#define CAP_CLEAR				0x9
-#define INTEGRATION_RED			10
-#define INTEGRATION_GREEN		12
-#define INTEGRATION_BLUE		14
-#define INTEGRATION_CLEAR		16
-#define ADJD_REG_CTRL			0
-#define ADJD_REG_CONFIG			1
-#define DATA_RED_LO				64
-#define DATA_GREEN_LO			66
-#define DATA_BLUE_LO			68
-#define DATA_CLEAR_LO			70
-
-#define CTRL_GSSR				0
-#define CTRL_GOFS				1
-
-#define CONFIG_TOFS				0
-
-extern int adjd_dev;
 
 /**
  * vitesseDroite / vitesseGauche
@@ -81,23 +62,47 @@ extern int NOMBRE_DIVISIONS_ROUES;
 extern int DELAI_LECTURE;
 
 /**
- * Sert au controle du robot avec les bumpers
+ * 
  */
-extern int conditionArret;
-
-extern int couleurCible;
-extern int avancer;
 extern int couleur;
+
+/**
+ * 
+ */
 extern int ligneGauche;
+
+/**
+ * 
+ */
 extern int ligneCentre;
+
+/**
+ * 
+ */
 extern int ligneDroite;
+
+/**
+ * 
+ */
 extern int bumperAvant;
+
+/**
+ * 
+ */
 extern int bumperArriere;
+
+/**
+ * 
+ */
 extern int bumperDroite;
+
+/**
+ * 
+ */
 extern int bumperGauche;
-extern int vitesseGlobale;
-extern int angleGlobal;
-extern int directionGlobale;
-extern int threadQuiRoule;
+
+/**
+ * 
+ */
 extern int lastCouleur;
 #endif /* VALEURS_H_ */
