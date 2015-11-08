@@ -9,6 +9,7 @@
 int Lire5kHz() //Lecture de l'entrée analogique du micro , donc le 5kHz pour le signal de départ . Fonction utilisee pour les deux robots.
 {
 	if (ANALOG_Read(1) - ANALOG_Read(5) > 60) {
+		LCD_Printf("SIGNAL 5kHz!!!!\n");
 		return 1;
 	} else {
 		return 0;
@@ -75,16 +76,16 @@ int lireCouleur() {
 	} else if (red > 20 && red < 100 && green > 20 && green < 115 && blue > 20
 			&& blue < 110) {
 		return NOIR;
-	} else if (red > 60 && red < 120 && green > 145 && green < 200 && blue > 80
+	} else if (red > 60 && red < 120 && green > 130 && green < 200 && blue > 80
 			&& blue < 175) {
 		return VERT;
 	} else if (red > 75 && red < 145 && green > 130 && green < 190 && blue > 200
 			&& blue < 375) {
 		return BLEU;
-	} else if (red > 450 && red < 600 && green > 500 && green < 625
+	} else if (red > 450 && red < 650 && green > 500 && green < 650
 			&& blue > 200 && blue < 275) {
 		return JAUNE;
-	} else if (red > 400 && red < 500 && green > 200 && green < 300
+	} else if (red > 300 && red < 500 && green > 200 && green < 300
 			&& blue > 150 && blue < 275) {
 		return ROSE;
 	} else if (red > 225 && red < 425 && green > 300 && green < 475

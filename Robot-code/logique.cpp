@@ -14,11 +14,23 @@ int StratSumo1() {
 	avancerDroit(1, 130, 90);
 
 	int i = 0;
-	while (i < 5){
-		tournerSumo(45, DROITE);
-		tournerSumo(90, GAUCHE);
-		tournerSumo(45, DROITE);
-		avancerDroit(1, 10, 90);
+	while (i < 2) {
+		MOTOR_SetSpeed(MOTOR_LEFT, 100);
+		MOTOR_SetSpeed(MOTOR_RIGHT, -100);
+		THREAD_MSleep(500);
+		MOTOR_SetSpeed(MOTOR_LEFT, -100);
+		MOTOR_SetSpeed(MOTOR_RIGHT, 100);
+		THREAD_MSleep(500);
+		MOTOR_SetSpeed(MOTOR_LEFT, -100);
+		MOTOR_SetSpeed(MOTOR_RIGHT, 100);
+		THREAD_MSleep(500);
+		MOTOR_SetSpeed(MOTOR_LEFT, 100);
+		MOTOR_SetSpeed(MOTOR_RIGHT, -100);
+		THREAD_MSleep(500);
+		MOTOR_SetSpeed(MOTOR_LEFT, 0);
+		MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+		THREAD_MSleep(500);
+		avancerDroit(1, 15, 90);
 		++i;
 	}
 
@@ -26,6 +38,8 @@ int StratSumo1() {
 }
 
 int StratNinja() {
+
+	int compteurTemps = 800;
 	vitesseDroitePRGauche = 1.05;
 	int directionDepart = DROITE;
 
@@ -35,16 +49,10 @@ int StratNinja() {
 	printCouleur(couleurCible);
 
 	SignalDepartNinja();
-	avancerThread(vitesseNinja);
 
-	while (couleur != ROUGE) {
-		lireCapteurs();
-		THREAD_MSleep(100);
-	}
-	while (couleur == ROUGE) {
-		lireCapteurs();
-		THREAD_MSleep(100);
-	}
+	avancerDroit(1, 50, vitesseNinja);
+
+
 	while (couleur != ROUGE && couleur != GRIS && couleur != couleurCible) {
 		lireCapteurs();
 		THREAD_MSleep(100);
@@ -55,7 +63,7 @@ int StratNinja() {
 	int lastLignePosition = 0;
 
 	avancerThread(vitesseNinja);
-	while (conditionArret == 0) {
+	while (conditionArret == 0 && compteurTemps > 0) {
 		lastCouleur = couleur;
 
 		lireCapteurs();
@@ -98,6 +106,7 @@ int StratNinja() {
 				avancerThread(vitesseNinja);
 			}
 		}
+		--compteurTemps;
 		THREAD_MSleep(100);
 	}
 	arreterMouvement();
