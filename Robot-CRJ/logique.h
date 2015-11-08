@@ -26,6 +26,14 @@
  */
 debugAffichage(int direction,int &tableauAVerif[4], int &tableauDeJeu[4], int nbrLecture, int nbrCouleurOK, int nbrBonnePosition);
 
+
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
+int easterEgg();
+
 /**
  * @brief [brief description]
  * @details [long description]
