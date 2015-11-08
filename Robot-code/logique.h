@@ -5,7 +5,6 @@
 int mainNinja(int positon);
 void lireCapteurs();
 int StratNinja();
-int StratSumo1();
 int lineFollower();
 void arreterMouvement();
 void avancerThread(int vitesse);
