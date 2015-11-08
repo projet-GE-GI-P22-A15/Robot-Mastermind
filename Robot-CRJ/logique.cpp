@@ -83,6 +83,8 @@ int verifNbrCouleurABonnePlace(int direction,int &tableauAVerif[4], int &tableau
 
 void victoire(){
 	//Lui faire dire j'ai Gagné! en boucle pendant genre 5secondes
+	ENCODER_Read(ENCODER_RIGHT)=0;
+	ENCODER_Read(ENCODER_LEFT)=0;
 	while (ENCODER_Read(ENCODER_RIGHT)<=32){
 	MOTOR_SetSpeed(MOTOR_LEFT,0);
 	MOTOR_SetSpeed(MOTOR_RIGHT,50);
