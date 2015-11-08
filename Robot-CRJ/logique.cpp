@@ -45,13 +45,12 @@ int mainCRJ(){
 }
 
 int mainCapteur(){
-	//ne pas faire une boucle while, car je fais letat du fonctionnement dans le main!!!!!! et la boucle est dans le main
-	//Si return == 1 DESTROY LE THREAD, si 0 sa continue le thread
-
-	//appeller toutes les fonctions de capteurs!!!
-
-	THREAD_MSleep(10);	// Execute a tous les 10ms
-	return 0;
+ lireBumpers();
+ lireCapteurLigne();
+ lireCouleur();
+ int lireBoutonPhysique();
+THREAD_MSleep(10);	// Execute a tous les 10ms
+return 0;
 }
 
 /*****************************************************************/
@@ -83,11 +82,19 @@ int verifNbrCouleurABonnePlace(int direction,int &tableauAVerif[4], int &tableau
 }
 
 void victoire(){
-	//faire la danse et etc
+	//Lui faire dire j'ai Gagné! en boucle pendant genre 5secondes
+	while (ENCODER_read==0{
+	MOTOR_SetSpeed(MOTOR_LEFT,0);
+	MOTOR_SetSpeed(MOTOR_RIGHT,50);
+	}
+
+	MOTOR_SetSpeed(MOTOR_RIGHT,0);
+	MOTOR_SetSpeed(MOTOR_LEFT,50);
+
 }
 
 void defaite(){
-	//faire X
+
 }
 
 int debugAffichage(int direction,int &tableauAVerif[4], int &tableauDeJeu[4], int nbrLecture, int nbrCouleurOK, int nbrBonnePosition){
