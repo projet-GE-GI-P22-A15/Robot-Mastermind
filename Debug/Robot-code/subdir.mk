@@ -8,6 +8,7 @@ CPP_SRCS += \
 ../Robot-code/couleuri2c.cpp \
 ../Robot-code/logique.cpp \
 ../Robot-code/main.cpp \
+../Robot-code/matrixLED.cpp \
 ../Robot-code/pid.cpp \
 ../Robot-code/rotation.cpp \
 ../Robot-code/valeurs.cpp 
@@ -17,6 +18,7 @@ OBJS += \
 ./Robot-code/couleuri2c.o \
 ./Robot-code/logique.o \
 ./Robot-code/main.o \
+./Robot-code/matrixLED.o \
 ./Robot-code/pid.o \
 ./Robot-code/rotation.o \
 ./Robot-code/valeurs.o 
@@ -26,6 +28,7 @@ CPP_DEPS += \
 ./Robot-code/couleuri2c.d \
 ./Robot-code/logique.d \
 ./Robot-code/main.d \
+./Robot-code/matrixLED.d \
 ./Robot-code/pid.d \
 ./Robot-code/rotation.d \
 ./Robot-code/valeurs.d 

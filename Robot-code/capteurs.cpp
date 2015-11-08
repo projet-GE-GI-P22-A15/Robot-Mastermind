@@ -68,4 +68,5 @@ int lireBoutonPhysique(){
 	//Lire un front montant et apres 15ms lire ensuite un front descendant pour detecter une activation du bouton
 
 	//Return la valeur 1 pour bouton 1 et 2 pour bouton 2 NE PAS FAIRE DE BOUCLE WHILE
+	return 0;
 }
