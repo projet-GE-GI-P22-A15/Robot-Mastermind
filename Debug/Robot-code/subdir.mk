@@ -5,7 +5,6 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../Robot-code/capteurs.cpp \
-../Robot-code/couleuri2c.cpp \
 ../Robot-code/logique.cpp \
 ../Robot-code/main.cpp \
 ../Robot-code/matrixLED.cpp \
@@ -15,7 +14,6 @@ CPP_SRCS += \
 
 OBJS += \
 ./Robot-code/capteurs.o \
-./Robot-code/couleuri2c.o \
 ./Robot-code/logique.o \
 ./Robot-code/main.o \
 ./Robot-code/matrixLED.o \
@@ -25,7 +23,6 @@ OBJS += \
 
 CPP_DEPS += \
 ./Robot-code/capteurs.d \
-./Robot-code/couleuri2c.d \
 ./Robot-code/logique.d \
 ./Robot-code/main.d \
 ./Robot-code/matrixLED.d \

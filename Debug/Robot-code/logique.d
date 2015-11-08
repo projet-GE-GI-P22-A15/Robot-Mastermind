@@ -22,10 +22,8 @@ Robot-code/logique.d Robot-code/logique.o: ../Robot-code/logique.cpp \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/valeurs.h \
-  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/capteurs.h \
-  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/pid.h \
-  D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/rotation.h
+  ../Robot-code/valeurs.h ../Robot-code/capteurs.h ../Robot-code/pid.h \
+  ../Robot-code/rotation.h ../Robot-code/matrixLED.h
 
 ../Robot-code/logique.h:
 
@@ -73,10 +71,12 @@ C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h:
 
 C:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 
-D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/valeurs.h:
+../Robot-code/valeurs.h:
 
-D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/capteurs.h:
+../Robot-code/capteurs.h:
 
-D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/pid.h:
+../Robot-code/pid.h:
 
-D:/Documents/Genie/S1/Projet\ session/ArmusIDE/Robot-MasterMind/Robot-code/rotation.h:
+../Robot-code/rotation.h:
+
+../Robot-code/matrixLED.h:

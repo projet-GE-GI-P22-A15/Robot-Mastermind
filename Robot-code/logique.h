@@ -24,7 +24,7 @@
  * @param nbrCouleurOK [description]
  * @param nbrBonnePosition [description]
  */
-debugAffichage(int direction,int &tableauAVerif[4], int &tableauDeJeu[4], int nbrLecture, int nbrCouleurOK, int nbrBonnePosition);
+int debugAffichage(int direction,int tableauAVerif[4], int tableauDeJeu[4], int nbrLecture, int nbrCouleurOK, int nbrBonnePosition);
 
 
 /**
@@ -55,7 +55,7 @@ void defaite();
  * @param tableauDeJeu [description]
  * @return [description]
  */
-int verifNbrCouleurABonnePlace(int direction,int &tableauAVerif[4], int &tableauDeJeu[4]);
+int verifNbrCouleurABonnePlace(int direction,int tableauAVerif[4], int tableauDeJeu[4]);
 
 /**
  * @brief [brief description]
@@ -66,7 +66,7 @@ int verifNbrCouleurABonnePlace(int direction,int &tableauAVerif[4], int &tableau
  * 
  * @return [description]
  */
-int verifNbrCouleurOK(int direction, int &tableauAVerif[4], int &tableauDeJeu[4]);
+int verifNbrCouleurOK(int direction, int tableauAVerif[4], int tableauDeJeu[4]);
 
 /**
  * @brief [brief description]
@@ -74,7 +74,7 @@ int verifNbrCouleurOK(int direction, int &tableauAVerif[4], int &tableauDeJeu[4]
  * 
  * @param ledsJeux [description]
  */
-void jeuxLedCouleurContreHumain(int &ledsJeux[4]);
+void jeuxLedCouleurContreHumain(int ledsJeux[4]);
 
 /**
  * @brief [brief description]

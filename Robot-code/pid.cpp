@@ -2,14 +2,10 @@
 #include "pid.h"
 #include "valeurs.h"
 
-
-
-
 //mode: Définit la méthode d'arrêt
 //distance: la distance a parcourir en cm (pas important en mode IR)
 //vitesse: la vitesse en % a laquelle le robot doit aller
 void avancerDroit(int mode, int distance, int vitesse) {
-	conditionArret = 0;
 	float distanceParcourue = 0;
 	int cochesGauche = 0, cochesDroite = 0;
 
@@ -36,8 +32,7 @@ void avancerDroit(int mode, int distance, int vitesse) {
 
 	//2 façons d'arrêter: Soit on atteint la distance voulue, soit on détecte un mur
 	while (((mode == ARRET_DISTANCE && distanceParcourue < distance)
-			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))
-			|| (mode == ARRET_EXTERNE && avancer == 1)) {
+			|| (mode == ARRET_INFRAROUGE && IR_Detect(IR_FRONT) == 0))) {
 		cochesGauche = ENCODER_Read(ENCODER_LEFT);
 		cochesDroite = ENCODER_Read(ENCODER_RIGHT);
 
