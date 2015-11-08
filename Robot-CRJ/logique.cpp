@@ -92,16 +92,10 @@ void defaite(){
 
 int debugAffichage(int direction,int &tableauAVerif[4], int &tableauDeJeu[4], int nbrLecture, int nbrCouleurOK, int nbrBonnePosition){
 	//affiche toutes les choses possible
-	return 0;
 }
 
 int gestionAvantDeCommencer(){
 	//Ici cest le setup de game et les parametres de gestion avant de commencer la lecture et toute
-	return 0;
-}
-
-int easterEgg(){
-	return 0;
 }
 
 int lineFollower() {
