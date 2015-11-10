@@ -106,6 +106,7 @@ int mainCRJ();
 int mainCapteur();
 int capt_ligne,capt_bumper,capt_couleur,capt_bouton;
 
-
-
+int tableau_a_verifier[4][10];
+int tableau_de_joueur[4][10];
+int tableau_de_robot[4];
 #endif // LOGIQUE_H_
