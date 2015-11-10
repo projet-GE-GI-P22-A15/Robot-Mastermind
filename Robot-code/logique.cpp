@@ -5,8 +5,7 @@
 #include "pid.h"
 #include "rotation.h"
 #include "matrixLED.h"
-
-//code pour logique ici
+/********************************************************************************/
 int mainCRJ() {
 	//ne pas faire une boucle while, car je fais letat du fonctionnement dans le main!!!!!! et la boucle est dans le main
 	//Si return == 1 DESTROY LE THREAD, si 0 sa continue le thread
@@ -42,7 +41,7 @@ int mainCRJ() {
 	THREAD_MSleep(50);	// Sleep for 50ms
 	return 0;
 }
-
+/****************************************************************/
 int mainCapteur() {
  capt_ligne=lireCapteurLigne();
  capt_bumper=lireBumpers();
@@ -51,9 +50,7 @@ int mainCapteur() {
 THREAD_MSleep(10);
 return 0;
 }
-
 /*****************************************************************/
-
 int randomGeneratedNumbers() {
 	// Probablement utiliser des pointeurs pour le tableau ou le mettre en variable global. 
 	// Il y a une libraire en C pour faire des randoms generated numbers je l'ai deja fait :P
@@ -61,47 +58,65 @@ int randomGeneratedNumbers() {
 	// retourne la valeur du nombre generer
 	return 0;
 }
-
-void jeuxLedCouleurContreHumain(int ledsJeux[4]) {
+/****************************************************************/
+void jeuxLedCouleurContreHumain() {
 	// Appelle 5 fois selon la largeur du jeu pour avoir les couleurs contre quoi on va jouer
 	// Cree le tableau et apres que tout est formatter le tableau passe en pointeur.  http://www.hermetic.ch/cfunlib/ast_amp2.htm en bas de la page sa explique le tout
 
 }
-
-int verifNbrCouleurOK(int direction, int tableauAVerif[4],
-		int tableauDeJeu[4]) {
+/***************************************************************/
+int verifNbrCouleurOK(int direction,int ligne) {
 	//Retourne le nombre de couleur qui sont correct
+	int count;
+	if (direction==0){
+	for (count=0;count<=3;count++){
+		if (tableau_de_joueur[count][ligne]==tableau_de_robot[count])
+			tableau_a_verifier[count]=jaune;
+		else
+			tableau_a_verifier[count]=fermer;
+		count++;
+		}
+	}
+	else{
+		for (count=3;count<=0;count--){
+			if (tableau_de_joueur[count][ligne]==tableau_de_robot[count])
+				tableau_a_verifier[count]=jaune;
+			else
+				tableau_a_verifier[count]=fermer;
+			}
+		}
 	return 0;
 }
-
+/****************************************************************/
 int verifNbrCouleurABonnePlace(int direction, int tableauAVerif[4],
 		int tableauDeJeu[4]) {
 	//Retourne le nombre de couleur qui sont correct et a la bonne place
+	int count;
 	return 0;
 }
-
+/****************************************************************/
 void victoire() {
 	//faire la danse et etc
 }
-
+/****************************************************************/
 void defaite() {
 	//faire X
 }
-
+/****************************************************************/
 int debugAffichage(int direction, int tableauAVerif[4], int tableauDeJeu[4],int nbrLecture, int nbrCouleurOK, int nbrBonnePosition) {
 	//affiche toutes les choses possible
 	return 0;
 }
-
+/******************************************************************/
 int gestionAvantDeCommencer() {
 	//Ici cest le setup de game et les parametres de gestion avant de commencer la lecture et toute
 	return 0;
 }
-
+/******************************************************************/
 int easterEgg() {
 	return 0;
 }
-
+/*******************************************************************/
 int lineFollower() {
 	if (ligneCentre == 0) {
 		return 2;
@@ -113,3 +128,4 @@ int lineFollower() {
 		return 0;
 	}
 }
+/********************************************************************/

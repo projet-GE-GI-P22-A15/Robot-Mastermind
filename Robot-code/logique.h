@@ -4,7 +4,7 @@
  *  @author Marc-Antoine Lalonde (Bloodae) 
  *  @author Pascal Vaillancourt (scoremoregoals)
  *  @author Anthony Parris (MrParris)
- *  
+ *  @author Alexis Morel (AlexMo_16)
  *  @bug No known bugs.
  */
 
@@ -20,8 +20,10 @@
 #define orange 5
 #define cyan 6
 #define rose 7
+#define fermer 8
 
-
+#define DIRECTION_gd 0
+#define DIREECTION_dg 1
 
 /**
  * @brief [brief description]
