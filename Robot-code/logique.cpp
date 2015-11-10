@@ -44,13 +44,12 @@ int mainCRJ() {
 }
 
 int mainCapteur() {
-	//ne pas faire une boucle while, car je fais letat du fonctionnement dans le main!!!!!! et la boucle est dans le main
-	//Si return == 1 DESTROY LE THREAD, si 0 sa continue le thread
-
-	//appeller toutes les fonctions de capteurs!!!
-
-	THREAD_MSleep(10);	// Execute a tous les 10ms
-	return 0;
+ capt_ligne=lireCapteurLigne();
+ capt_bumper=lireBumpers();
+ capt_couleur=lireCouleur();
+ capt_bouton=lireBoutonPhysique();
+THREAD_MSleep(10);
+return 0;
 }
 
 /*****************************************************************/

@@ -104,7 +104,7 @@ int mainCRJ();
  * @return [description]
  */
 int mainCapteur();
-
+int capt_ligne,capt_bumper,capt_couleur,capt_bouton;
 
 
 
