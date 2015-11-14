@@ -22,16 +22,16 @@ upgraded@hotmail.com
 #define HIGH 1
 
 
-BusOut ABC(D9,D10,D11); // Row address.
-DigitalOut CLK(D0);    //  Data clock    - rising edge
-DigitalOut LAT(D1);    //  Data latch    - active low (pulse up after data load)
-DigitalOut OE(D2);     //  Output enable - active low (hold high during data load, bring low after LAT pulse)
-DigitalOut R1(D3);     //  RED   Serial in for upper half
-DigitalOut R2(D4);     //  RED   Serial in for lower half
-DigitalOut G1(D5);      //  GREEN Serial in for upper half
-DigitalOut G2(D6);      //  GREEN Serial in for lower half
-DigitalOut B1(D7);      //  BLUE  Serial in for upper half
-DigitalOut B2(D8);      //  BLUE  Serial in for lower half
+BusOut ABC(D6,D8,D7); // Row address.
+DigitalOut CLK(D10);    //  Data clock    - rising edge
+DigitalOut LAT(D9);    //  Data latch    - active low (pulse up after data load)
+DigitalOut OE(D11);     //  Output enable - active low (hold high during data load, bring low after LAT pulse)
+DigitalOut R1(D2);     //  RED   Serial in for upper half
+DigitalOut R2(D3);     //  RED   Serial in for lower half
+DigitalOut G1(D0);      //  GREEN Serial in for upper half
+DigitalOut G2(D1);      //  GREEN Serial in for lower half
+DigitalOut B1(D4);      //  BLUE  Serial in for upper half
+DigitalOut B2(D5);      //  BLUE  Serial in for lower half
 
 unsigned char gm[32][6]; // Buffer with 32x6 bytes. Graphics memory if you like.
 unsigned long CT; //        Counter for demo code
