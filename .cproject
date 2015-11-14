@@ -41,9 +41,8 @@
 								<option id="armus.cc.compiler.includepaths.999216744" name="Additionnal Include Paths (-I)" superClass="armus.cc.compiler.includepaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Robot-code}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/librairie/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/c++/4.2.4/&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include&quot;"/>
 								</option>
 								<option id="armus.cc.compiler.armuslibs.path.322219452" name="LibARMus Include Path" superClass="armus.cc.compiler.armuslibs.path" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/librairie/include&quot;"/>
@@ -71,5 +70,9 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Robot-MasterMind"/>
+		</configuration>
+	</storageModule>
 </cproject>

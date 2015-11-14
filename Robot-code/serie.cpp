@@ -1,10 +1,20 @@
-#include "serie.h"
-#include <libarmus.h>
+/*
+ ============================================================================
+ Name : testserial.cpp
+ Author :
+ Version :
+ Description : Hello world - Exe source file
+ ============================================================================
+ */
+
+// Include Files
 #include <termios.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+
+#include <libarmus.h>
 
 // Global Functions
 

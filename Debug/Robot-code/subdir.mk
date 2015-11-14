@@ -38,7 +38,7 @@ CPP_DEPS += \
 Robot-code/%.o: ../Robot-code/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking ARM-Linux C++ Compiler'
-	arm-softfloat-linux-gnueabi-g++ -c -I"D:\Documents\Genie\S1\Projet session\ArmusIDE\Robot-MasterMind\Robot-code" -I"D:/Program Files (x86)/Armus/ArmusIDE/librairie/include" -I"D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include" -I"D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/c++/4.2.4/" -I"D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/lib" -I"D:/Program Files (x86)/Armus/ArmusIDE/librairie/include" -ggdb --sysroot="D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	arm-softfloat-linux-gnueabi-g++ -c -I"D:\Documents\Genie\S1\Projet session\ArmusIDE\Robot-MasterMind\Robot-code" -I"D:/Program Files (x86)/Armus/ArmusIDE/librairie/include" -I"D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/c++/4.2.4/" -I"D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include" -I"D:/Program Files (x86)/Armus/ArmusIDE/librairie/include" -ggdb --sysroot="D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
