@@ -6,7 +6,7 @@
 #include "rotation.h"
 #include "matrixLED.h"
 
-int capt_ligne,capt_bumper,capt_couleur,capt_bouton;
+int capt_ligne, capt_bumper, capt_couleur, capt_bouton;
 
 int tableau_a_verifier[4][10];
 int tableau_de_joueur[4][10];
@@ -50,10 +50,10 @@ int mainCRJ() {
 /****************************************************************/
 int mainCapteur() {
 	/*capt_ligne = lireCapteurLigne();
-	capt_bumper = lireBumpers();
-	capt_couleur = lireCouleur();
-	capt_bouton=lireBoutonPhysique();
-	THREAD_MSleep(10);*/
+	 capt_bumper = lireBumpers();
+	 capt_couleur = lireCouleur();
+	 capt_bouton=lireBoutonPhysique();
+	 THREAD_MSleep(10);*/
 	return 0;
 }
 /*****************************************************************/

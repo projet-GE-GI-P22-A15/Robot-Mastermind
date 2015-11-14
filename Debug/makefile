@@ -42,7 +42,7 @@ all: Robot-MasterMind.exe
 Robot-MasterMind.exe: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking ARM-Linux Linker'
-	arm-softfloat-linux-gnueabi-g++ -L"C:/Program Files (x86)/Armus/ArmusIDE/librairie/lib" -Xlinker --unresolved-symbols=ignore-in-shared-libs --sysroot="C:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot" -o "Robot-MasterMind.exe" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-softfloat-linux-gnueabi-g++ -L"D:/Program Files (x86)/Armus/ArmusIDE/librairie/lib" -Xlinker --unresolved-symbols=ignore-in-shared-libs --sysroot="D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot" -o "Robot-MasterMind.exe" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -2,7 +2,6 @@
 #include "rotation.h"
 #include "valeurs.h"
 
-
 void tourner(int angle, int direction) {
 	int vitesse = 60;
 	int cochesGauche = 0, cochesDroite = 0;

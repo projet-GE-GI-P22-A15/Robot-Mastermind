@@ -35,8 +35,8 @@
  * @param nbrCouleurOK [description]
  * @param nbrBonnePosition [description]
  */
-int debugAffichage(int direction,int tableauAVerif[4], int tableauDeJeu[4], int nbrLecture, int nbrCouleurOK, int nbrBonnePosition);
-
+int debugAffichage(int direction, int tableauAVerif[4], int tableauDeJeu[4],
+		int nbrLecture, int nbrCouleurOK, int nbrBonnePosition);
 
 /**
  * @brief [brief description]
@@ -66,7 +66,8 @@ void defaite();
  * @param tableauDeJeu [description]
  * @return [description]
  */
-int verifNbrCouleurABonnePlace(int direction,int tableauAVerif[4], int tableauDeJeu[4]);
+int verifNbrCouleurABonnePlace(int direction, int tableauAVerif[4],
+		int tableauDeJeu[4]);
 
 /**
  * @brief [brief description]

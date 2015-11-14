@@ -16,7 +16,6 @@
 #include "valeurs.h"
 #include "logique.h"
 
-
 void threadCapteur();
 void threadCRJ();
 
@@ -24,11 +23,11 @@ void threadCRJ();
  * @brief Demarre la lecture des capteurs
  * @details Lit Le suiveur de lignes, le capteur de couleur et ....
  */
-void threadCapteur(){
+void threadCapteur() {
 	int mainCapteur = 0;
 	LCD_Printf("Debut du thread Capteur\n\r");
-	while(mainCapteur !=1){
-		mainCapteur = mainCRJ();	
+	while (mainCapteur != 1) {
+		mainCapteur = mainCRJ();
 	}
 	// THREAD DESTROY HERE
 	LCD_Printf("Thread Capteur = DEAD\n\r");
@@ -38,11 +37,11 @@ void threadCapteur(){
  * @brief Execute la fonction mainCRJ
  * @details Appelle la fonction mainCRJ de logique.h et l'executer en parallele
  */
-void threadCRJ(){
+void threadCRJ() {
 	int mainCRJEtat = 0;
 	LCD_Printf("Debut du thread CRJ\n\r");
-	while(mainCRJEtat !=1){
-		mainCRJEtat = mainCRJ();	
+	while (mainCRJEtat != 1) {
+		mainCRJEtat = mainCRJ();
 	}
 	// THREAD DESTROY HERE
 	LCD_Printf("Thread CRJ = DEAD\n\r");
@@ -55,11 +54,10 @@ int main() {
 		if (depart != 0) {
 			LCD_Printf("Bumper ON == Main ON\n\r");
 			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
-			
+
 		}
 	}
 
 	return 0;
 }
-
 

@@ -35,7 +35,6 @@
 #define PORTMICRO 1
 #define PAUSECAFE 200
 
-
 /**
  * vitesseDroite / vitesseGauche
  */

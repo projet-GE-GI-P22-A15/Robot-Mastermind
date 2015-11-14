@@ -1,4 +1,5 @@
-Robot-code/pid.d Robot-code/pid.o: ../Robot-code/pid.cpp \
+Robot-code/serie.d Robot-code/serie.o: ../Robot-code/serie.cpp \
+  ../Robot-code/serie.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/analog_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/audio_api.h \
@@ -21,7 +22,16 @@ Robot-code/pid.d Robot-code/pid.o: ../Robot-code/pid.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../Robot-code/pid.h ../Robot-code/valeurs.h
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/termios.h \
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/termios.h \
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/sys/ttydefaults.h \
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/fcntl.h \
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/fcntl.h \
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/uio.h \
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/sys/stat.h \
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/stat.h
+
+../Robot-code/serie.h:
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h:
 
@@ -67,6 +77,18 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h:
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 
-../Robot-code/pid.h:
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/termios.h:
 
-../Robot-code/valeurs.h:
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/termios.h:
+
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/sys/ttydefaults.h:
+
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/fcntl.h:
+
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/fcntl.h:
+
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/uio.h:
+
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/sys/stat.h:
+
+D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/bits/stat.h:
