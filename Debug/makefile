@@ -10,8 +10,6 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Robot-code/subdir.mk
--include Adafruit-16x32-basic-demo/mbed-src/common/subdir.mk
--include Adafruit-16x32-basic-demo/subdir.mk
 -include subdir.mk
 -include objects.mk
 

@@ -5,6 +5,12 @@
 #include "pid.h"
 #include "rotation.h"
 #include "matrixLED.h"
+
+int capt_ligne,capt_bumper,capt_couleur,capt_bouton;
+
+int tableau_a_verifier[4][10];
+int tableau_de_joueur[4][10];
+int tableau_de_robot[4];
 /********************************************************************************/
 int mainCRJ() {
 	//ne pas faire une boucle while, car je fais letat du fonctionnement dans le main!!!!!! et la boucle est dans le main
@@ -43,12 +49,12 @@ int mainCRJ() {
 }
 /****************************************************************/
 int mainCapteur() {
- capt_ligne=lireCapteurLigne();
- capt_bumper=lireBumpers();
- capt_couleur=lireCouleur();
- capt_bouton=lireBoutonPhysique();
-THREAD_MSleep(10);
-return 0;
+	/*capt_ligne = lireCapteurLigne();
+	capt_bumper = lireBumpers();
+	capt_couleur = lireCouleur();
+	capt_bouton=lireBoutonPhysique();
+	THREAD_MSleep(10);*/
+	return 0;
 }
 /*****************************************************************/
 int randomGeneratedNumbers() {
@@ -65,26 +71,26 @@ void jeuxLedCouleurContreHumain() {
 
 }
 /***************************************************************/
-int verifNbrCouleurOK(int direction,int ligne) {
+int verifNbrCouleurOK(int direction, int ligne) {
 	//Retourne le nombre de couleur qui sont correct
-	int count;
-	if (direction==0){
-	for (count=0;count<=3;count++){
-		if (tableau_de_joueur[count][ligne]==tableau_de_robot[count])
-			tableau_a_verifier[count]=jaune;
-		else
-			tableau_a_verifier[count]=fermer;
-		count++;
-		}
-	}
-	else{
-		for (count=3;count<=0;count--){
-			if (tableau_de_joueur[count][ligne]==tableau_de_robot[count])
-				tableau_a_verifier[count]=jaune;
-			else
-				tableau_a_verifier[count]=fermer;
-			}
-		}
+	/*int count;
+	 if (direction==0){
+	 for (count=0;count<=3;count++){
+	 if (tableau_de_joueur[count][ligne]==tableau_de_robot[count])
+	 tableau_a_verifier[count]=jaune;
+	 else
+	 tableau_a_verifier[count]=fermer;
+	 count++;
+	 }
+	 }
+	 else{
+	 for (count=3;count<=0;count--){
+	 if (tableau_de_joueur[count][ligne]==tableau_de_robot[count])
+	 tableau_a_verifier[count]=jaune;
+	 else
+	 tableau_a_verifier[count]=fermer;
+	 }
+	 }*/
 	return 0;
 }
 /****************************************************************/
@@ -103,7 +109,8 @@ void defaite() {
 	//faire X
 }
 /****************************************************************/
-int debugAffichage(int direction, int tableauAVerif[4], int tableauDeJeu[4],int nbrLecture, int nbrCouleurOK, int nbrBonnePosition) {
+int debugAffichage(int direction, int tableauAVerif[4], int tableauDeJeu[4],
+		int nbrLecture, int nbrCouleurOK, int nbrBonnePosition) {
 	//affiche toutes les choses possible
 	return 0;
 }
