@@ -101,6 +101,7 @@ int verifNbrCouleurABonnePlace(int direction, int tableauAVerif[4],
 }
 /****************************************************************/
 void victoire() {
+	AUDIO_SetVolume(100);
 	AUDIO_PlayFile("jaigagner.mp3");
 	tourner(45,GAUCHE);
 	tourner(90,DROITE);
