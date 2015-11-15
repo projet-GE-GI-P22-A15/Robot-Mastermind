@@ -114,7 +114,12 @@ void victoire() {
 }
 /****************************************************************/
 void defaite() {
-	//faire X
+	// Il manque a faire le fichier jaiperdu
+	AUDIO_SetVolume(90);
+	/*AUDIO_PlayFile("jaiperdu.mp3");*/
+	tourner(180,GAUCHE);
+	THREAD_MSleep(3000);
+	tourner(180,DROITE);
 }
 /****************************************************************/
 int debugAffichage(int direction, int tableauAVerif[4], int tableauDeJeu[4],
