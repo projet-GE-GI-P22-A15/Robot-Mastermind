@@ -26,7 +26,7 @@
  *
  */
 
-class LETTERS {
+class CODELETTRES {
 public:
 	void ecrire1(int color, int position, int yPosition);
 	void ecrire2(int color, int position, int yPosition);
