@@ -123,15 +123,4 @@ int easterEgg() {
 	return 0;
 }
 /*******************************************************************/
-int lineFollower() {
-	if (ligneCentre == 0) {
-		return 2;
-	} else if (ligneGauche == 0) {
-		return 1;
-	} else if (ligneDroite == 0) {
-		return 3;
-	} else {
-		return 0;
-	}
-}
-/********************************************************************/
+

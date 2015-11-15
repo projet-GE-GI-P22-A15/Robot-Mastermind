@@ -95,12 +95,7 @@ void jeuxLedCouleurContreHumain(int ledsJeux[4]);
  */
 int randomGeneratedNumbers();
 
-/**
- * @brief [brief description]
- * @details [long description]
- * @return [description]
- */
-int lineFollower();
+
 
 /**
  * @brief [brief description]

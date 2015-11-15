@@ -212,3 +212,15 @@ void tournerAlt(int angle, int direction) {
 	MOTOR_SetSpeed(MOTOR_LEFT, 0);
 	MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 }
+
+void suivreLigne() {
+	if (ligneCentre == 0) {
+		avancerDroit(2, 0, 70);
+	} else if (ligneGauche == 0) {
+		tournerAlt(90, GAUCHE);
+	} else if (ligneDroite == 0) {
+		tournerAlt(90, DROITE);
+	} else {
+		avancerDroit(2, 0, 70);
+	}
+}

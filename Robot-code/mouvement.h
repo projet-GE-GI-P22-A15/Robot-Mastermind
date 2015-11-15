@@ -87,4 +87,6 @@ void tourner(int angle, int direction);
  */
 void tournerAlt(int angle, int direction);
 
+
+void suivreLigne();
 #endif /* MOUVEMENT_H_ */
