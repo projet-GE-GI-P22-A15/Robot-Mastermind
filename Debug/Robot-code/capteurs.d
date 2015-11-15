@@ -22,7 +22,7 @@ Robot-code/capteurs.d Robot-code/capteurs.o: ../Robot-code/capteurs.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../Robot-code/valeurs.h ../Robot-code/pid.h ../Robot-code/rotation.h
+  ../Robot-code/valeurs.h ../Robot-code/mouvement.h
 
 ../Robot-code/capteurs.h:
 
@@ -72,6 +72,4 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 
 ../Robot-code/valeurs.h:
 
-../Robot-code/pid.h:
-
-../Robot-code/rotation.h:
+../Robot-code/mouvement.h:

@@ -1,4 +1,5 @@
-Robot-code/pid.d Robot-code/pid.o: ../Robot-code/pid.cpp \
+Robot-code/mouvement.d Robot-code/mouvement.o:  \
+ ../Robot-code/mouvement.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/analog_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/audio_api.h \
@@ -21,7 +22,7 @@ Robot-code/pid.d Robot-code/pid.o: ../Robot-code/pid.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../Robot-code/pid.h ../Robot-code/valeurs.h
+  ../Robot-code/mouvement.h ../Robot-code/valeurs.h
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h:
 
@@ -67,6 +68,6 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h:
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 
-../Robot-code/pid.h:
+../Robot-code/mouvement.h:
 
 ../Robot-code/valeurs.h:

@@ -1,8 +1,7 @@
 #include "capteurs.h"
 #include <libarmus.h>
 #include "valeurs.h"
-#include "pid.h"
-#include "rotation.h"
+#include "mouvement.h"
 
 int lireCapteurLigne() {
 	ligneGauche = DIGITALIO_Read(11);

@@ -2,8 +2,7 @@
 #include <libarmus.h>
 #include "valeurs.h"
 #include "capteurs.h"
-#include "pid.h"
-#include "rotation.h"
+#include "mouvement.h"
 #include "matrixLED.h"
 
 int capt_ligne, capt_bumper, capt_couleur, capt_bouton;

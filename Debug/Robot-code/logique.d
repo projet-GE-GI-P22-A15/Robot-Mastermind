@@ -22,8 +22,8 @@ Robot-code/logique.d Robot-code/logique.o: ../Robot-code/logique.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../Robot-code/valeurs.h ../Robot-code/capteurs.h ../Robot-code/pid.h \
-  ../Robot-code/rotation.h ../Robot-code/matrixLED.h
+  ../Robot-code/valeurs.h ../Robot-code/capteurs.h \
+  ../Robot-code/mouvement.h ../Robot-code/matrixLED.h
 
 ../Robot-code/logique.h:
 
@@ -75,8 +75,6 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 
 ../Robot-code/capteurs.h:
 
-../Robot-code/pid.h:
-
-../Robot-code/rotation.h:
+../Robot-code/mouvement.h:
 
 ../Robot-code/matrixLED.h:

@@ -8,8 +8,7 @@ CPP_SRCS += \
 ../Robot-code/logique.cpp \
 ../Robot-code/main.cpp \
 ../Robot-code/matrixLED.cpp \
-../Robot-code/pid.cpp \
-../Robot-code/rotation.cpp \
+../Robot-code/mouvement.cpp \
 ../Robot-code/serie.cpp \
 ../Robot-code/valeurs.cpp 
 
@@ -18,8 +17,7 @@ OBJS += \
 ./Robot-code/logique.o \
 ./Robot-code/main.o \
 ./Robot-code/matrixLED.o \
-./Robot-code/pid.o \
-./Robot-code/rotation.o \
+./Robot-code/mouvement.o \
 ./Robot-code/serie.o \
 ./Robot-code/valeurs.o 
 
@@ -28,8 +26,7 @@ CPP_DEPS += \
 ./Robot-code/logique.d \
 ./Robot-code/main.d \
 ./Robot-code/matrixLED.d \
-./Robot-code/pid.d \
-./Robot-code/rotation.d \
+./Robot-code/mouvement.d \
 ./Robot-code/serie.d \
 ./Robot-code/valeurs.d 
 
