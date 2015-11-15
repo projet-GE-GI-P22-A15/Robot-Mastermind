@@ -1,3 +1,13 @@
+#include "codeLettres.h"
+
+
+MATRICE * m;
+
+void LETTERS::Init(MATRICE *mat){
+	m = mat;
+}
+
+
 void LETTERS::ecrire1(int color, int position, int yPosition){
 
 	// Condition de depassement
