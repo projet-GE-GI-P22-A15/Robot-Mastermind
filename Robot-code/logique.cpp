@@ -101,7 +101,15 @@ int verifNbrCouleurABonnePlace(int direction, int tableauAVerif[4],
 }
 /****************************************************************/
 void victoire() {
-	//faire la danse et etc
+	AUDIO_PlayFile("jaigagner.mp3");
+	tourner(45,GAUCHE);
+	tourner(90,DROITE);
+	tourner(90,GAUCHE);
+	tourner(90,DROITE);
+	tourner(360,GAUCHE);
+	tourner(360,DROITE);
+	tourner(45,GAUCHE);
+
 }
 /****************************************************************/
 void defaite() {
