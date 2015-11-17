@@ -57,17 +57,17 @@ int mainCapteur() {
 }
 /*****************************************************************/
 int randomGeneratedNumbers() {
-	// Probablement utiliser des pointeurs pour le tableau ou le mettre en variable global. 
-	// Il y a une libraire en C pour faire des randoms generated numbers je l'ai deja fait :P
-
-	// retourne la valeur du nombre generer
+	int choixCouleur = rand() % 8;
+		return choixCouleur;
 	return 0;
 }
 /****************************************************************/
 void jeuxLedCouleurContreHumain() {
-	// Appelle 5 fois selon la largeur du jeu pour avoir les couleurs contre quoi on va jouer
-	// Cree le tableau et apres que tout est formatter le tableau passe en pointeur.  http://www.hermetic.ch/cfunlib/ast_amp2.htm en bas de la page sa explique le tout
-
+	srand ( time(NULL));
+		tableau_de_robot[0] = randomGeneratedNumbers();
+		tableau_de_robot[1] = randomGeneratedNumbers();
+		tableau_de_robot[2] = randomGeneratedNumbers();
+		tableau_de_robot[3] = randomGeneratedNumbers();
 }
 /***************************************************************/
 int verifNbrCouleurOK(int direction, int ligne) {
@@ -93,11 +93,46 @@ int verifNbrCouleurOK(int direction, int ligne) {
 	return 0;
 }
 /****************************************************************/
-int verifNbrCouleurABonnePlace(int direction, int tableauAVerif[4],
-		int tableauDeJeu[4]) {
-	//Retourne le nombre de couleur qui sont correct et a la bonne place
-	int count;
-	return 0;
+int verifNbrCouleurABonnePlace(int direction, int ligne) {
+	int compteurBonnePlace = 0;
+		if (direction == 0)
+		{
+			int i = 0;
+			for (i = 0; i < 4; i++)
+			{
+				if (tableau_a_verifier[i][ligne] == fermer)
+				//Verifie si la valeur a ete changee a fermer par verifNbrCouleurOK(),
+				//donc si elle est soit bonne et a la bonne place ou simplement pas bonne
+				{
+					if (tableau_de_joueur[i][ligne] == tableau_de_robot[i])
+					{
+						tableau_a_verifier[i][ligne] = vert;
+					}
+					else
+					{
+						tableau_a_verifier[i][ligne] = rouge;
+					}
+				}
+			}
+		}
+		else
+		{
+			int i = 0;
+			for (i = 3; i >= 0; i--)
+			{
+				if (tableau_a_verifier[i][ligne] == fermer)
+				{
+					if (tableau_de_joueur[i][ligne] == tableau_de_robot[i])
+					{
+						tableau_a_verifier[i][ligne] = vert;
+					}
+					else
+					{
+						tableau_a_verifier[i][ligne] = rouge;
+					}
+				}
+			}
+		}
 }
 /****************************************************************/
 void victoire() {
