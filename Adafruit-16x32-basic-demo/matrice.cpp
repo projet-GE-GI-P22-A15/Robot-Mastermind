@@ -98,5 +98,6 @@ void MATRICE::Paint()
         OE = HIGH; // Disable output
         WrRow(Row);
         OE = LOW; // Enable output
+        wait_us(500);
 	}
 }
