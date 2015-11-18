@@ -16,22 +16,6 @@ DigitalOut B2(D5);      //  BLUE  Serial in for lower half
 unsigned char gm[32][6]; // Graphic memory
 unsigned long CT; //        Counter for demo code
 
-void MATRICE::MkPattern() // Fill graphics buffer with colorful test pattern.
-{
-    unsigned int col,r,g,b;
-    r=0x0f0f0f0f;
-    g=0x33333333;
-    b=0x55555555;
-    for(col=0; col<32; col++) {
-        gm[col][0]=(r>>(col % 8)) & 0xff; // Shift red value and mask out LSB.
-        gm[col][1]=(g>>(col % 8)) & 0xff; // Shift green value and mask out LSB.
-        gm[col][2]=(b>>(col % 8)) & 0xff; // Shift blue value and mask out LSB.
-        gm[col][3]=gm[col][0]; // Copy top red byte to bottom red byte.
-        gm[col][4]=gm[col][1]; // Copy top green byte to bottom green byte.
-        gm[col][5]=gm[col][2]; // Copy top blue byte to bottom blue byte.
-    }
-}
-
 void MATRICE::Init()
 {
     // Set up things to a known state
@@ -114,6 +98,5 @@ void MATRICE::Paint()
         OE = HIGH; // Disable output
         WrRow(Row);
         OE = LOW; // Enable output
-        wait_us(500); // Wasting some time. Use for whatever else. Probably better with a ticker for the display refresh.
-    }
+	}
 }

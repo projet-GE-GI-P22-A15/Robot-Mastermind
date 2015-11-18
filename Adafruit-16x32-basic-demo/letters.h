@@ -9,6 +9,8 @@
 #define LOW 0
 #define HIGH 1
 
+
+
 /**
  * @brief Classe de création de lettres
  * @details Classe de création de lettres en modifiant la memeoire graphique de matrice.h
@@ -24,7 +26,9 @@
 class LETTERS {
 public:
 	int verifColor(int color);
-	void verifParams(int * color, int * yPosition, int * yPosition);
+	void verifParams(int * color, int * position, int * yPosition);
+	int getAlternance();
+	void setAlternance(int value);
 
 	void ecrire1(int color, int position, int yPosition);
 	void ecrire2(int color, int position, int yPosition);
@@ -65,7 +69,11 @@ public:
 	void ecrireM(int color, int position, int yPosition);
 
 	void Init(MATRICE *mat);
+
+
 private:
+	int alternance;
+	int newColor;
 
 };
 

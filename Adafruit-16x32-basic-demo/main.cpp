@@ -18,6 +18,18 @@ void refreshShift(){
     mat.ShiftRight(); 
 }
 void refreshAffichage(){
+    if (let.getAlternance() == LOW) {
+        let.setAlternance(HIGH);
+    } else {
+        let.setAlternance(LOW);
+    }
+    let.ecrire4(BLEU, 1, LETTER_POS_HAUT);
+    let.ecrire2(BLANC, 2, LETTER_POS_HAUT);
+    let.ecrire0(ROUGE, 3, LETTER_POS_HAUT);
+    let.ecrireY(TURQUOISE, 0, LETTER_POS_BAS);
+    let.ecrireO(FORET, 1, LETTER_POS_BAS);
+    let.ecrireL(JAUNE, 2, LETTER_POS_BAS);
+    let.ecrireO(ORANGE, 3, LETTER_POS_BAS);
     mat.Paint();
 }
 
@@ -28,16 +40,10 @@ int main()
     let.Init(&mat);
     comm.Init(&ser);
 
-    shift.attach(&refreshShift, 0.5);
-    pt.attach(&refreshAffichage, 0.01);
+    //shift.attach(&refreshShift, 0.5);
+    pt.attach(&refreshAffichage, 0.5);
 
-    let.ecrire4(BLEU, 1, LETTER_POS_HAUT);
-    let.ecrire2(VERT, 2, LETTER_POS_HAUT);
-    let.ecrire0(ROUGE, 3, LETTER_POS_HAUT);
-    let.ecrireY(BLEU, 0, LETTER_POS_BAS);
-    let.ecrireO(VERT, 1, LETTER_POS_BAS);
-    let.ecrireL(ROUGE, 2, LETTER_POS_BAS);
-    let.ecrireO(MAGENTA, 3, LETTER_POS_BAS);
+
     while(1) { 
         comm.logiqueSerie();
     }  
