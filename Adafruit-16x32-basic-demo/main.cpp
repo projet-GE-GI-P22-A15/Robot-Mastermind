@@ -13,17 +13,19 @@ Serial ser(PC_6, PC_7);
 MATRICE mat;
 LETTERS let;
 COMMUNICATION comm;
+int alternateur = 0;
 
 void refreshShift(){
     mat.ShiftRight(); 
 }
 void refreshAffichage(){
-    if (let.getAlternance() == LOW) {
+    alternateur = (alternateur + 1) % 10;
+    if (let.getAlternance() == 0) {
         let.setAlternance(HIGH);
     } else {
         let.setAlternance(LOW);
     }
-    let.ecrire4(BLEU, 1, LETTER_POS_HAUT);
+    let.ecrire4(POUDRE, 1, LETTER_POS_HAUT);
     let.ecrire2(BLANC, 2, LETTER_POS_HAUT);
     let.ecrire0(ROUGE, 3, LETTER_POS_HAUT);
     let.ecrireY(TURQUOISE, 0, LETTER_POS_BAS);
@@ -41,7 +43,7 @@ int main()
     comm.Init(&ser);
 
     //shift.attach(&refreshShift, 0.5);
-    pt.attach(&refreshAffichage, 0.5);
+    pt.attach(&refreshAffichage, 0.001);
 
 
     while(1) { 
