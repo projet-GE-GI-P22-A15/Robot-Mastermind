@@ -94,7 +94,7 @@ void MATRICE::WrRow(unsigned char Row)
 void MATRICE::Pset(unsigned char x,unsigned char y, unsigned char c)
 {
     // Set pixel (x,y) to color c
-    // Manipulates graphics memory, so you won't see any change til you Paint() it.
+    // Manipulates graphics memory, so you won't see any change till you Paint() it.
     unsigned char ud,l,r0,g0,b0;
     ud=(y & 8)>>3; // 0 = upper half, 1 = lower half
     l=y & 7; // Extract row in upper/lower half

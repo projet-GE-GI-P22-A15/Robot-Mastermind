@@ -6,6 +6,8 @@
 
 #define LETTER_POS_HAUT 0
 #define LETTER_POS_BAS 	1
+#define LOW 0
+#define HIGH 1
 
 /**
  * @brief Classe de création de lettres
@@ -21,6 +23,9 @@
 
 class LETTERS {
 public:
+	int verifColor(int color);
+	void verifParams(int * color, int * yPosition, int * yPosition);
+
 	void ecrire1(int color, int position, int yPosition);
 	void ecrire2(int color, int position, int yPosition);
 	void ecrire3(int color, int position, int yPosition);
