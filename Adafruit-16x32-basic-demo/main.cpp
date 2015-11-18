@@ -19,32 +19,25 @@ void refreshShift(){
     mat.ShiftRight(); 
 }
 
-void refreshAffichage(){
-    alternateur = (alternateur + 1) % 10;
-    if (let.getAlternance() == 0) {
+void modifAlternance(){
+        alternateur = (alternateur + 1) % 3;
+    if (alternateur == 0) {
         let.setAlternance(HIGH);
     } else {
         let.setAlternance(LOW);
     }
-<<<<<<< HEAD
-    let.ecrire4(POUDRE, 1, LETTER_POS_HAUT);
+}
+
+void refreshAffichage(){
+    modifAlternance();
+    let.ecrire4(CREME, 1, LETTER_POS_HAUT);
     let.ecrire2(BLANC, 2, LETTER_POS_HAUT);
-    let.ecrire0(ROUGE, 3, LETTER_POS_HAUT);
+    let.ecrire0(GRIS, 3, LETTER_POS_HAUT);
     let.ecrireY(TURQUOISE, 0, LETTER_POS_BAS);
-    let.ecrireO(FORET, 1, LETTER_POS_BAS);
-    let.ecrireL(JAUNE, 2, LETTER_POS_BAS);
-    let.ecrireO(ORANGE, 3, LETTER_POS_BAS);
-=======
-    let.ecrire4(CREME, 0, LETTER_POS_HAUT);
-    let.ecrire4(FLUO, 1, LETTER_POS_HAUT);
-    let.ecrire2(POURPRE, 2, LETTER_POS_HAUT);
-    let.ecrire0(CORAIL, 3, LETTER_POS_HAUT);
-    let.ecrire4(POUDRE, 4, LETTER_POS_HAUT);
-    let.ecrireY(GOMME, 0, LETTER_POS_BAS);
-    let.ecrireO(CREME, 1, LETTER_POS_BAS);
-    let.ecrireL(GRIS, 2, LETTER_POS_BAS);
-    let.ecrireO(BLANC, 3, LETTER_POS_BAS);
->>>>>>> origin/master
+    let.ecrireO(CYAN, 1, LETTER_POS_BAS);
+    let.ecrireL(CORAIL, 2, LETTER_POS_BAS);
+    let.ecrireO(CIEL, 3, LETTER_POS_BAS);
+
     mat.Paint();
 }
 
@@ -56,11 +49,13 @@ int main()
     comm.Init(&ser);
 
     //shift.attach(&refreshShift, 0.5);
-    pt.attach(&refreshAffichage, 0.001);
+    pt.attach(&refreshAffichage, 0.0003);
 
 
     while(1) { 
         comm.logiqueSerie();
         wait_ms(10);
     }  
+    
 }
+

@@ -15,6 +15,7 @@
 #include <libarmus.h>
 #include "valeurs.h"
 #include "logique.h"
+#include "serie.h"
 
 void threadCapteur();
 void threadCRJ();
@@ -54,6 +55,7 @@ int main() {
 		if (depart != 0) {
 			LCD_Printf("Bumper ON == Main ON\n\r");
 			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
+			test();
 
 		}
 	}

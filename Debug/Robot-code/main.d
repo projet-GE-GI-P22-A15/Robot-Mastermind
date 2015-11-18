@@ -21,7 +21,7 @@ Robot-code/main.d Robot-code/main.o: ../Robot-code/main.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../Robot-code/valeurs.h ../Robot-code/logique.h
+  ../Robot-code/valeurs.h ../Robot-code/logique.h ../Robot-code/serie.h
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h:
 
@@ -70,3 +70,5 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 ../Robot-code/valeurs.h:
 
 ../Robot-code/logique.h:
+
+../Robot-code/serie.h:
