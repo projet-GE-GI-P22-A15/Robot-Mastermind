@@ -8,6 +8,7 @@
 #ifndef SERIE_H_
 #define SERIE_H_
 
-int test();
+int Init();
+void ecrireSurMatrice(char buf[9]);
 
 #endif /* SERIE_H_ */

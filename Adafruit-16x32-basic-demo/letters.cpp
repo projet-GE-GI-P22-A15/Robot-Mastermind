@@ -2,7 +2,6 @@
 
 MATRICE * m;
 
-
 void LETTERS::Init(MATRICE *mat) {
 	m = mat;
 	alternance = LOW;

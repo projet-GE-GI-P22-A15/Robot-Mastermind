@@ -55,7 +55,8 @@ int main() {
 		if (depart != 0) {
 			LCD_Printf("Bumper ON == Main ON\n\r");
 			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
-			test();
+			Init();
+			ecrireSurMatrice("#$AAAAA!");
 
 		}
 	}

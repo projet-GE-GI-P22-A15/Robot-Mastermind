@@ -29,15 +29,26 @@ void modifAlternance(){
 }
 
 void refreshAffichage(){
-    modifAlternance();
-    let.ecrire4(CREME, 1, LETTER_POS_HAUT);
+    if (comm.getTableauLettre()[0] == 'A'){
+
+        let.ecrire4(CREME, 1, LETTER_POS_HAUT);
     let.ecrire2(BLANC, 2, LETTER_POS_HAUT);
     let.ecrire0(GRIS, 3, LETTER_POS_HAUT);
     let.ecrireY(TURQUOISE, 0, LETTER_POS_BAS);
     let.ecrireO(CYAN, 1, LETTER_POS_BAS);
     let.ecrireL(CORAIL, 2, LETTER_POS_BAS);
     let.ecrireO(CIEL, 3, LETTER_POS_BAS);
+    }
 
+    /*let.ecrire4(CREME, 1, LETTER_POS_HAUT);
+    let.ecrire2(BLANC, 2, LETTER_POS_HAUT);
+    let.ecrire0(GRIS, 3, LETTER_POS_HAUT);
+    let.ecrireY(TURQUOISE, 0, LETTER_POS_BAS);
+    let.ecrireO(CYAN, 1, LETTER_POS_BAS);
+    let.ecrireL(CORAIL, 2, LETTER_POS_BAS);
+    let.ecrireO(CIEL, 3, LETTER_POS_BAS);*/
+
+    modifAlternance();
     mat.Paint();
 }
 

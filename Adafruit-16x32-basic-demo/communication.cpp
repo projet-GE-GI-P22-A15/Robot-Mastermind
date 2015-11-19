@@ -4,9 +4,14 @@
 Serial * s;
 Serial pc(USBTX, USBRX);
 
-int tableauLettre[64];
+char tableauLettre[64];
 int tableauJeu[4][10];
 int nbrDeTours = 0;
+
+char* COMMUNICATION::getTableauLettre(){
+	return tableauLettre;
+}
+
 
 void COMMUNICATION::Init(Serial *ser){
 	s = ser;
@@ -37,19 +42,19 @@ void COMMUNICATION::logiqueSerie(){
 
 	//Simulation avec un ordi
 	if(pc.readable()){
-		if(s->getc() == '#'){
+		if(pc->getc() == '#'){
 			pc.printf(" Receive # \r\n");
 
 			// Analyse le deuxieme byte et associe les valeurs au tableau
-			switch(s->getc()){
+			switch(pc->getc()){
 				case '$':
 					pc.printf(" Receiving letters \n\r");
 					do{
 						if(tempReceived != '!'){
-							tableauLettre[i-1] = s->getc();		// Max 64 caracteres à afficher	
+							tableauLettre[i-1] = pc->getc();		// Max 64 caracteres à afficher	
 						}	
 						i++;
-						tempReceived = s->getc();
+						tempReceived = pc->getc();
 					}while(tempReceived != '!');
 					i = 0;				// Reset le nombre de caractere recu
 					pc.printf(" End of transmission \r\n");

@@ -27,6 +27,7 @@
  
 class COMMUNICATION {
 public:
+	char* getTableauLettre();
 	void logiqueSerie();
 	void Init(Serial *ser);
 private:
