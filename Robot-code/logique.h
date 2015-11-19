@@ -111,6 +111,18 @@ int mainCRJ();
  */
 int mainCapteur();
 
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
 void stockerCouleur(int couleurCapter,int esssai,int numPastille);
+
+/**
+ * @details [long description]
+ * @return [description]
+ */
+int choixNbPastilles();
+
 
 #endif // LOGIQUE_H_

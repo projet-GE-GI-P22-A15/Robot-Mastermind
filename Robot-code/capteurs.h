@@ -32,4 +32,24 @@ int lireCapteurLigne();
  */
 int lireBumpers();
 
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
+int lireBoutonPhysiqueEssai();
+
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
+int lireBoutonPhysiqueNbPastilles();
+
+/**
+ * @brief [brief description]
+ * @details [long description]
+ * @return [description]
+ */
+int lireBoutonPhysiqueResetGame();
 #endif // CAPTEURS_H_

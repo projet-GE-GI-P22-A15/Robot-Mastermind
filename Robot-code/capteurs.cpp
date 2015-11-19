@@ -57,9 +57,23 @@ int lireCouleur() {
 	return 0;
 }
 
-int lireBoutonPhysique() {
+int lireBoutonPhysiqueEssai() {
 	//Lire un front montant et apres 15ms lire ensuite un front descendant pour detecter une activation du bouton
 	//Return la valeur 1 pour bouton 1 et 2 pour bouton 2 NE PAS FAIRE DE BOUCLE WHILE
 
-	return 0;
+	return 0; //Doit retourner 1 (Vrai) ou 0 (Faux)
+}
+
+int lireBoutonPhysiqueNbPastilles() {
+	//Lire un front montant et apres 15ms lire ensuite un front descendant pour detecter une activation du bouton
+	//Return la valeur 1 pour bouton 1 et 2 pour bouton 2 NE PAS FAIRE DE BOUCLE WHILE
+
+	return 0; //Doit retourner 1 (Vrai) ou 0 (Faux)
+}
+
+int lireBoutonPhysiqueResetGame() {
+	//Lire un front montant et apres 15ms lire ensuite un front descendant pour detecter une activation du bouton
+	//Return la valeur 1 pour bouton 1 et 2 pour bouton 2 NE PAS FAIRE DE BOUCLE WHILE
+
+	return 0; //Doit retourner 1 (Vrai) ou 0 (Faux)
 }

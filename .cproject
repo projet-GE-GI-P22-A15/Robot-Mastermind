@@ -1,78 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
-		<cconfiguration id="org.armus.plugin.arm-softfloat-linux-gnueabi.exe.debug.1802787466">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.armus.plugin.arm-softfloat-linux-gnueabi.exe.debug.1802787466" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+		<cconfiguration id="armus.debug.toolchain.1923834725">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="armus.debug.toolchain.1923834725" moduleId="org.eclipse.cdt.core.settings" name="Debug">
 				<externalSettings/>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
-					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.code.GCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
-					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="exe" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.code.GCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.VCErrorParser" id="org.armus.plugin.arm-softfloat-linux-gnueabi.exe.debug.1802787466" name="Debug" parent="org.armus.plugin.arm-softfloat-linux-gnueabi.exe.debug">
-					<folderInfo id="org.armus.plugin.arm-softfloat-linux-gnueabi.exe.debug.1802787466." name="/" resourcePath="">
-						<toolChain id="armus.debug.toolchain.111372208" name="Arm-linux-gcc" superClass="armus.debug.toolchain">
-							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.armus.plugin.targetplatform.123188833" name="ARM (ARMUS)" osList="linux" superClass="org.armus.plugin.targetplatform"/>
-							<builder buildPath="${workspace_loc:/Robot-MasterMind/Debug}" id="armus.toolchain.builder.1274470295" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="ARMUS Builder" superClass="armus.toolchain.builder"/>
-							<tool id="armus.toolchain.linker.1744691455" name="ARM-Linux Linker" superClass="armus.toolchain.linker">
-								<option id="armus.linker.libraries.1008053390" name="Additionnal librairies to link (-l)" superClass="armus.linker.libraries" valueType="libs">
-									<listOptionValue builtIn="false" value="armus2_0"/>
-									<listOptionValue builtIn="false" value="mad"/>
-									<listOptionValue builtIn="false" value="pthread"/>
-									<listOptionValue builtIn="false" value="asound"/>
-									<listOptionValue builtIn="false" value="id3tag"/>
-								</option>
-								<option id="armus.linker.libarmus.addlibs.327310292" name="Needed librairies for ARMUS" superClass="armus.linker.libarmus.addlibs"/>
-								<option id="armus.linker.libarmus.addlibspath.627752486" name="Needed library search path for ARMUS" superClass="armus.linker.libarmus.addlibspath" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/librairie/lib&quot;"/>
-								</option>
-								<inputType id="armus.linker.input.o.448682060" name="Object File" superClass="armus.linker.input.o">
-									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
-									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
-								</inputType>
-							</tool>
-							<tool id="armus.toolchain.cc.compiler.538601464" name="ARM-Linux C++ Compiler" superClass="armus.toolchain.cc.compiler">
-								<option id="armus.cc.compiler.includepaths.999216744" name="Additionnal Include Paths (-I)" superClass="armus.cc.compiler.includepaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Robot-code}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/librairie/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/c++/4.2.4/&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include&quot;"/>
-								</option>
-								<option id="armus.cc.compiler.armuslibs.path.322219452" name="LibARMus Include Path" superClass="armus.cc.compiler.armuslibs.path" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/librairie/include&quot;"/>
-								</option>
-								<option id="armuc.cc.compiler.includes.402115453" name="Standard Includes" superClass="armuc.cc.compiler.includes" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/c++/4.2.4/&quot;"/>
-								</option>
-								<inputType id="armus.compiler.input.cc.781090423" name="C++ Source File" superClass="armus.compiler.input.cc"/>
-							</tool>
+				<configuration buildProperties="" id="armus.debug.toolchain.1923834725" name="Debug" parent="org.eclipse.cdt.build.core.emptycfg">
+					<folderInfo id="armus.debug.toolchain.1923834725.2083741250" name="/" resourcePath="">
+						<toolChain id="armus.debug.toolchain.948170549" name="armus.debug.toolchain" superClass="armus.debug.toolchain">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.armus.plugin.targetplatform.556777435" name="ARM (ARMUS)" osList="linux" superClass="org.armus.plugin.targetplatform"/>
+							<builder id="armus.toolchain.builder.1937548933" managedBuildOn="false" name="ARMUS Builder.Debug" superClass="armus.toolchain.builder"/>
+							<tool id="armus.toolchain.linker.2092848163" name="ARM-Linux Linker" superClass="armus.toolchain.linker"/>
+							<tool id="armus.toolchain.cc.compiler.1189614805" name="ARM-Linux C++ Compiler" superClass="armus.toolchain.cc.compiler"/>
 						</toolChain>
 					</folderInfo>
-					<sourceEntries>
-						<entry excluding="Adafruit-16x32-basic-demo" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
 	</storageModule>
-	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="Robot-MasterMind.org.armus.plugin.arm-softfloat-linux-gnueabi.exe.813680751" name="ARMUS (ARM) Cross Target Executable" projectType="org.armus.plugin.arm-softfloat-linux-gnueabi.exe"/>
-	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope" versionNumber="2">
-		<configuration configurationName="Debug">
-			<resource resourceType="PROJECT" workspacePath="/Robot-MasterMind"/>
-		</configuration>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Robot-Mastermind.null.1909591741" name="Robot-Mastermind"/>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 </cproject>

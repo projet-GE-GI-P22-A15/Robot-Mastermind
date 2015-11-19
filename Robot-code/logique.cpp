@@ -5,24 +5,27 @@
 #include "mouvement.h"
 #include "matrixLED.h"
 
-int capt_ligne, capt_bumper, capt_couleur, capt_bouton;
-
+int capt_ligne, capt_bumper, capt_couleur, capt_boutonEssai,capt_boutonNbPastilles;
+int nbPastilles=2;
 int tableau_a_verifier[4][10];
 int tableau_de_joueur[4][10];
 int tableau_de_robot[4];
 /********************************************************************************/
 int mainCRJ() {
+	
+	//gestionAvantDeCommencer();
+		
 	int essai,pastille = 0;
 	int direction = 1;
 	int gagner = 0;
 	while (essai != 10 || gagner != 1)
 	{
-		while (capt_bouton == 1)
+		while (capt_boutonEssai == 1)
 		{
 			suivreLigne();
 			if (direction == 1)
 			{
-				while (pastille != 4)
+				while (pastille != nbPastilles)
 				{
 					int couleurCaptee = lireCouleur();
 					if (couleurCaptee != blanc)
@@ -43,7 +46,7 @@ int mainCRJ() {
 			}
 			else
 			{
-				pastille = 3;
+				pastille = (nbPastilles-1);
 				while (pastille != (-1))
 				{
 					int couleurCaptee = lireCouleur();
@@ -69,12 +72,12 @@ int mainCRJ() {
 			//Ajouter : Fonction d'affichage sur la matrice de LED
 			int i = 0;
 			int j = 0;
-			for (i = 0; i < 4; i++)
+			for (i = 0; i < nbPastilles; i++)
 			{
 				if (tableau_a_verifier[i][essai] == vert)
 					j++;
 			}
-			if (j == 4)
+			if (j == nbPastilles)
 				gagner = 1;
 			essai ++;
 		}
@@ -99,7 +102,7 @@ int mainCapteur() {
 	 capt_ligne = lireCapteurLigne();
 	 capt_bumper = lireBumpers();
 	 capt_couleur = lireCouleur();
-	 capt_bouton=lireBoutonPhysique();
+	 capt_boutonEssai=lireBoutonPhysiqueEssai();
 	 THREAD_MSleep(10);
 	return 0;
 }
@@ -121,7 +124,7 @@ void jeuxLedCouleurContreHumain() {
 int verifNbrCouleurOK(int ligne) {
 	//Retourne le nombre de couleur qui sont correct
 	int i = 0;
-		for (i = 0; i < 4; i++)
+		for (i = 0; i < nbPastilles; i++)
 		{
 			if (tableau_de_joueur[i][ligne] == tableau_de_robot[0] ||
 					tableau_de_joueur[i][ligne] == tableau_de_robot[1] ||
@@ -136,7 +139,7 @@ int verifNbrCouleurOK(int ligne) {
 /****************************************************************/
 int verifNbrCouleurABonnePlace(int ligne) {
 	int i = 0;
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < nbPastilles; i++)
 	{
 		if (tableau_a_verifier[i][ligne] == jaune)
 			{
@@ -185,3 +188,24 @@ int easterEgg() {
 }
 /*******************************************************************/
 
+int choixNbPastilles(){
+	int choixFait=0;
+	int compteur=2;
+	capt_boutonNbPastilles=0;
+	
+	/*Afficher(en gros) ,avec la matrice: Chiffre associé au nombre de pastilles maximales prises en compte par le robot-jouet pour la partie donnée*/
+	while(choixFait!=1){
+	capt_boutonNbPastilles=lireBoutonPhysiqueNbPastilles();
+	compteur+=capt_boutonNbPastilles;
+	if(compteur>4)
+	{
+		compteur=2;
+	}
+	/*Afficher(en gros) ,avec la matrice: Chiffre associé au nombre de pastilles maximales prises en compte par le robot-jouet pour la partie donnée*/
+	choixFait=lireBoutonPhysiqueEssai();
+	THREAD_MSleep(200);
+	}
+	return compteur;
+}
+
+/*******************************************************************/
