@@ -57,7 +57,6 @@ int main()
 
     while(1) { 
         comm.logiqueSerie();
-        wait_ms(10);
     }  
     
 }
