@@ -21,6 +21,7 @@
 #define cyan 6
 #define rose 7
 #define fermer 8
+#define blanc 9
 
 #define DIRECTION_gd 0
 #define DIREECTION_dg 1
@@ -66,8 +67,7 @@ void defaite();
  * @param tableauDeJeu [description]
  * @return [description]
  */
-int verifNbrCouleurABonnePlace(int direction, int tableauAVerif[4],
-		int tableauDeJeu[4]);
+int verifNbrCouleurABonnePlace(int ligne);
 
 /**
  * @brief [brief description]
@@ -78,7 +78,7 @@ int verifNbrCouleurABonnePlace(int direction, int tableauAVerif[4],
  * 
  * @return [description]
  */
-int verifNbrCouleurOK(int direction, int tableauAVerif[4], int tableauDeJeu[4]);
+int verifNbrCouleurOK(int ligne);
 
 /**
  * @brief [brief description]
@@ -111,6 +111,6 @@ int mainCRJ();
  */
 int mainCapteur();
 
-void stockerCouleur(int direction);
+void stockerCouleur(int couleurCapter,int esssai,int numPastille);
 
 #endif // LOGIQUE_H_

@@ -12,25 +12,87 @@ int tableau_de_joueur[4][10];
 int tableau_de_robot[4];
 /********************************************************************************/
 int mainCRJ() {
-	int essai,pastille;
-	suivreLigne();
-	for(essai=0;essai<10;essai++)
+	int essai,pastille = 0;
+	int direction = 1;
+	int gagner = 0;
+	while (essai != 10 || gagner != 1)
 	{
-		for(pastille=0;pastille<4;pastille++)
+		while (capt_bouton == 1)
 		{
-			if (lireCouleur()==jaune)
-				verifNbrCouleurOK(essai);
+			suivreLigne();
+			if (direction == 1)
+			{
+				while (pastille != 4)
+				{
+					int couleurCaptee = lireCouleur();
+					if (couleurCaptee != blanc)
+					{
+						stockerCouleur(couleurCaptee, essai, pastille);
+						pastille ++;
+						do
+						{
+							int couleur = lireCouleur();
+							THREAD_MSleep(200);
+						} while(couleur != blanc);
+					}
+				}
+				direction *= (-1);
+				MOTOR_SetSpeed(MOTOR_LEFT, 0);
+				MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+				tourner(180, DROITE);
+			}
+			else
+			{
+				pastille = 3;
+				while (pastille != (-1))
+				{
+					int couleurCaptee = lireCouleur();
+					if (couleurCaptee != blanc)
+					{
+						stockerCouleur(couleurCaptee, essai, pastille);
+						pastille --;
+						do
+						{
+							int couleur = lireCouleur();
+							THREAD_MSleep(200);
+						} while(couleur != blanc);
+					}
+				}
+				direction *= (-1);
+				MOTOR_SetSpeed(MOTOR_LEFT, 0);
+				MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+			}
 
+			THREAD_MSleep(200);
+			verifNbrCouleurOK(essai);
+			verifNbrCouleurABonnePlace(essai);
+			//Ajouter : Fonction d'affichage sur la matrice de LED
+			int i = 0;
+			int j = 0;
+			for (i = 0; i < 4; i++)
+			{
+				if (tableau_a_verifier[i][essai] == vert)
+					j++;
+			}
+			if (j == 4)
+				gagner = 1;
+			essai ++;
 		}
+		THREAD_MSleep(200);
 	}
+
+	if (gagner == 1)
+		victoire();
+	else
+		defaite();
 
 	THREAD_MSleep(50);	// Sleep for 50ms
 	return 0;
 }
 /****************************************************************/
-void stockerCouleur(int direction,int couleur)
+void stockerCouleur(int couleurCapter,int essai,int numPastille)
 {
-
+tableau_de_joueur[numPastille][essai]=couleurCapter;
 }
 /****************************************************************/
 int mainCapteur() {
