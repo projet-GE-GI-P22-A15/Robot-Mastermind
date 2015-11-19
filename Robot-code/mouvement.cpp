@@ -214,13 +214,19 @@ void tournerAlt(int angle, int direction) {
 }
 
 void suivreLigne() {
-	if (ligneCentre == 0) {
-		avancerDroit(2, 0, 70);
-	} else if (ligneGauche == 0) {
-		tournerAlt(90, GAUCHE);
-	} else if (ligneDroite == 0) {
-		tournerAlt(90, DROITE);
-	} else {
-		avancerDroit(2, 0, 70);
-	}
+	int vitesse=65;
+		int cutoff=0;
+		if (ligneCentre == 0) {
+			MOTOR_SetSpeed(MOTOR_RIGHT, vitesse*vitesseDroitePRGauche);
+			MOTOR_SetSpeed(MOTOR_LEFT, vitesse);
+		} else if (ligneGauche == 0) {
+			MOTOR_SetSpeed(MOTOR_RIGHT, vitesse*vitesseDroitePRGauche);
+			MOTOR_SetSpeed(MOTOR_LEFT,cutoff);
+		} else if (ligneDroite == 0) {
+			MOTOR_SetSpeed(MOTOR_LEFT, vitesse);
+			MOTOR_SetSpeed(MOTOR_RIGHT,cutoff);
+		} else {
+			MOTOR_SetSpeed(MOTOR_RIGHT, vitesse*vitesseDroitePRGauche);
+			MOTOR_SetSpeed(MOTOR_LEFT, vitesse);
+		}
 }

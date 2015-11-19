@@ -111,4 +111,6 @@ int mainCRJ();
  */
 int mainCapteur();
 
+void stockerCouleur(int direction);
+
 #endif // LOGIQUE_H_

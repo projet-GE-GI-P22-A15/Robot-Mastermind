@@ -17,14 +17,7 @@
 #define GAUCHE 1
 #define DROITE -1
 
-#define BLANC 0
-#define ROUGE 1
-#define VERT 2
-#define BLEU 3
-#define JAUNE 4
-#define ROSE 5
-#define GRIS 6
-#define NOIR 7
+
 
 #define AUCUN_OBSTACLE  0
 #define PERPENDICULAIRE 1
