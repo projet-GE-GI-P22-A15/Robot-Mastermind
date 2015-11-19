@@ -41,19 +41,19 @@ void COMMUNICATION::logiqueSerie(){
 	int tempReceived = 0;
 
 	//Simulation avec un ordi
-	if(pc.readable()){
-		if(pc.getc() == '#'){
+	if(s->readable()){
+		if(s->getc() == '#'){
 			pc.printf(" Receive # \r\n");
 			// Analyse le deuxieme byte et associe les valeurs au tableau
-			switch(pc.getc()){
+			switch(s->getc()){
 				case '$':
-					pc.printf(" Receiving letters \n\r");
+					s->printf(" Receiving letters \n\r");
 					do{
 						if(tempReceived != '!'){
-							tableauLettre[i-1] = pc.getc();		// Max 64 caracteres à afficher	
+							tableauLettre[i-1] = s->getc();		// Max 64 caracteres à afficher	
 						}	
 						i++;
-						tempReceived = pc.getc();
+						tempReceived = s->getc();
 					}while(tempReceived != '!');
 					i = 0;				// Reset le nombre de caractere recu
 					pc.printf(" End of transmission \r\n");
@@ -65,20 +65,20 @@ void COMMUNICATION::logiqueSerie(){
 								tableauJeu[i-1][nbrDeTours] = tempReceived;
 						}
 						i++;		// Incremente pour les prochains etats
-						tempReceived = pc.getc();
+						tempReceived = s->getc();
 					}while(tempReceived != '!');
 					i = 0;				// Reset le nombre de caractere recu
 					nbrDeTours++;		// Nbr de tour de l'adversaire
 					pc.printf(" End of transmission \r\n");
 				break;
 				default:
-					pc.putc('+');
+					s->putc('+');
 					pc.printf(" Error \r\n");
 				break;
 			}
 		}
 		else{
-			pc.putc('+');			// ERROR send byte for the error
+			s->putc('+');			// ERROR send byte for the error
 			pc.printf(" Error! \n\r");
 		}
 	}

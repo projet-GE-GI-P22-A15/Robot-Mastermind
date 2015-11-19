@@ -52,11 +52,12 @@ int main()
     comm.Init(&ser);
 
     //shift.attach(&refreshShift, 0.5);
-    pt.attach(&refreshAffichage, 0.0003);
+    pt.attach(&refreshAffichage, 0.005);
 
 
     while(1) { 
         comm.logiqueSerie();
+        wait_ms(10);
     }  
     
 }

@@ -20,26 +20,27 @@
 int serial;
 
 void ecrireSurMatrice(char buf[9]) {
-	if (write(serial, buf, 9) != 1) {
+	if (write(serial, "#", 1) != 1) {
 		fprintf(stderr, "error writing to serial port");
 	}
 	LCD_Printf("MEssage envoye\n");
 }
 
 int Init() {
-	int serial = open("/dev/ttyS1", O_RDWR | O_NOCTTY | O_NDELAY);
-	if (serial == -1) {
-		fprintf(stderr, "Could not open serial port");
+
+	int sfd = open("/dev/ttyS1", O_RDWR | O_NOCTTY | O_NDELAY);
+	if (sfd == -1) {
+		LCD_Printf("Could not open serial port\n");
 	}
 
-	if (!isatty(serial)) {
-		fprintf(stderr, "Opened device is not a TTY?!?");
+	if (!isatty(sfd)) {
+		LCD_Printf("Opened device is not a TTY?!?\n");
 		goto close_and_exit;
 	}
 
 	struct termios serconf;
-	if (tcgetattr(serial, &serconf) < 0) {
-		fprintf(stderr, "Could not get port configuration");
+	if (tcgetattr(sfd, &serconf) < 0) {
+		LCD_Printf("Could not get port configuration\n");
 		goto close_and_exit;
 	}
 
@@ -52,37 +53,36 @@ int Init() {
 
 	if (cfsetispeed(&serconf, B115200) < 0
 			|| cfsetospeed(&serconf, B115200) < 0) {
-		fprintf(stderr, "Could not set desired baud rate");
+		LCD_Printf("Could not set desired baud rate\n");
 		goto close_and_exit;
 	}
 
-	if (tcsetattr(serial, TCSAFLUSH, &serconf) < 0) {
-		fprintf(stderr, "Error setting terminal parameters");
+	if (tcsetattr(sfd, TCSAFLUSH, &serconf) < 0) {
+		LCD_Printf("Error setting terminal parameters\n");
 		goto close_and_exit;
 	}
 
-	fprintf(stdout, "Success configuring serial port");
+	LCD_Printf("Success configuring serial port\n");
 
-	/*while (1) {
-	 static int count = 0;
-	 char buf[4] = "#A!";
-	 if (read(serial, buf, 1) == 1) {
-	 printf("%c", buf[0]);
-	 }
-	 buf[0] = '#';
-	 buf[1] = 'A';
-	 buf[2] = '!';
-	 if (write(serial, buf, 3) != 1) {
-	 fprintf(stderr, "error writing to serial port");
-	 }
-	 count++;
-	 if (count >= 10)
-	 count = 0;
-	 fflush(0);
-	 THREAD_MSleep(100);
-	 }*/
+	char buf[3];
+	while (1) {
+		//static int count = 0;
+		if (read(sfd, buf, sizeof(buf)) == 1) {
+			LCD_Printf("%c", buf[0]);
+		}
+		//buf[0] = count+48;
+		sprintf(buf, "OK");
+		if (write(sfd, buf, sizeof(buf)) != 1) {
+			LCD_Printf("error writing to serial port\n");
+		}
+		//count++;
+		//if(count >= 10)
+		//	count = 0;
+		fflush(0);
+		THREAD_MSleep(1000);
+	}
 
-	close_and_exit: close(serial);
-
+	close_and_exit: close(sfd);
+	LCD_Printf("init\n");
 	return 0;
 }

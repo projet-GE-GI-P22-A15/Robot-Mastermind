@@ -53,11 +53,9 @@ int main() {
 	while (depart == 0) {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
-			LCD_Printf("Bumper ON == Main ON\n\r");
+			LCD_Printf("Bumper ON == Main ON\n");
 			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
 			Init();
-			ecrireSurMatrice("#$AAAAA!");
-
 		}
 	}
 
