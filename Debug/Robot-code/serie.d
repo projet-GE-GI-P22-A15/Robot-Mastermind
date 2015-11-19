@@ -50,7 +50,8 @@ Robot-code/serie.d Robot-code/serie.o: ../Robot-code/serie.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/spi_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
-  D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h
+  D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
+  ../Robot-code/serie.h
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/termios.h:
 
@@ -155,3 +156,5 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h:
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h:
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
+
+../Robot-code/serie.h:

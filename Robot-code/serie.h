@@ -9,6 +9,7 @@
 #define SERIE_H_
 
 int Init();
-void ecrireSurMatrice(char buf[9]);
+void Init2();
+//void ecrireSurMatrice(char buf[9]);
 
 #endif /* SERIE_H_ */

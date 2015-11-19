@@ -9,6 +9,7 @@ CPP_SRCS += \
 ../Robot-code/main.cpp \
 ../Robot-code/matrixLED.cpp \
 ../Robot-code/mouvement.cpp \
+../Robot-code/proma.cpp \
 ../Robot-code/serie.cpp \
 ../Robot-code/valeurs.cpp 
 
@@ -18,6 +19,7 @@ OBJS += \
 ./Robot-code/main.o \
 ./Robot-code/matrixLED.o \
 ./Robot-code/mouvement.o \
+./Robot-code/proma.o \
 ./Robot-code/serie.o \
 ./Robot-code/valeurs.o 
 
@@ -27,6 +29,7 @@ CPP_DEPS += \
 ./Robot-code/main.d \
 ./Robot-code/matrixLED.d \
 ./Robot-code/mouvement.d \
+./Robot-code/proma.d \
 ./Robot-code/serie.d \
 ./Robot-code/valeurs.d 
 

@@ -7,13 +7,15 @@
 
 Ticker shift;
 Ticker pt;
-Serial ser(PC_6, PC_7);
+
 
 // Creation des objets
 MATRICE mat;
 LETTERS let;
 COMMUNICATION comm;
 int alternateur = 0;
+I2CSlave slave(I2C_SDA, I2C_SCL);
+Serial pc(USBTX, USBRX);
 
 void refreshShift(){
     mat.ShiftRight(); 
@@ -29,16 +31,17 @@ void modifAlternance(){
 }
 
 void refreshAffichage(){
-    /*if (comm.getTableauLettre()[0] == 'A'){
+    
 
-        let.ecrire4(CREME, 1, LETTER_POS_HAUT);
-    let.ecrire2(BLANC, 2, LETTER_POS_HAUT);
-    let.ecrire0(GRIS, 3, LETTER_POS_HAUT);
-    let.ecrireY(TURQUOISE, 0, LETTER_POS_BAS);
-    let.ecrireO(CYAN, 1, LETTER_POS_BAS);
-    let.ecrireL(CORAIL, 2, LETTER_POS_BAS);
-    let.ecrireO(CIEL, 3, LETTER_POS_BAS);
-    }*/
+    /*let.ecrireA(CREME, 0, LETTER_POS_HAUT);
+    let.ecrireL(BLANC, 1, LETTER_POS_HAUT);
+    let.ecrireE(GRIS, 2, LETTER_POS_HAUT);
+    let.ecrireX(TURQUOISE, 3, LETTER_POS_HAUT);
+    let.ecrireX(BLEU, 4, LETTER_POS_HAUT);
+    let.ecrireJ(CORAIL, 0, LETTER_POS_BAS);
+    let.ecrireP(CIEL, 1, LETTER_POS_BAS);
+    let.ecrireL(ORANGE, 2, LETTER_POS_BAS);
+    let.ecrireO(FLUO, 3, LETTER_POS_BAS);*/
 
     modifAlternance();
     mat.Paint();
@@ -46,18 +49,28 @@ void refreshAffichage(){
 
 int main()
 {
+    unsigned char lastByte = '0';
 	// Matrice: horizontal = 32 = x; vertical = 16 = y
     mat.Init(); // Set things up
     let.Init(&mat);
-    comm.Init(&ser);
+    //comm.Init();
+    pc.baud(115200);
+    slave.frequency(100000);
+    slave.address(0x32);
 
     //shift.attach(&refreshShift, 0.5);
-    pt.attach(&refreshAffichage, 0.005);
+    //pt.attach(&refreshAffichage, 0.005);
+    pc.printf("test\n");
 
 
     while(1) { 
-        comm.logiqueSerie();
-        wait_ms(10);
+        lastByte = slave.read();
+
+        pc.putc(lastByte);
+        
+        //comm.logiqueSerie();
+        lastByte = '\0';
+        wait_ms(100);
     }  
     
 }

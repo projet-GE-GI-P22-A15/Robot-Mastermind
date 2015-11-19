@@ -1,8 +1,8 @@
 #include "communication.h"
 
 
-Serial * s;
-Serial pc(USBTX, USBRX);
+Serial s(PA_9, PA_10);
+Serial pcc(USBTX, USBRX);
 
 char tableauLettre[64];
 int tableauJeu[4][10];
@@ -13,10 +13,9 @@ char* COMMUNICATION::getTableauLettre(){
 }
 
 
-void COMMUNICATION::Init(Serial *ser){
-	s = ser;
-	s->baud(115200);
-	pc.baud(115200);
+void COMMUNICATION::Init(){
+	s.baud(115200);
+	pcc.baud(115200);
 
 	// Initialisation des tableaux
 	for (int i = 0; i < 64; ++i)
@@ -33,15 +32,20 @@ void COMMUNICATION::Init(Serial *ser){
 	}
 
 	// PC serial == test d'envoie de caractere avec l'ordinateur!
-	pc.printf("La communication est demarre\n\r");
+	pcc.printf("La communication est demarre\n\r");
 }
 
 void COMMUNICATION::logiqueSerie(){
 	int i = 0;
 	int tempReceived = 0;
 
+	pcc.printf("Valeurs %c", pcc.getc());
+	//pc.printf("- %c\n\r", s.getc());
+
+	s.putc('7');
 	//Simulation avec un ordi
-	if(s->readable()){
+	/*if(s->readable()){
+		//pc.printf(" Receive char \r\n");
 		if(s->getc() == '#'){
 			pc.printf(" Receive # \r\n");
 			// Analyse le deuxieme byte et associe les valeurs au tableau
@@ -57,7 +61,7 @@ void COMMUNICATION::logiqueSerie(){
 					}while(tempReceived != '!');
 					i = 0;				// Reset le nombre de caractere recu
 					pc.printf(" End of transmission \r\n");
-				break;
+				break;	
 				case '%':
 					pc.printf(" Receiving state \n\r");
 					do{
@@ -81,5 +85,5 @@ void COMMUNICATION::logiqueSerie(){
 			s->putc('+');			// ERROR send byte for the error
 			pc.printf(" Error! \n\r");
 		}
-	}
+	}*/
 }
