@@ -12,15 +12,25 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration buildProperties="" id="armus.debug.toolchain.1923834725" name="Debug" parent="org.eclipse.cdt.build.core.emptycfg">
+				<configuration artifactName="Robot-MasterMind" buildProperties="" description="" id="armus.debug.toolchain.1923834725" name="Debug" parent="org.eclipse.cdt.build.core.emptycfg">
 					<folderInfo id="armus.debug.toolchain.1923834725.2083741250" name="/" resourcePath="">
 						<toolChain id="armus.debug.toolchain.948170549" name="armus.debug.toolchain" superClass="armus.debug.toolchain">
 							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.armus.plugin.targetplatform.556777435" name="ARM (ARMUS)" osList="linux" superClass="org.armus.plugin.targetplatform"/>
-							<builder id="armus.toolchain.builder.1937548933" managedBuildOn="false" name="ARMUS Builder.Debug" superClass="armus.toolchain.builder"/>
-							<tool id="armus.toolchain.linker.2092848163" name="ARM-Linux Linker" superClass="armus.toolchain.linker"/>
-							<tool id="armus.toolchain.cc.compiler.1189614805" name="ARM-Linux C++ Compiler" superClass="armus.toolchain.cc.compiler"/>
+							<builder buildPath="${workspace_loc:/Robot-MasterMind/Debug}" id="armus.toolchain.builder.1937548933" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="ARMUS Builder" superClass="armus.toolchain.builder"/>
+							<tool id="armus.toolchain.linker.2092848163" name="ARM-Linux Linker" superClass="armus.toolchain.linker">
+								<inputType id="armus.linker.input.o.1302508342" name="Object File" superClass="armus.linker.input.o">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="armus.toolchain.cc.compiler.1189614805" name="ARM-Linux C++ Compiler" superClass="armus.toolchain.cc.compiler">
+								<inputType id="armus.compiler.input.cc.287951532" name="C++ Source File" superClass="armus.compiler.input.cc"/>
+							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="Adafruit-16x32-basic-demo" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -30,7 +40,12 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="Robot-Mastermind.null.1909591741" name="Robot-Mastermind"/>
+		<project id="Robot-MasterMind.org.armus.plugin.arm-softfloat-linux-gnueabi.exe.813680751" name="ARMUS (ARM) Cross Target Executable" projectType="org.armus.plugin.arm-softfloat-linux-gnueabi.exe"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Robot-MasterMind"/>
+		</configuration>
+	</storageModule>
 </cproject>
