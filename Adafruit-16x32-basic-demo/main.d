@@ -102,7 +102,7 @@ main.o: main.cpp mbed-src/api/mbed.h mbed-src/api/platform.h \
  mbed-rtos/rtx/TARGET_CORTEX_M/os_tcb.h mbed-rtos/rtos/Mutex.h \
  mbed-rtos/rtos/RtosTimer.h mbed-rtos/rtos/Semaphore.h \
  mbed-rtos/rtos/Mail.h mbed-rtos/rtos/MemoryPool.h mbed-rtos/rtos/Queue.h \
- mbed-src/api/mbed_error.h matrice.h letters.h communication.h
+ mbed-src/api/mbed_error.h matrice.h letters.h communication.h charma.h
 
 mbed-src/api/mbed.h:
 
@@ -395,3 +395,5 @@ matrice.h:
 letters.h:
 
 communication.h:
+
+charma.h:

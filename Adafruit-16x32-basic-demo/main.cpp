@@ -3,6 +3,7 @@
 #include "matrice.h"
 #include "letters.h"
 #include "communication.h"
+#include "charma.h"
 
 
 Ticker shift;
@@ -13,8 +14,8 @@ Ticker pt;
 MATRICE mat;
 LETTERS let;
 COMMUNICATION comm;
+CHARMA charm;
 int alternateur = 0;
-I2CSlave slave(I2C_SDA, I2C_SCL);
 Serial pc(USBTX, USBRX);
 
 void refreshShift(){
@@ -22,7 +23,7 @@ void refreshShift(){
 }
 
 void modifAlternance(){
-        alternateur = (alternateur + 1) % 3;
+    alternateur = (alternateur + 1) % 3;
     if (alternateur == 0) {
         let.setAlternance(HIGH);
     } else {
@@ -31,7 +32,7 @@ void modifAlternance(){
 }
 
 void refreshAffichage(){
-    
+
 
     /*let.ecrireA(CREME, 0, LETTER_POS_HAUT);
     let.ecrireL(BLANC, 1, LETTER_POS_HAUT);
@@ -47,16 +48,14 @@ void refreshAffichage(){
     mat.Paint();
 }
 
-int main()
-{
+int main() {
     unsigned char lastByte = '0';
 	// Matrice: horizontal = 32 = x; vertical = 16 = y
     mat.Init(); // Set things up
     let.Init(&mat);
     //comm.Init();
     pc.baud(115200);
-    slave.frequency(100000);
-    slave.address(0x32);
+
 
     //shift.attach(&refreshShift, 0.5);
     //pt.attach(&refreshAffichage, 0.005);
@@ -64,13 +63,9 @@ int main()
 
 
     while(1) { 
-        lastByte = slave.read();
-
-        pc.putc(lastByte);
-        
-        //comm.logiqueSerie();
-        lastByte = '\0';
-        wait_ms(100);
+        if (charm.lireCharma() == 0){
+            int type = charm.trouverType();
+        }
     }  
     
 }

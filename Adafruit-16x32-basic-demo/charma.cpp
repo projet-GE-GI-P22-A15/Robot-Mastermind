@@ -3,7 +3,7 @@
 unsigned char buf[64];
 int i = 0;
 
-int lireCharma(){
+int CHARMA::lireCharma(){
 	int i = 0;
 	for(i = 0; i < 64; ++i){
 		buf[i] = '\0';
@@ -40,5 +40,14 @@ int lireCharma(){
 		} else {
 			return -1;
 		}
+	}
+	return 0;
+}
+
+int CHARMA::trouverType(){
+	if (buf[1] == '3'){
+		return 2;
+	} else {
+		return 1;
 	}
 }

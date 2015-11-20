@@ -1,7 +1,6 @@
 #ifndef CHARMA_H_
 #define CHARMA_H_
 
-#include "matrice.h"
 #include "mbed.h"
 
 #define LOW 0
@@ -14,10 +13,10 @@
 
 class CHARMA {
 public:
-int lireCharma();
+	int lireCharma();
+	int trouverType();
 private:
 	
-
 };
 
 #endif /* CHARMA_H_ */
