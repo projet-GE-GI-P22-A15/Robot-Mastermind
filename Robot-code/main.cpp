@@ -15,7 +15,7 @@
 #include <libarmus.h>
 #include "valeurs.h"
 #include "logique.h"
-#include "serie.h"
+#include "charma.h"
 
 void threadCapteur();
 void threadCRJ();
@@ -54,8 +54,14 @@ int main() {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 			LCD_Printf("Bumper ON == Main ON\n");
-			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
-			Init2();
+			DIGITALIO_Write(sepO, 0);
+			DIGITALIO_Write(sigO, 0);
+			THREAD_MSleep(delai_ms);
+
+			char texte[14] = "#1BRAVOabcde~"; //Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
+			charmaEcrire(texte);
+			LCD_Printf("ecriture terminee\n");
+
 		}
 	}
 

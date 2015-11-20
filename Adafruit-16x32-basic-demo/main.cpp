@@ -16,7 +16,6 @@ LETTERS let;
 COMMUNICATION comm;
 CHARMA charm;
 int alternateur = 0;
-Serial pc(USBTX, USBRX);
 
 void refreshShift(){
     mat.ShiftRight(); 
@@ -54,17 +53,17 @@ int main() {
     mat.Init(); // Set things up
     let.Init(&mat);
     //comm.Init();
-    pc.baud(115200);
-
+    charm.Init();
 
     //shift.attach(&refreshShift, 0.5);
     //pt.attach(&refreshAffichage, 0.005);
-    pc.printf("test\n");
-
 
     while(1) { 
         if (charm.lireCharma() == 0){
+            //testing
             int type = charm.trouverType();
+        } else {
+            //erreur
         }
     }  
     
