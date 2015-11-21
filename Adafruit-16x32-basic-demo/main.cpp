@@ -59,12 +59,10 @@ int main() {
     //pt.attach(&refreshAffichage, 0.005);
 
     while(1) { 
-        if (charm.lireCharma() == 0){
+        charm.lireCharma();
             //testing
-            int type = charm.trouverType();
-        } else {
-            //erreur
-        }
+        charm.talkToPC();
+        
     }  
     
 }

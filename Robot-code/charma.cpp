@@ -44,8 +44,8 @@ int charmaEcrire(char buf[]) {
 
 	if (buf[0] == '#' && buf[size - 1] == '~') {
 		//code ecrire lettres
-		//format lettres: "#1cccccfffff~" ou c est un caractere, f est une couleur (voir matrice.h). \0 est permis. 1 peut etre remplace par 2 pour ecrire en bas.
-		//format essai: #3RGBRvfvf~
+		//format lettres: "_1cccccfffff~" ou c est un caractere, f est une couleur (voir matrice.h). \0 est permis. 1 peut etre remplace par 2 pour ecrire en bas.
+		//format essai: _3RGBRvfvf~
 		LCD_Printf("Start Comm\n");
 		//Debut Comm
 		DIGITALIO_Write(sepO, HIGH);
@@ -86,7 +86,6 @@ void transfererChar(char c) {
 		DIGITALIO_Write(sepO, HIGH);
 		if (i < 128) {
 			DIGITALIO_Write(sigO, LOW);
-
 		} else {
 			DIGITALIO_Write(sigO, HIGH);
 		}

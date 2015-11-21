@@ -49,16 +49,18 @@ void threadCRJ() {
 }
 
 int main() {
+	//Init les sorties du CHARMA. IMPORTANT.
+	DIGITALIO_Write(sepO, 0);
+	DIGITALIO_Write(sigO, 0);
+	//Fin Init
 	int depart = 0;
 	while (depart == 0) {
 		depart = DIGITALIO_Read(BMP_REAR);
 		if (depart != 0) {
 			LCD_Printf("Bumper ON == Main ON\n");
-			DIGITALIO_Write(sepO, 0);
-			DIGITALIO_Write(sigO, 0);
-			THREAD_MSleep(delai_ms);
+			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
 
-			char texte[14] = "#1BRAVOabcde~"; //Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
+			char texte[14] = "#1BRAVOabcde~";
 			charmaEcrire(texte);
 			LCD_Printf("ecriture terminee\n");
 

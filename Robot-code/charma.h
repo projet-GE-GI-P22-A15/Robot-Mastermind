@@ -10,7 +10,7 @@
 
 #define sepO 15
 #define sigO 16
-#define delai_ms 16
+#define delai_ms 2
 #define HIGH 1
 #define LOW 0
 

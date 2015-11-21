@@ -6,7 +6,7 @@
 #define LOW 0
 #define HIGH 1
 
-#define delai_ms 16
+#define delai_ms 2
 
 
 
@@ -16,6 +16,7 @@ public:
 	int lireCharma();
 	int trouverType();
 	char* getBuf();
+	void talkToPC();
 private:
 	
 };
