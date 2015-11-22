@@ -61,7 +61,7 @@ void CHARMA::talkToPC(){
 	int i = 0;
 	for(i = 0; i < 64 && buf[i] != '~'; ++i){
 		pc.putc(buf[i]);
-		wait_ms(2);
+		wait_ms(1);
 	}
 	pc.putc('\n');
 }

@@ -14,7 +14,9 @@
 #define HIGH 1
 #define LOW 0
 
-int charmaEcrire(char buf[]);
+void charmaEcrire(char buf[]);
 void transfererChar(char c);
+void transmettreEssai(int numero, char essai[]);
+void transmettreMot(int yPosition, char mot[]);
 
 #endif /* CHARMA_H_ */

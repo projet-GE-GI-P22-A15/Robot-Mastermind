@@ -4,7 +4,7 @@
 #include "letters.h"
 #include "communication.h"
 #include "charma.h"
-
+#include "affichage.h"
 
 Ticker shift;
 Ticker pt;

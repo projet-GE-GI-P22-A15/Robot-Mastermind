@@ -5,7 +5,7 @@
 
 class AFFICHAGE {
 public:
-
+void Init();
 private:
 
 };
