@@ -23,8 +23,28 @@
 #define fermer 8
 #define blanc 9
 
+/*NOIR: 0
+BLEU: 1
+VERT: 2
+CYAN: 3
+ROUGE: 4
+MAUVE: 5
+JAUNE: 6
+BLANC: 7*/
+
 #define DIRECTION_gd 0
 #define DIREECTION_dg 1
+
+struct formatEnvoi{
+	int couleur1;
+	int couleur2;
+	int couleur3;
+	int couleur4;
+	int feedBack1;
+	int feedBack2;
+	int feedBack3;
+	int feedBack4;
+} formatEnvoiArray[10];
 
 /**
  * @brief [brief description]
@@ -126,5 +146,7 @@ int choixNbPastilles();
 void resetTableau();
 
 void gestionAvantDeCommencer();
+
+void storeDansStructure(int essai);
 
 #endif // LOGIQUE_H_

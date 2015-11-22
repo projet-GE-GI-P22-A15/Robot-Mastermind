@@ -10,6 +10,7 @@ int nbPastilles = 2;
 int tableau_a_verifier[4][10];
 int tableau_de_joueur[4][10];
 int tableau_de_robot[4];
+char formatEssai[8];
 /********************************************************************************/
 int mainCRJ() {
 	gestionAvantDeCommencer();
@@ -67,6 +68,8 @@ int mainCRJ() {
 			THREAD_MSleep(200);
 			verifNbrCouleurOK(essai);
 			verifNbrCouleurABonnePlace(essai);
+			storeDansStructure(essai);
+			envoieStringStructure(essai);
 			debugAffichage(direction, essai);
 			//Ajouter : Fonction d'affichage sur la matrice de LED
 			int i = 0;
@@ -233,3 +236,21 @@ void resetTableau()
 	}
 }
 /******************************************************************/
+void storeDansStructure(int essai){
+	formatEnvoiArray[essai].couleur1 = tableau_de_joueur[0][essai];
+	formatEnvoiArray[essai].couleur2 = tableau_de_joueur[1][essai];
+	formatEnvoiArray[essai].couleur3 = tableau_de_joueur[2][essai];
+	formatEnvoiArray[essai].couleur4 = tableau_de_joueur[3][essai];
+	formatEnvoiArray[essai].feedBack1 = tableau_a_verifier[0][essai];
+	formatEnvoiArray[essai].feedBack2 = tableau_a_verifier[1][essai];
+	formatEnvoiArray[essai].feedBack3 = tableau_a_verifier[2][essai];
+	formatEnvoiArray[essai].feedBack4 = tableau_a_verifier[3][essai];
+}
+/******************************************************************/
+void envoieStringStructure(int essai){
+	formatEssai[8] = {formatEnvoiArray[essai].couleur1, formatEnvoiArray[essai].couleur2,
+				formatEnvoiArray[essai].couleur3, formatEnvoiArray[essai].couleur4,
+				formatEnvoiArray[essai].feedBack1, formatEnvoiArray[essai].feedBack2,
+				formatEnvoiArray[essai].feedBack3, formatEnvoiArray[essai].feedBack4};
+	transmettreEssai(essai, formatEssai);
+}
