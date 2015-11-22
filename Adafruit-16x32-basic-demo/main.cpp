@@ -15,6 +15,8 @@ MATRICE mat;
 LETTERS let;
 COMMUNICATION comm;
 CHARMA charm;
+AFFICHAGE aff;
+
 int alternateur = 0;
 
 void refreshShift(){
@@ -33,37 +35,33 @@ void modifAlternance(){
 void refreshAffichage(){
 
 
-    /*let.ecrireA(CREME, 0, LETTER_POS_HAUT);
-    let.ecrireL(BLANC, 1, LETTER_POS_HAUT);
-    let.ecrireE(GRIS, 2, LETTER_POS_HAUT);
-    let.ecrireX(TURQUOISE, 3, LETTER_POS_HAUT);
-    let.ecrireX(BLEU, 4, LETTER_POS_HAUT);
-    let.ecrireJ(CORAIL, 0, LETTER_POS_BAS);
-    let.ecrireP(CIEL, 1, LETTER_POS_BAS);
-    let.ecrireL(ORANGE, 2, LETTER_POS_BAS);
-    let.ecrireO(FLUO, 3, LETTER_POS_BAS);*/
+    let.ecrireB(CREME, 0, LETTER_POS_HAUT);
+    let.ecrireR(BLANC, 1, LETTER_POS_HAUT);
+    let.ecrireA(GRIS, 2, LETTER_POS_HAUT);
+    let.ecrireV(TURQUOISE, 3, LETTER_POS_HAUT);
+    let.ecrireO(BLEU, 4, LETTER_POS_HAUT);
+    let.ecrireC(CORAIL, 0, LETTER_POS_BAS);
+    let.ecrireO(CIEL, 1, LETTER_POS_BAS);
+    let.ecrireC(ORANGE, 2, LETTER_POS_BAS);
+    let.ecrireO(FLUO, 3, LETTER_POS_BAS);
 
     modifAlternance();
     mat.Paint();
 }
 
 int main() {
-    unsigned char lastByte = '0';
 	// Matrice: horizontal = 32 = x; vertical = 16 = y
     mat.Init(); // Set things up
     let.Init(&mat);
-    //comm.Init();
+
     charm.Init();
 
-    //shift.attach(&refreshShift, 0.5);
-    //pt.attach(&refreshAffichage, 0.005);
+    pt.attach(&refreshAffichage, 0.005);
 
     while(1) { 
-        charm.lireCharma();
-            //testing
-        charm.talkToPC();
-        
+        if (charm.lireCharma() == 0){
+            charm.talkToPC();
+        }
     }  
-    
 }
 

@@ -63,4 +63,5 @@ void CHARMA::talkToPC(){
 		pc.putc(buf[i]);
 		wait_ms(2);
 	}
+	pc.putc('\n');
 }
