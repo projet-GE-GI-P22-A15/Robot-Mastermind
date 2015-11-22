@@ -36,8 +36,7 @@
  * @param nbrCouleurOK [description]
  * @param nbrBonnePosition [description]
  */
-int debugAffichage(int direction, int tableauAVerif[4], int tableauDeJeu[4],
-		int nbrLecture, int nbrCouleurOK, int nbrBonnePosition);
+int debugAffichage(int direction, int essai);
 
 /**
  * @brief [brief description]
@@ -124,5 +123,8 @@ void stockerCouleur(int couleurCapter,int esssai,int numPastille);
  */
 int choixNbPastilles();
 
+void resetTableau();
+
+void gestionAvantDeCommencer();
 
 #endif // LOGIQUE_H_

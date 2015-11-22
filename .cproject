@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="armus.debug.toolchain.1553480961">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="armus.debug.toolchain.1553480961" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration buildProperties="" id="armus.debug.toolchain.1553480961" name="Debug" parent="org.eclipse.cdt.build.core.emptycfg">
+					<folderInfo id="armus.debug.toolchain.1553480961.1129595723" name="/" resourcePath="">
+						<toolChain id="armus.debug.toolchain.2100911042" name="armus.debug.toolchain" superClass="armus.debug.toolchain">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.armus.plugin.targetplatform.100267226" name="ARM (ARMUS)" osList="linux" superClass="org.armus.plugin.targetplatform"/>
+							<builder id="armus.toolchain.builder.1963193654" managedBuildOn="false" name="ARMUS Builder.Debug" superClass="armus.toolchain.builder"/>
+							<tool id="armus.toolchain.linker.746802524" name="ARM-Linux Linker" superClass="armus.toolchain.linker"/>
+							<tool id="armus.toolchain.cc.compiler.420108540" name="ARM-Linux C++ Compiler" superClass="armus.toolchain.cc.compiler"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Robot-Mastermind.null.1760535586" name="Robot-Mastermind"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+</cproject>

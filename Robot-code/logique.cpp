@@ -6,14 +6,13 @@
 #include "matrixLED.h"
 
 int capt_ligne, capt_bumper, capt_couleur, capt_boutonEssai,capt_boutonNbPastilles;
-int nbPastilles=2;
+int nbPastilles = 2;
 int tableau_a_verifier[4][10];
 int tableau_de_joueur[4][10];
 int tableau_de_robot[4];
 /********************************************************************************/
 int mainCRJ() {
-	
-	//gestionAvantDeCommencer();
+	gestionAvantDeCommencer();
 		
 	int essai,pastille = 0;
 	int direction = 1;
@@ -65,10 +64,10 @@ int mainCRJ() {
 				MOTOR_SetSpeed(MOTOR_LEFT, 0);
 				MOTOR_SetSpeed(MOTOR_RIGHT, 0);
 			}
-
 			THREAD_MSleep(200);
 			verifNbrCouleurOK(essai);
 			verifNbrCouleurABonnePlace(essai);
+			debugAffichage(direction, essai);
 			//Ajouter : Fonction d'affichage sur la matrice de LED
 			int i = 0;
 			int j = 0;
@@ -92,12 +91,11 @@ int mainCRJ() {
 	THREAD_MSleep(50);	// Sleep for 50ms
 	return 0;
 }
-/****************************************************************/
-void stockerCouleur(int couleurCapter,int essai,int numPastille)
-{
-tableau_de_joueur[numPastille][essai]=couleurCapter;
+/******************************************************************/
+void stockerCouleur(int couleurCapter,int essai,int numPastille){
+	tableau_de_joueur[numPastille][essai]=couleurCapter;
 }
-/****************************************************************/
+/******************************************************************/
 int mainCapteur() {
 	 capt_ligne = lireCapteurLigne();
 	 capt_bumper = lireBumpers();
@@ -106,13 +104,13 @@ int mainCapteur() {
 	 THREAD_MSleep(10);
 	return 0;
 }
-/*****************************************************************/
+/******************************************************************/
 int randomGeneratedNumbers() {
 	int choixCouleur = rand() % 8;
 		return choixCouleur;
 	return 0;
 }
-/****************************************************************/
+/******************************************************************/
 void jeuxLedCouleurContreHumain() {
 	srand ( time(NULL));
 		tableau_de_robot[0] = randomGeneratedNumbers();
@@ -120,9 +118,8 @@ void jeuxLedCouleurContreHumain() {
 		tableau_de_robot[2] = randomGeneratedNumbers();
 		tableau_de_robot[3] = randomGeneratedNumbers();
 }
-/***************************************************************/
+/******************************************************************/
 int verifNbrCouleurOK(int ligne) {
-	//Retourne le nombre de couleur qui sont correct
 	int i = 0;
 		for (i = 0; i < nbPastilles; i++)
 		{
@@ -136,7 +133,7 @@ int verifNbrCouleurOK(int ligne) {
 		}
 		return 0;
 }
-/****************************************************************/
+/******************************************************************/
 int verifNbrCouleurABonnePlace(int ligne) {
 	int i = 0;
 	for (i = 0; i < nbPastilles; i++)
@@ -149,7 +146,7 @@ int verifNbrCouleurABonnePlace(int ligne) {
 	}
 	return 0;
 }
-/****************************************************************/
+/******************************************************************/
 void victoire() {
 	AUDIO_SetVolume(100);
 	AUDIO_PlayFile("jaigagner.mp3");
@@ -162,7 +159,7 @@ void victoire() {
 	tourner(45,GAUCHE);
 
 }
-/****************************************************************/
+/******************************************************************/
 void defaite() {
 	// Il manque a faire le fichier jaiperdu
 	AUDIO_SetVolume(90);
@@ -171,41 +168,68 @@ void defaite() {
 	THREAD_MSleep(3000);
 	tourner(180,DROITE);
 }
-/****************************************************************/
-int debugAffichage(int direction, int tableauAVerif[4], int tableauDeJeu[4],
-		int nbrLecture, int nbrCouleurOK, int nbrBonnePosition) {
-	//affiche toutes les choses possible
+/******************************************************************/
+int debugAffichage(int direction, int essai) {
+	int i = 0;
+	LCD_Printf("Debogage\n");
+	LCD_Printf("Direction : %d\n", direction);
+	LCD_Printf("No essai : %d\n", essai);
+	for (i = 0; i < nbPastilles; i++)
+	{
+		LCD_Printf("Ligne joueur :\n%d %d %d %d\n", tableau_de_joueur[i][essai]);
+	}
+	for (i = 0; i < nbPastilles; i++)
+	{
+		LCD_Printf("Ligne robot:\n%d %d %d %d\n", tableau_de_robot[i]);
+	}
+	for (i = 0; i < nbPastilles; i++)
+	{
+		LCD_Printf("Ligne a verif:\n%d %d %d %d\n", tableau_a_verifier[i][essai]);
+	}
 	return 0;
 }
 /******************************************************************/
-int gestionAvantDeCommencer() {
-	//Ici cest le setup de game et les parametres de gestion avant de commencer la lecture et toute
-	return 0;
+void gestionAvantDeCommencer() {
+	jeuxLedCouleurContreHumain();
+	nbPastilles = choixNbPastilles();
+	resetTableau();
 }
 /******************************************************************/
 int easterEgg() {
 	return 0;
 }
-/*******************************************************************/
-
+/******************************************************************/
 int choixNbPastilles(){
-	int choixFait=0;
-	int compteur=2;
-	capt_boutonNbPastilles=0;
+	int choixFait = 0;
+	int compteur = 2;
+	capt_boutonNbPastilles = 0;
 	
 	/*Afficher(en gros) ,avec la matrice: Chiffre associé au nombre de pastilles maximales prises en compte par le robot-jouet pour la partie donnée*/
-	while(choixFait!=1){
-	capt_boutonNbPastilles=lireBoutonPhysiqueNbPastilles();
-	compteur+=capt_boutonNbPastilles;
-	if(compteur>4)
+	while(choixFait != 1){
+	capt_boutonNbPastilles = lireBoutonPhysiqueNbPastilles();
+	compteur += capt_boutonNbPastilles;
+	if(compteur > 4)
 	{
-		compteur=2;
+		compteur = 2;
 	}
 	/*Afficher(en gros) ,avec la matrice: Chiffre associé au nombre de pastilles maximales prises en compte par le robot-jouet pour la partie donnée*/
-	choixFait=lireBoutonPhysiqueEssai();
+	choixFait = lireBoutonPhysiqueEssai();
 	THREAD_MSleep(200);
 	}
 	return compteur;
 }
-
-/*******************************************************************/
+/******************************************************************/
+void resetTableau()
+{
+	int i, j;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			tableau_de_joueur[i][j] = 8;
+			tableau_a_verifier[i][j] = 8;
+		}
+		tableau_de_robot[i] = 8;
+	}
+}
+/******************************************************************/
