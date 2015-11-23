@@ -66,6 +66,8 @@
  	char** creerB();
  	char** creerN();
  	char** creerM();
+
+ 	char** creerEspace();
  	
 private:
 

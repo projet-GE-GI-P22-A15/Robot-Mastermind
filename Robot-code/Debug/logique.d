@@ -21,7 +21,7 @@ logique.d logique.o: ../logique.cpp ../logique.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../valeurs.h ../capteurs.h ../mouvement.h ../matrixLED.h
+  ../valeurs.h ../capteurs.h ../mouvement.h ../matrixLED.h ../charma.h
 
 ../logique.h:
 
@@ -76,3 +76,5 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 ../mouvement.h:
 
 ../matrixLED.h:
+
+../charma.h:

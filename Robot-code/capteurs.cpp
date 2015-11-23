@@ -37,8 +37,7 @@ int lireCouleur() {
 	if (red > 250 && red < 350 && green > 125 && green < 180 && blue > 80
 			&& blue < 150) {
 		return rouge;
-	}
-	  else if (red > 60 && red < 120 && green > 145 && green < 200 && blue > 80
+	} else if (red > 60 && red < 120 && green > 145 && green < 200 && blue > 80
 			&& blue < 175) {
 		return vert;
 	} else if (red > 75 && red < 145 && green > 130 && green < 190 && blue > 200
@@ -50,11 +49,9 @@ int lireCouleur() {
 	} else if (red > 400 && red < 500 && green > 200 && green < 300
 			&& blue > 150 && blue < 275) {
 		return rose;
-	}
-	else {
+	} else {
 		return 0;
 	}
-	return 0;
 }
 
 int lireBoutonPhysiqueEssai() {

@@ -4,6 +4,58 @@
 void LETTERS::Init() {
 }
 
+char** LETTERS::creerEspace(){
+
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 0;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 0;
+
+	lettre[1][0] = 0;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 0;
+
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
+
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 0;
+
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
+
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
+
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 0;
+
+	return lettre;
+}
+
 char** LETTERS::creer1(){
 
 	char** lettre;

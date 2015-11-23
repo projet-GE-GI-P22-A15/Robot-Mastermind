@@ -27,16 +27,16 @@
 								</inputType>
 							</tool>
 							<tool id="armus.toolchain.cc.compiler.762639165" name="ARM-Linux C++ Compiler" superClass="armus.toolchain.cc.compiler">
-								<option id="armus.cc.compiler.includepaths.1291326510" superClass="armus.cc.compiler.includepaths" valueType="includePath">
+								<option id="armus.cc.compiler.includepaths.1291326510" name="Additionnal Include Paths (-I)" superClass="armus.cc.compiler.includepaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/librairie/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/c++/4.2.4/&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/lib&quot;"/>
 								</option>
-								<option id="armus.cc.compiler.armuslibs.path.853355763" superClass="armus.cc.compiler.armuslibs.path" valueType="includePath">
+								<option id="armus.cc.compiler.armuslibs.path.853355763" name="LibARMus Include Path" superClass="armus.cc.compiler.armuslibs.path" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/librairie/include&quot;"/>
 								</option>
-								<option id="armuc.cc.compiler.includes.407877216" superClass="armuc.cc.compiler.includes" valueType="includePath">
+								<option id="armuc.cc.compiler.includes.407877216" name="Standard Includes" superClass="armuc.cc.compiler.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:/Program Files (x86)/Armus/ArmusIDE/toolchain/sysroot/usr/include/c++/4.2.4/&quot;"/>
 								</option>
@@ -56,5 +56,9 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Robot-Code"/>
+		</configuration>
+	</storageModule>
 </cproject>

@@ -3,8 +3,8 @@
 char **etatJeu;
 char **lettresHaut;
 char **lettresBas;
-char* couleursLettresHaut;
-char* couleurLettresBas;
+char *couleursLettresHaut;
+char *couleursLettresBas;
 LETTERS letters;
 MATRICE *matrice;
 int alternateur = 0;
@@ -14,50 +14,55 @@ void AFFICHAGE::Init(MATRICE* matr){
 	matrice = matr;
 	letters.Init();
 
-	int hauteur = 8;
-	int largeur = 32;
-
 	etatJeu = new char*[10];
 	for(int i = 0; i < 10; ++i){
 		etatJeu[i] = new char[8];
-
-	}
-
-	lettresHaut = new char*[hauteur];
-	for(int i = 0; i < hauteur; ++i){
-		lettresHaut[i] = new char[largeur];
-		
-	}
-	for(int j = 0; j < largeur; ++j){
-			lettresHaut[7][j] = 0;
+		for(int j = 0; j < 8; ++j){
+			etatJeu[i][j] = 0;
 		}
-
-	lettresBas = new char*[hauteur];
-	for(int i = 0; i < hauteur; ++i){
-		lettresBas[i] = new char[largeur];
 	}
-	for(int j = 0; j < largeur; ++j){
-			lettresHaut[7][j] = 0;
+
+	lettresHaut = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettresHaut[i] = new char[32];
+		for(int j = 0; j < 32; ++j){
+			lettresHaut[i][j] = 0;
 		}
+	}
+	
+
+	lettresBas = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettresBas[i] = new char[32];
+		for(int j = 0; j < 32; ++j){
+			lettresBas[i][j] = 0;
+		}
+	}
 
 	couleursLettresHaut = new char[5];
-	couleursLettresBas = new char[5];	
+	couleursLettresBas = new char[5];
+	for(int i = 0; i < 5; ++i){
+		couleursLettresHaut = 0;
+		couleursLettresBas = 0;
+	}
 }
 
 void AFFICHAGE::majTableauMot(char lettres[]){
-	int hauteur = 8;
-	int largeur = 32;
 
+	//Pour chaque lettre
 	for(int i = 0; i < 5; ++i){
+		//Trouver la matrice 7x5 representant la lettre
 		char** lettre = trouverLettre(lettres[i + 2]);
+
+		//trouver les coulerus de chaque lettre selon quelle est en haut ou en bas
 		if (lettres[1] == '1'){
-			lettresHaut[7][j + (i-7) * 6] = trouverCouleur(lettres[i]);
+			couleursLettresHaut[i] = lettres[i + 7];
 		} else if (lettres[1] == '2'){
-			lettresBas[j][k + (i) * 6] = lettre[j][k];
+			couleursLettresBas[i] = lettres[i + 7];
 		}
-		
-		
-		for(int j = 0; j < hauteur - 1; ++j){
+
+		//placer les pixels allumes pour chaque lettre dans la matrice.
+		for(int j = 0; j < 7; ++j){
 			for(int k = 0; k < 5; ++k){
 				if (lettres[1] == '1'){
 					lettresHaut[j][k + (i) * 6] = lettre[j][k];
@@ -67,44 +72,36 @@ void AFFICHAGE::majTableauMot(char lettres[]){
 			}
 		}
 	}
-
-	for(int i = 7; i < 12; ++i){
-		for(int j = 0; j < 5; ++j){
-			if (lettres[1] == '1'){
-				
-			} else if (lettres[1] == '2'){
-				lettresBas[7][j + (i-7) * 6] = trouverCouleur(lettres[i]);
-			}
-		}
-	}
 }
 
-void AFFICHAGE::afficherMot(int yPosition){
+//yPosition: 1 pour haut, 2 pour bas
+void AFFICHAGE::afficherMot(char yPosition){
+	char couleurs[5];
+
 	alterner();
-	int hauteur = 8;
-	int largeur = 32;
-	char couleurs[32];
 
-	for(int i = 0; i < largeur; ++i){
+	//determine els couleurs a allumer pour ce rafraichissement
+	for(int i = 0; i < 5; ++i){
 		if (yPosition == 1){
-			couleurs[i] = transformerCouleur(lettresHaut[7][i]);
+			couleurs[i] = transformerCouleur(couleursLettresHaut[i]);
 		} else if (yPosition == 2){
-			couleurs[i] = transformerCouleur(lettresBas[7][i]);
+			couleurs[i] = transformerCouleur(couleursLettresBas[i]);
 		}
 	}
 
 
-	for(int i = 0; i < hauteur - 1; ++i){
-		for(int j = 0; j < largeur; ++j){
+	for(int i = 0; i < 7; ++i){
+		for(int j = 0; j < 30; ++j){
 			if (yPosition == 1){
-				matrice->Pset(j, i, couleurs[j] * (lettresHaut[i][j]));
+				matrice->Pset(j, i, couleurs[j / 6] * (lettresHaut[i][j]));
 			} else if (yPosition == 2){
-				matrice->Pset(j, i + hauteur, couleurs[j] * (lettresBas[i][j]));
+				matrice->Pset(j, i + 8, couleurs[j / 6] * (lettresBas[i][j]));
 			}
 		}
 	}
 }
 
+//Pour les couleurs speciales, permet d'allumer les couleurs puissantes 1 fois sur 3
 void AFFICHAGE::alterner(){
 	alternateur = (alternateur + 1) % 3;
 }
@@ -126,62 +123,7 @@ char AFFICHAGE::transformerCouleur(char couleurOriginale){
 	return couleur;
 }
 
-char AFFICHAGE::trouverCouleur(char couleur){
-	switch (couleur){
-		case 'a':
-		return INDIGO;
-		case 'b':
-		return BLEU;
-		case 'c':
-		return FORET;
-		case 'd':
-		return TURQUOISE;
-		case 'e':
-		return CIEL;
-		case 'f':
-		return VERT;
-		case 'g':
-		return CORAIL;
-		case 'h':
-		return CYAN;
-		case 'i':
-		return BOURGOGNE;
-		case 'j':
-		return POURPRE;
-		case 'k':
-		return MAUVE;
-		case 'l':
-		return VOMIT;
-		case 'm':
-		return GRIS;
-		case 'n':
-		return ACIER;
-		case 'o':
-		return FLUO;
-		case 'p':
-		return HOPITAL;
-		case 'q':
-		return POUDRE;
-		case 'r':
-		return ROUGE;
-		case 's':
-		return ROSE;
-		case 't':
-		return MAGENTA;
-		case 'u':
-		return ORANGE;
-		case 'v':
-		return CHAIR;
-		case 'w':
-		return GOMME;
-		case 'x':
-		return JAUNE;
-		case 'y':
-		return CREME;
-		case 'z':
-		return 	BLANC;
-	}
-}
+
 
 char** AFFICHAGE::trouverLettre(char lettre){
 	switch(lettre){
@@ -258,6 +200,9 @@ char** AFFICHAGE::trouverLettre(char lettre){
 		return letters.creer8();
 		case '9':
 		return letters.creer9();
+
+		case ' ':
+		return letters.creerEspace();
 	}
 	return 0;
 }
@@ -272,4 +217,61 @@ char** AFFICHAGE::getLettresHaut(){
 
 char** AFFICHAGE::getLettresBas(){
 	return lettresBas;
+}
+
+char AFFICHAGE::trouverCouleur(char couleur){
+	switch (couleur){
+		case 'a':
+		return INDIGO;
+		case 'b':
+		return BLEU;
+		case 'c':
+		return FORET;
+		case 'd':
+		return TURQUOISE;
+		case 'e':
+		return CIEL;
+		case 'f':
+		return VERT;
+		case 'g':
+		return CORAIL;
+		case 'h':
+		return CYAN;
+		case 'i':
+		return BOURGOGNE;
+		case 'j':
+		return POURPRE;
+		case 'k':
+		return MAUVE;
+		case 'l':
+		return VOMIT;
+		case 'm':
+		return GRIS;
+		case 'n':
+		return ACIER;
+		case 'o':
+		return FLUO;
+		case 'p':
+		return HOPITAL;
+		case 'q':
+		return POUDRE;
+		case 'r':
+		return ROUGE;
+		case 's':
+		return ROSE;
+		case 't':
+		return MAGENTA;
+		case 'u':
+		return ORANGE;
+		case 'v':
+		return CHAIR;
+		case 'w':
+		return GOMME;
+		case 'x':
+		return JAUNE;
+		case 'y':
+		return CREME;
+		case 'z':
+		return 	BLANC;
+	}
 }

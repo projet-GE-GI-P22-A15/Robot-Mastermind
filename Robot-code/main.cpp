@@ -61,7 +61,18 @@ int main() {
 			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
 
 			char texte1[] = "RGBYaabc";
-			char texte2[] = "BRAVOabcde";
+			char texte2[11];
+			texte2[0] = 'B';
+			texte2[1] = 'R';
+			texte2[2] = 'A';
+			texte2[3] = 'V';
+			texte2[4] = 'O';
+			texte2[5] = FORET;
+			texte2[6] = ORANGE;
+			texte2[7] = POUDRE;
+			texte2[8] = HOPITAL;
+			texte2[9] = MAUVE;
+			texte2[10] = '\0';
 
 			int i;
 			for (i = 0; i < 10; ++i) {

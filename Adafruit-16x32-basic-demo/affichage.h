@@ -8,7 +8,7 @@
 class AFFICHAGE {
 public:
 	void Init(MATRICE* matr);
-	void afficherMot(int yPosition);
+	void afficherMot(char yPosition);
 	char** getLettresBas();
 	char** getLettresHaut();
 	char** getEtatJeu();
@@ -18,7 +18,6 @@ public:
 	void alterner();
 	char transformerCouleur(char couleurOriginale);
 private:
-
 };
 
 #endif

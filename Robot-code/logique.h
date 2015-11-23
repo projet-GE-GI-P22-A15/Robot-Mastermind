@@ -35,7 +35,7 @@ BLANC: 7*/
 #define DIRECTION_gd 0
 #define DIREECTION_dg 1
 
-struct formatEnvoi{
+typedef struct formatEnvoi{
 	int couleur1;
 	int couleur2;
 	int couleur3;
@@ -44,7 +44,7 @@ struct formatEnvoi{
 	int feedBack2;
 	int feedBack3;
 	int feedBack4;
-} formatEnvoiArray[10];
+};
 
 /**
  * @brief [brief description]
@@ -148,5 +148,7 @@ void resetTableau();
 void gestionAvantDeCommencer();
 
 void storeDansStructure(int essai);
+
+void envoieStringStructure(int essai);
 
 #endif // LOGIQUE_H_
