@@ -6,7 +6,6 @@
 #include "charma.h"
 #include "affichage.h"
 
-Ticker shift;
 Ticker pt;
 
 

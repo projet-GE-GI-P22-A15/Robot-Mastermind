@@ -3,6 +3,8 @@
 char **etatJeu;
 char **lettresHaut;
 char **lettresBas;
+char* couleursLettresHaut;
+char* couleurLettresBas;
 LETTERS letters;
 MATRICE *matrice;
 int alternateur = 0;
@@ -37,34 +39,40 @@ void AFFICHAGE::Init(MATRICE* matr){
 	for(int j = 0; j < largeur; ++j){
 			lettresHaut[7][j] = 0;
 		}
+
+	couleursLettresHaut = new char[5];
+	couleursLettresBas = new char[5];	
 }
 
 void AFFICHAGE::majTableauMot(char lettres[]){
 	int hauteur = 8;
 	int largeur = 32;
 
-	for(int i = 2; i < 7; ++i){
-		char** lettre = trouverLettre(lettres[i]);
-
-		if (lettres[1] == 1){
-			for(int j = 0; j < hauteur - 1; ++j){
-				for(int k = 0; k < 5; ++k){
-					lettresHaut[j][k + (i-2) * 6] = lettre[j][k];
-				}
-			}
-		} else if (lettres[2] == 2){
-			for(int j = 0; j < hauteur - 1; ++j){
-				for(int k = 0; k < 5; ++k){
-					lettresBas[j][k + (i-2) * 6] = lettre[j][k];
+	for(int i = 0; i < 5; ++i){
+		char** lettre = trouverLettre(lettres[i + 2]);
+		if (lettres[1] == '1'){
+			lettresHaut[7][j + (i-7) * 6] = trouverCouleur(lettres[i]);
+		} else if (lettres[1] == '2'){
+			lettresBas[j][k + (i) * 6] = lettre[j][k];
+		}
+		
+		
+		for(int j = 0; j < hauteur - 1; ++j){
+			for(int k = 0; k < 5; ++k){
+				if (lettres[1] == '1'){
+					lettresHaut[j][k + (i) * 6] = lettre[j][k];
+				} else if (lettres[1] == '2'){
+					lettresBas[j][k + (i) * 6] = lettre[j][k];
 				}
 			}
 		}
 	}
+
 	for(int i = 7; i < 12; ++i){
 		for(int j = 0; j < 5; ++j){
-			if (lettres[1] == 1){
-				lettresHaut[7][j + (i-7) * 6] = trouverCouleur(lettres[i]);
-			} else if (lettres[1] == 2){
+			if (lettres[1] == '1'){
+				
+			} else if (lettres[1] == '2'){
 				lettresBas[7][j + (i-7) * 6] = trouverCouleur(lettres[i]);
 			}
 		}
