@@ -87,7 +87,6 @@ void charmaEcrire(char buf[]) {
 
 	}
 	int size = i + 1;
-	LCD_Printf("%i\n", size);
 
 	if (buf[0] == '#' && buf[size - 1] == '~') {
 		//code ecrire lettres

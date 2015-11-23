@@ -97,7 +97,8 @@ affichage.o: affichage.cpp affichage.h mbed-src/api/mbed.h \
  mbed-src/api/LowPowerTimeout.h mbed-src/api/LowPowerTicker.h \
  mbed-src/api/LowPowerTimer.h mbed-src/api/LocalFileSystem.h \
  mbed-src/api/InterruptIn.h mbed-src/hal/gpio_irq_api.h \
- mbed-src/api/wait_api.h mbed-src/hal/sleep_api.h mbed-src/api/rtc_time.h
+ mbed-src/api/wait_api.h mbed-src/hal/sleep_api.h mbed-src/api/rtc_time.h \
+ letters.h matrice.h
 
 affichage.h:
 
@@ -364,3 +365,7 @@ mbed-src/api/wait_api.h:
 mbed-src/hal/sleep_api.h:
 
 mbed-src/api/rtc_time.h:
+
+letters.h:
+
+matrice.h:

@@ -1,1777 +1,1842 @@
 #include "letters.h"
 
-MATRICE * m;
 
-void LETTERS::Init(MATRICE *mat) {
-	m = mat;
-	alternance = LOW;
-	newColor = 0;
+void LETTERS::Init() {
 }
 
-int LETTERS::getAlternance(){
-	return alternance;
-}
-void LETTERS::setAlternance(int value){
-	alternance = value;
-}
+char** LETTERS::creer1(){
 
-void LETTERS::verifParams(int * color, int * position, int * yPosition) {
-	if (*position > 5)
-		*position = 5;
-	else if (*position < 0)
-		*position = 0;
-	if (*color < 0)
-		*color = 0;
-	else if (*color > 8)
-		*color = 8;
-	if (*yPosition > 2)
-		*yPosition = 2;
-	else if (*yPosition < 0)
-		*yPosition = 1;
-}
-
-int LETTERS::verifColor(int color) {
-	newColor = 0;
-	if (alternance == LOW) {
-		//alternance = HIGH;
-	} else {
-		newColor = newColor | (color & 4);
-		newColor = newColor | (color & 2);
-		newColor = newColor | (color & 1);
-        newColor = newColor << 3;
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
 	}
-	newColor = newColor | (color & 32);
-	newColor = newColor | (color & 16);
-	newColor = newColor | (color & 8);
-	newColor = newColor >> 3;
-	return newColor;
+	lettre[0][0] = 0;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
+
+	lettre[1][0] = 0;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 1;
+	lettre[1][4] = 1;
+
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
+
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
+
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
+
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
+
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
+
+	return lettre;
 }
+char** LETTERS::creer2(){
 
-void LETTERS::ecrire1(int color, int xPosition, int yPosition) {
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	lettre[1][0] = 0;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-
+	return lettre;
 }
-void LETTERS::ecrire2(int color, int xPosition, int yPosition) {
+char** LETTERS::creer3(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 0;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire3(int color, int xPosition, int yPosition) {
+char** LETTERS::creer4(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire4(int color, int xPosition, int yPosition) {
+char** LETTERS::creer5(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire5(int color, int xPosition, int yPosition) {
+char** LETTERS::creer6(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire6(int color, int xPosition, int yPosition) {
+char** LETTERS::creer7(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 0;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire7(int color, int xPosition, int yPosition) {
+char** LETTERS::creer8(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire8(int color, int xPosition, int yPosition) {
+char** LETTERS::creer9(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire9(int color, int xPosition, int yPosition) {
+char** LETTERS::creer0(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrire0(int color, int xPosition, int yPosition) {
+char** LETTERS::creerQ(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 1;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 1;
+	lettre[5][2] = 1;
+	lettre[5][3] = 1;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireQ(int color, int xPosition, int yPosition) {
+char** LETTERS::creerW(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 1;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 1;
+	lettre[5][2] = 1;
+	lettre[5][3] = 1;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireW(int color, int xPosition, int yPosition) {
+char** LETTERS::creerE(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireE(int color, int xPosition, int yPosition) {
+char** LETTERS::creerR(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 1;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireR(int color, int xPosition, int yPosition) {
+char** LETTERS::creerT(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 1;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 1;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 0;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 1;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 1;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 1;
+	lettre[6][3] = 0;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireT(int color, int xPosition, int yPosition) {
+char** LETTERS::creerY(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 0;
+	lettre[2][1] = 1;
+	lettre[2][2] = 0;
+	lettre[2][3] = 1;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 0;
+	lettre[3][1] = 1;
+	lettre[3][2] = 0;
+	lettre[3][3] = 1;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 1;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 1;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 1;
+	lettre[6][3] = 0;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireY(int color, int xPosition, int yPosition) {
+char** LETTERS::creerU(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 0;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireU(int color, int xPosition, int yPosition) {
+char** LETTERS::creerI(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 0;
+	lettre[1][1] = 0;
+	lettre[1][2] = 1;
+	lettre[1][3] = 0;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 1;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 0;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 1;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 0;
+	lettre[5][2] = 1;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireI(int color, int xPosition, int yPosition) {
+char** LETTERS::creerO(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 0;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireO(int color, int xPosition, int yPosition) {
+char** LETTERS::creerP(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireP(int color, int xPosition, int yPosition) {
+char** LETTERS::creerA(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 0;
+	lettre[0][1] = 0;
+	lettre[0][2] = 1;
+	lettre[0][3] = 0;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 0;
+	lettre[1][1] = 1;
+	lettre[1][2] = 0;
+	lettre[1][3] = 1;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 0;
+	lettre[2][1] = 1;
+	lettre[2][2] = 0;
+	lettre[2][3] = 1;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 1;
+	lettre[4][2] = 1;
+	lettre[4][3] = 1;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireA(int color, int xPosition, int yPosition) {
+char** LETTERS::creerS(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 1;
+	lettre[1][3] = 1;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 0;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 1;
+	lettre[5][2] = 1;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireS(int color, int xPosition, int yPosition) {
+char** LETTERS::creerD(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireD(int color, int xPosition, int yPosition) {
+char** LETTERS::creerF(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireF(int color, int xPosition, int yPosition) {
+char** LETTERS::creerG(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 0;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 0;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireG(int color, int xPosition, int yPosition) {
+char** LETTERS::creerH(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireH(int color, int xPosition, int yPosition) {
+char** LETTERS::creerJ(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 0;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 0;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireJ(int color, int xPosition, int yPosition) {
+char** LETTERS::creerK(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 1;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 1;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 1;
+	lettre[4][2] = 1;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 1;
+	lettre[5][3] = 1;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireK(int color, int xPosition, int yPosition) {
+char** LETTERS::creerL(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireL(int color, int xPosition, int yPosition) {
+char** LETTERS::creerZ(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 0;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 1;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 0;
+	lettre[4][1] = 1;
+	lettre[4][2] = 1;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 1;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireZ(int color, int xPosition, int yPosition) {
+char** LETTERS::creerX(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 0;
+	lettre[2][1] = 1;
+	lettre[2][2] = 0;
+	lettre[2][3] = 1;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 0;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 0;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 0;
+	lettre[4][1] = 1;
+	lettre[4][2] = 0;
+	lettre[4][3] = 1;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireX(int color, int xPosition, int yPosition) {
+char** LETTERS::creerC(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 0;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 0;
+	lettre[3][3] = 0;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 0;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireC(int color, int xPosition, int yPosition) {
+char** LETTERS::creerV(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 0;
+	lettre[3][3] = 1;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 0;
+	lettre[4][1] = 1;
+	lettre[4][2] = 0;
+	lettre[4][3] = 1;
+	lettre[4][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 0;
+	lettre[5][1] = 1;
+	lettre[5][2] = 1;
+	lettre[5][3] = 1;
+	lettre[5][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 0;
+	lettre[6][1] = 0;
+	lettre[6][2] = 1;
+	lettre[6][3] = 0;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireV(int color, int xPosition, int yPosition) {
+char** LETTERS::creerB(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 1;
+	lettre[0][2] = 1;
+	lettre[0][3] = 1;
+	lettre[0][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 0;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 0;
+	lettre[2][2] = 0;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 1;
+	lettre[3][2] = 1;
+	lettre[3][3] = 1;
+	lettre[3][4] = 0;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 1;
+	lettre[6][2] = 1;
+	lettre[6][3] = 1;
+	lettre[6][4] = 0;
 
+	return lettre;
 }
-void LETTERS::ecrireB(int color, int xPosition, int yPosition) {
+char** LETTERS::creerN(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 1;
+	lettre[1][2] = 0;
+	lettre[1][3] = 0;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 1;
+	lettre[2][2] = 1;
+	lettre[2][3] = 0;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 1;
+	lettre[4][3] = 1;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 1;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
+	return lettre;
 }
-void LETTERS::ecrireN(int color, int xPosition, int yPosition) {
+char** LETTERS::creerM(){
 
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
+	char** lettre;
+	lettre = new char*[7];
+	for(int i = 0; i < 7; ++i){
+		lettre[i] = new char[5];
+	}
+	lettre[0][0] = 1;
+	lettre[0][1] = 0;
+	lettre[0][2] = 0;
+	lettre[0][3] = 0;
+	lettre[0][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
+	lettre[1][0] = 1;
+	lettre[1][1] = 1;
+	lettre[1][2] = 0;
+	lettre[1][3] = 1;
+	lettre[1][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
+	lettre[2][0] = 1;
+	lettre[2][1] = 1;
+	lettre[2][2] = 1;
+	lettre[2][3] = 1;
+	lettre[2][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
+	lettre[3][0] = 1;
+	lettre[3][1] = 0;
+	lettre[3][2] = 1;
+	lettre[3][3] = 0;
+	lettre[3][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
+	lettre[4][0] = 1;
+	lettre[4][1] = 0;
+	lettre[4][2] = 0;
+	lettre[4][3] = 0;
+	lettre[4][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
+	lettre[5][0] = 1;
+	lettre[5][1] = 0;
+	lettre[5][2] = 0;
+	lettre[5][3] = 0;
+	lettre[5][4] = 1;
 
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
+	lettre[6][0] = 1;
+	lettre[6][1] = 0;
+	lettre[6][2] = 0;
+	lettre[6][3] = 0;
+	lettre[6][4] = 1;
 
-}
-void LETTERS::ecrireM(int color, int xPosition, int yPosition) {
-
-	// Condition de depassement
-	color = verifColor(color);
-	verifParams(&color, &xPosition, &yPosition);
-	m->Pset(0 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 0 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 0 + (yPosition * 8), color * 1);
-
-	m->Pset(0 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 1 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 1 + (yPosition * 8), color * 1);
-
-	m->Pset(0 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(2 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-	m->Pset(4 + (xPosition * 6), 2 + (yPosition * 8), color * 1);
-
-	m->Pset(0 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-	m->Pset(3 + (xPosition * 6), 3 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 3 + (yPosition * 8), color * 1);
-
-	m->Pset(0 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 4 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 4 + (yPosition * 8), color * 1);
-
-	m->Pset(0 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 5 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 5 + (yPosition * 8), color * 1);
-
-	m->Pset(0 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-	m->Pset(1 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(2 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(3 + (xPosition * 6), 6 + (yPosition * 8), color * 0);
-	m->Pset(4 + (xPosition * 6), 6 + (yPosition * 8), color * 1);
-
+	return lettre;
 }
