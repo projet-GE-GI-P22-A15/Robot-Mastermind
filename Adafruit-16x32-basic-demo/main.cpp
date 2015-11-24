@@ -13,7 +13,7 @@ Ticker pt;
 MATRICE mat;
 COMMUNICATION comm;
 CHARMA charm;
-AFFICHAGE aff;
+AFFICHAGE aff(&mat);
 
 void refreshShift(){
     mat.ShiftRight(); 
@@ -21,25 +21,23 @@ void refreshShift(){
 
 
 void refreshAffichage(){
-    aff.afficherMot(1);
+    aff.afficherMot();
     mat.Paint();
 }
 
 int main() {
 	// Matrice: horizontal = 32 = x; vertical = 16 = y
-    mat.Init(); // Set things up
-    aff.Init(&mat);
-
+    //mat.Init(); // Set things up
+    //aff.Init(&mat);
     charm.Init();
 
-    pt.attach(&refreshAffichage, 0.005);
+    pt.attach(&refreshAffichage, 0.0075);
 
     while(1) { 
-        if (charm.lireCharma() == 0){
-            charm.talkToPC();
-            aff.majTableauMot(charm.getBuf());
+        charm.lireCharma();
+        aff.majTableauMot(charm.getBuf());
             
-        }
+        
     }  
 }
 

@@ -9,8 +9,7 @@ LETTERS letters;
 MATRICE *matrice;
 int alternateur = 0;
 
-
-void AFFICHAGE::Init(MATRICE* matr){
+AFFICHAGE::AFFICHAGE(MATRICE *matr){
 	matrice = matr;
 	letters.Init();
 
@@ -42,32 +41,36 @@ void AFFICHAGE::Init(MATRICE* matr){
 	couleursLettresHaut = new char[5];
 	couleursLettresBas = new char[5];
 	for(int i = 0; i < 5; ++i){
-		couleursLettresHaut = 0;
-		couleursLettresBas = 0;
+		couleursLettresHaut[i] = 0;
+		couleursLettresBas[i] = 0;
 	}
 }
 
-void AFFICHAGE::majTableauMot(char lettres[]){
+void AFFICHAGE::Init(MATRICE* matr){
+	
+}
+
+void AFFICHAGE::majTableauMot(char *lettres){
 
 	//Pour chaque lettre
 	for(int i = 0; i < 5; ++i){
 		//Trouver la matrice 7x5 representant la lettre
 		char** lettre = trouverLettre(lettres[i + 2]);
 
-		//trouver les coulerus de chaque lettre selon quelle est en haut ou en bas
+		//trouver les couleurs de chaque lettre selon quelle est en haut ou en bas
 		if (lettres[1] == '1'){
 			couleursLettresHaut[i] = lettres[i + 7];
 		} else if (lettres[1] == '2'){
 			couleursLettresBas[i] = lettres[i + 7];
 		}
-
+		
 		//placer les pixels allumes pour chaque lettre dans la matrice.
 		for(int j = 0; j < 7; ++j){
 			for(int k = 0; k < 5; ++k){
 				if (lettres[1] == '1'){
-					lettresHaut[j][k + (i) * 6] = lettre[j][k];
+					lettresHaut[j][k + i * 6] = lettre[j][k];
 				} else if (lettres[1] == '2'){
-					lettresBas[j][k + (i) * 6] = lettre[j][k];
+					lettresBas[j][k + i * 6] = lettre[j][k];
 				}
 			}
 		}
@@ -75,35 +78,34 @@ void AFFICHAGE::majTableauMot(char lettres[]){
 }
 
 //yPosition: 1 pour haut, 2 pour bas
-void AFFICHAGE::afficherMot(char yPosition){
+void AFFICHAGE::afficherMot(){
 	char couleurs[5];
 
 	alterner();
 
 	//determine els couleurs a allumer pour ce rafraichissement
 	for(int i = 0; i < 5; ++i){
-		if (yPosition == 1){
+		
 			couleurs[i] = transformerCouleur(couleursLettresHaut[i]);
-		} else if (yPosition == 2){
+		
 			couleurs[i] = transformerCouleur(couleursLettresBas[i]);
-		}
+		
 	}
-
 
 	for(int i = 0; i < 7; ++i){
 		for(int j = 0; j < 30; ++j){
-			if (yPosition == 1){
+			
 				matrice->Pset(j, i, couleurs[j / 6] * (lettresHaut[i][j]));
-			} else if (yPosition == 2){
+			
 				matrice->Pset(j, i + 8, couleurs[j / 6] * (lettresBas[i][j]));
-			}
+			
 		}
 	}
 }
 
 //Pour les couleurs speciales, permet d'allumer les couleurs puissantes 1 fois sur 3
 void AFFICHAGE::alterner(){
-	alternateur = (alternateur + 1) % 3;
+	alternateur = (alternateur + 1) % 2;
 }
 
 
@@ -200,7 +202,6 @@ char** AFFICHAGE::trouverLettre(char lettre){
 		return letters.creer8();
 		case '9':
 		return letters.creer9();
-
 		case ' ':
 		return letters.creerEspace();
 	}
@@ -274,4 +275,5 @@ char AFFICHAGE::trouverCouleur(char couleur){
 		case 'z':
 		return 	BLANC;
 	}
+	return NOIR;
 }

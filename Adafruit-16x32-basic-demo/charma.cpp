@@ -2,16 +2,13 @@
 
 char buf[64];
 int i = 0;
-Serial pc(USBTX,USBRX);
 DigitalIn sepI(PA_3);
 DigitalIn sigI(PA_0);
 
 void CHARMA::Init(){
-	pc.baud(115200);
 }
 
 int CHARMA::lireCharma() {
-	pc.putc('$');
 	int i = 0, j = 0, fin = 0;
 	for(i = 0; i < 64; ++i){
 		buf[i] = '\0';
@@ -57,11 +54,10 @@ char* CHARMA::getBuf() {
 	return buf;
 }
 
-void CHARMA::talkToPC(){
-	int i = 0;
-	for(i = 0; i < 64 && buf[i] != '~'; ++i){
+/*void CHARMA::talkToPC(){
+	for(int i = 0; i < 64 && buf[i] != '~'; ++i){
 		pc.putc(buf[i]);
 		wait_ms(1);
 	}
 	pc.putc('\n');
-}
+}*/

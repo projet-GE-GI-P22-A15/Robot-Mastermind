@@ -16,14 +16,18 @@ DigitalOut B2(D5);      //  BLUE  Serial in for lower half
 unsigned char gm[32][6]; // Graphic memory
 unsigned long CT; //        Counter for demo code
 
-void MATRICE::Init()
-{
+
+MATRICE::MATRICE(){
     // Set up things to a known state
     CLK = LOW;
     LAT = LOW;
     OE = HIGH; //display off
     ABC = 0;
     CT=0;
+}
+void MATRICE::Init()
+{
+    
 }
 
 void MATRICE::ShiftRight()

@@ -16,7 +16,7 @@ public:
 	int lireCharma();
 	int trouverType();
 	char* getBuf();
-	void talkToPC();
+	//void talkToPC();
 private:
 	
 };

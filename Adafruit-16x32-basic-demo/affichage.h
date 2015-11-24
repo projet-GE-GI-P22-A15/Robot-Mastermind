@@ -7,8 +7,10 @@
 
 class AFFICHAGE {
 public:
+	AFFICHAGE(MATRICE *matr);
+
 	void Init(MATRICE* matr);
-	void afficherMot(char yPosition);
+	void afficherMot();
 	char** getLettresBas();
 	char** getLettresHaut();
 	char** getEtatJeu();
