@@ -7,8 +7,6 @@
 #include <libarmus.h>
 #include "charma.h"
 
-
-
 void transmettreEssai(int numero, char essai[9]) {
 	if (numero < 1 || numero > 10) {
 		LCD_Printf("Valeur d'essai invalide\n");
@@ -57,7 +55,6 @@ void transmettreMot(int yPosition, char mot[11]) {
 void charmaEcrire(char buf[]) {
 	int i;
 	for (i = 0; buf[i] != '~' && i < 63; ++i) {
-
 	}
 	int size = i + 1;
 

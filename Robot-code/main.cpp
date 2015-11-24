@@ -67,18 +67,18 @@ int main() {
 			texte2[2] = 'A';
 			texte2[3] = 'V';
 			texte2[4] = 'O';
-			texte2[5] = FORET;
+			texte2[5] = BLEU;
 			texte2[6] = ORANGE;
-			texte2[7] = POUDRE;
-			texte2[8] = HOPITAL;
+			texte2[7] = CIEL;
+			texte2[8] = POURPRE;
 			texte2[9] = MAUVE;
 			texte2[10] = '\0';
 
-			int i;
-			for (i = 0; i < 10; ++i) {
-				//transmettreEssai(1, texte1);
-				transmettreMot(1, texte2);
-			}
+			//charmaEcrire("#1BRAVOabcdd~");
+			//transmettreEssai(1, texte1);
+			transmettreMot(1, texte2);
+			transmettreMot(2, texte2);
+
 		}
 	}
 
