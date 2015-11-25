@@ -21,21 +21,16 @@ void refreshShift(){
 
 
 void refreshAffichage(){
-    aff.afficherMot();
+    aff.rafraichirMatrice();
     mat.Paint();
 }
 
 int main() {
-	// Matrice: horizontal = 32 = x; vertical = 16 = y
-    //mat.Init(); // Set things up
-    //aff.Init(&mat);
-    charm.Init();
-
     pt.attach(&refreshAffichage, 0.0075);
 
     while(1) { 
         charm.lireCharma();
-        aff.majTableauMot(charm.getBuf());
+        aff.majMatrice(charm.getBuf());
             
         
     }  

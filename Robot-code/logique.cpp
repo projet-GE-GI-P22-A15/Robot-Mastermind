@@ -106,7 +106,7 @@ int randomGeneratedNumbers() {
 }
 /******************************************************************/
 void jeuxLedCouleurContreHumain() {
-	srand(time(NULL));
+
 	tableau_de_robot[0] = randomGeneratedNumbers();
 	tableau_de_robot[1] = randomGeneratedNumbers();
 	tableau_de_robot[2] = randomGeneratedNumbers();

@@ -5,9 +5,9 @@ int i = 0;
 DigitalIn sepI(PA_3);
 DigitalIn sigI(PA_0);
 
-void CHARMA::Init(){
+CHARMA::CHARMA(){
+	
 }
-
 int CHARMA::lireCharma() {
 	int i = 0, j = 0, fin = 0;
 	for(i = 0; i < 64; ++i){

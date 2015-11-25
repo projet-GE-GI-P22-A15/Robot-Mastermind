@@ -52,6 +52,7 @@ int main() {
 	//Init les sorties du CHARMA. IMPORTANT.
 	DIGITALIO_Write(sepO, 0);
 	DIGITALIO_Write(sigO, 0);
+	InitCouleurs();
 	//Fin Init
 	int depart = 0;
 	while (depart == 0) {
@@ -60,24 +61,40 @@ int main() {
 			LCD_Printf("Bumper ON == Main ON\n");
 			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
 
-			char texte1[] = "RGBYaabc";
-			char texte2[11];
-			texte2[0] = 'B';
-			texte2[1] = 'R';
-			texte2[2] = 'A';
-			texte2[3] = 'V';
-			texte2[4] = 'O';
-			texte2[5] = BLEU;
-			texte2[6] = ORANGE;
-			texte2[7] = CIEL;
-			texte2[8] = POURPRE;
-			texte2[9] = MAUVE;
-			texte2[10] = '\0';
+			char texte1[6];
+			texte1[0] = 'G';
+			texte1[1] = 'E';
+			texte1[2] = 'N';
+			texte1[3] = 'I';
+			texte1[4] = 'E';
+
+			char texte2[6];
+			texte2[0] = 'N';
+			texte2[1] = 'a';
+			texte2[2] = 't';
+			texte2[3] = 'u';
+			texte2[4] = 's';
 
 			//charmaEcrire("#1BRAVOabcdd~");
-			//transmettreEssai(1, texte1);
-			transmettreMot(1, texte2);
+
+			transmettreMot(1, texte1);
 			transmettreMot(2, texte2);
+
+			char texte3[8];
+			texte3[0] = eJAUNE;
+			texte3[1] = eROUGE;
+			texte3[2] = eVERT;
+			texte3[3] = eBLEU;
+			texte3[4] = eVERT;
+			texte3[5] = eVERT;
+			texte3[6] = eJAUNE;
+			texte3[7] = eROUGE;
+
+			transmettreEssai(1, texte3);
+
+			afficherJeu();
+			THREAD_MSleep(2000);
+			afficherMot();
 
 		}
 	}

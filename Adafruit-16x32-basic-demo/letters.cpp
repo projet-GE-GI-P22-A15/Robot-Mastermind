@@ -1134,7 +1134,7 @@ char** LETTERS::creerS(){
 	for(int i = 0; i < 7; ++i){
 		lettre[i] = new char[5];
 	}
-	lettre[0][0] = 1;
+	lettre[0][0] = 0;
 	lettre[0][1] = 1;
 	lettre[0][2] = 0;
 	lettre[0][3] = 0;
@@ -1152,11 +1152,11 @@ char** LETTERS::creerS(){
 	lettre[2][3] = 0;
 	lettre[2][4] = 0;
 
-	lettre[3][0] = 1;
+	lettre[3][0] = 0;
 	lettre[3][1] = 1;
 	lettre[3][2] = 1;
 	lettre[3][3] = 1;
-	lettre[3][4] = 1;
+	lettre[3][4] = 0;
 
 	lettre[4][0] = 0;
 	lettre[4][1] = 0;

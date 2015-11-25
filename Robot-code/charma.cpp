@@ -6,6 +6,43 @@
  */
 #include <libarmus.h>
 #include "charma.h"
+#include <time.h>
+
+char* couleurs;
+
+void InitCouleurs() {
+	srand(time(NULL));
+	couleurs = new char[25];
+	couleurs[0] = INDIGO;
+	couleurs[1] = BLEU;
+	couleurs[2] = FORET;
+	couleurs[3] = TURQUOISE;
+	couleurs[4] = CIEL;
+	couleurs[5] = VERT;
+	couleurs[6] = CORAIL;
+	couleurs[7] = CYAN;
+	couleurs[8] = BOURGOGNE;
+	couleurs[9] = POURPRE;
+	couleurs[10] = MAUVE;
+	couleurs[11] = VOMIT;
+	couleurs[12] = GRIS;
+	couleurs[13] = ACIER;
+	couleurs[14] = FLUO;
+	couleurs[15] = HOPITAL;
+	couleurs[16] = POUDRE;
+	couleurs[17] = ROUGE;
+	couleurs[18] = ROSE;
+	couleurs[19] = MAGENTA;
+	couleurs[20] = ORANGE;
+	couleurs[21] = CHAIR;
+	couleurs[22] = GOMME;
+	couleurs[23] = JAUNE;
+	couleurs[24] = CREME;
+}
+
+char randomCouleur() {
+	return couleurs[rand() % 25];
+}
 
 void transmettreEssai(int numero, char essai[9]) {
 	if (numero < 1 || numero > 10) {
@@ -14,7 +51,7 @@ void transmettreEssai(int numero, char essai[9]) {
 		char message[13];
 		message[0] = '#';
 		message[1] = '3';
-		message[2] = numero + 48;
+		message[2] = numero;
 		message[3] = essai[0];
 		message[4] = essai[1];
 		message[5] = essai[2];
@@ -29,7 +66,14 @@ void transmettreEssai(int numero, char essai[9]) {
 	}
 }
 
-void transmettreMot(int yPosition, char mot[11]) {
+void afficherMot() {
+	charmaEcrire("#4~");
+}
+void afficherJeu() {
+	charmaEcrire("#5~");
+}
+
+void transmettreMot(int yPosition, char mot[6]) {
 	if (yPosition < 1 || yPosition > 2) {
 		LCD_Printf("Position Y invalide\n");
 	} else {
@@ -41,11 +85,11 @@ void transmettreMot(int yPosition, char mot[11]) {
 		message[4] = mot[2];
 		message[5] = mot[3];
 		message[6] = mot[4];
-		message[7] = mot[5];
-		message[8] = mot[6];
-		message[9] = mot[7];
-		message[10] = mot[8];
-		message[11] = mot[9];
+		message[7] = randomCouleur();
+		message[8] = randomCouleur();
+		message[9] = randomCouleur();
+		message[10] = randomCouleur();
+		message[11] = randomCouleur();
 		message[12] = '~';
 		message[13] = '\0';
 		charmaEcrire(message);

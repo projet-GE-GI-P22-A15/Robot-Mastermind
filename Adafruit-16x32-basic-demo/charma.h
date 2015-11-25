@@ -12,6 +12,7 @@
 
 class CHARMA {
 public:
+	CHARMA();
 	void Init();
 	int lireCharma();
 	int trouverType();

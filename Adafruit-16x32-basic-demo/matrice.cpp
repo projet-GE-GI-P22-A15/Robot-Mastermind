@@ -25,10 +25,6 @@ MATRICE::MATRICE(){
     ABC = 0;
     CT=0;
 }
-void MATRICE::Init()
-{
-    
-}
 
 void MATRICE::ShiftRight()
 {

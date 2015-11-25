@@ -8,17 +8,20 @@
 class AFFICHAGE {
 public:
 	AFFICHAGE(MATRICE *matr);
-
-	void Init(MATRICE* matr);
-	void afficherMot();
+	void rafraichirJeu();
+	void majMatrice(char* lettres);
+	void majJeu(char* lettres);
+	void majLettresHaut(char* lettres);
+	void majLettresBas(char* lettres);
+	void rafraichirMatrice();
 	char** getLettresBas();
 	char** getLettresHaut();
 	char** getEtatJeu();
-	void majTableauMot(char lettres[]);
 	char** trouverLettre(char lettre);
-	char trouverCouleur(char couleur);
+	
 	void alterner();
 	char transformerCouleur(char couleurOriginale);
+	//char trouverCouleur(char couleur);
 private:
 };
 

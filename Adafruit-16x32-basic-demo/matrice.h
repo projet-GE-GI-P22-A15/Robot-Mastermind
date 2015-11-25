@@ -38,7 +38,6 @@ class MATRICE {
 
 public:
 	MATRICE();
-	void Init();
 	void ShiftRight();
 	void Pset(unsigned char x,unsigned char y, unsigned char c);
 	void Paint();
