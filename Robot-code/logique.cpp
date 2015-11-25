@@ -16,6 +16,7 @@ formatEnvoi formatEnvoiArray[10];
 char formatEssai[9];
 /********************************************************************************/
 int mainCRJ() {
+	/*
 	gestionAvantDeCommencer();
 
 	int essai, pastille = 0;
@@ -83,7 +84,9 @@ int mainCRJ() {
 		defaite();
 
 	THREAD_MSleep(50);	// Sleep for 50ms
+	*/
 	return 0;
+
 }
 /******************************************************************/
 
@@ -101,12 +104,12 @@ int mainCapteur() {
 }
 /******************************************************************/
 int randomGeneratedNumbers() {
-	int choixCouleur = rand() % 8;
+	int choixCouleur = (rand() % 6) + 1;
 	return choixCouleur;
 }
 /******************************************************************/
 void jeuxLedCouleurContreHumain() {
-
+	srand (time(NULL));
 	tableau_de_robot[0] = randomGeneratedNumbers();
 	tableau_de_robot[1] = randomGeneratedNumbers();
 	tableau_de_robot[2] = randomGeneratedNumbers();
@@ -120,9 +123,9 @@ int verifNbrCouleurOK(int ligne) {
 				|| tableau_de_joueur[i][ligne] == tableau_de_robot[1]
 				|| tableau_de_joueur[i][ligne] == tableau_de_robot[2]
 				|| tableau_de_joueur[i][ligne] == tableau_de_robot[3])
-			tableau_a_verifier[i][ligne] = jaune;
+			tableau_a_verifier[i][ligne] = eJAUNE;
 		else
-			tableau_a_verifier[i][ligne] = fermer;
+			tableau_a_verifier[i][ligne] = eNOIR;
 	}
 	return 0;
 }
@@ -130,9 +133,9 @@ int verifNbrCouleurOK(int ligne) {
 int verifNbrCouleurABonnePlace(int ligne) {
 	int i = 0;
 	for (i = 0; i < nbPastilles; i++) {
-		if (tableau_a_verifier[i][ligne] == jaune) {
+		if (tableau_a_verifier[i][ligne] == eJAUNE) {
 			if (tableau_de_joueur[i][ligne] == tableau_de_robot[i])
-				tableau_a_verifier[i][ligne] = vert;
+				tableau_a_verifier[i][ligne] = eVERT;
 		}
 	}
 	return 0;
@@ -212,10 +215,10 @@ void resetTableau() {
 	int i, j;
 	for (i = 0; i < 4; i++) {
 		for (j = 0; j < 10; j++) {
-			tableau_de_joueur[i][j] = 8;
-			tableau_a_verifier[i][j] = 8;
+			tableau_de_joueur[i][j] = eNOIR;
+			tableau_a_verifier[i][j] = eNOIR;
 		}
-		tableau_de_robot[i] = 8;
+		tableau_de_robot[i] = eNOIR;
 	}
 }
 /******************************************************************/

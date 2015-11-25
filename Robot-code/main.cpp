@@ -60,7 +60,7 @@ int main() {
 		if (depart != 0) {
 			LCD_Printf("Bumper ON == Main ON\n");
 			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
-
+			/*
 			char texte1[6];
 			texte1[0] = 'G';
 			texte1[1] = 'E';
@@ -95,6 +95,26 @@ int main() {
 			afficherJeu();
 			THREAD_MSleep(2000);
 			afficherMot();
+			*/
+
+			int i, couleur;
+			for (i = 0; i < 20; i++)
+			{
+				couleur = lireCouleur();
+				if (couleur == eROUGE)
+					LCD_Printf("rouge\n");
+				else if (couleur == eVERT)
+					LCD_Printf("vert\n");
+				else if (couleur == eJAUNE)
+					LCD_Printf("jaune\n");
+				else if (couleur == eBLEU)
+					LCD_Printf("bleu\n");
+				else if (couleur == eROSE)
+					LCD_Printf("rose\n");
+				else
+					LCD_Printf("Aucune couleur détectée\n");
+				THREAD_MSleep(1000);
+			}
 
 		}
 	}

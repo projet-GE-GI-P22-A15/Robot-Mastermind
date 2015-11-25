@@ -3,6 +3,7 @@
 #include "valeurs.h"
 #include "mouvement.h"
 #include "logique.h"
+#include "charma.h"
 
 int lireCapteurLigne() {
 	ligneGauche = DIGITALIO_Read(11);
@@ -36,19 +37,19 @@ int lireCouleur() {
 
 	if (red > 250 && red < 350 && green > 125 && green < 180 && blue > 80
 			&& blue < 150) {
-		return rouge;
+		return eROUGE;
 	} else if (red > 60 && red < 120 && green > 145 && green < 200 && blue > 80
 			&& blue < 175) {
-		return vert;
+		return eVERT;
 	} else if (red > 75 && red < 145 && green > 130 && green < 190 && blue > 200
 			&& blue < 375) {
-		return bleu;
+		return eBLEU;
 	} else if (red > 450 && red < 600 && green > 500 && green < 625
 			&& blue > 200 && blue < 275) {
-		return jaune;
+		return eJAUNE;
 	} else if (red > 400 && red < 500 && green > 200 && green < 300
 			&& blue > 150 && blue < 275) {
-		return rose;
+		return eROSE;
 	} else {
 		return 0;
 	}

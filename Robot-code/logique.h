@@ -12,25 +12,8 @@
 #define LOGIQUE_H_
 
 //FONCTIONS POUR LA LOGIQUE DU ROBOT
-#define bleu 0
-#define vert 1
-#define rouge 2
-#define jaune 3
-#define mauve 4
-#define orange 5
-#define cyan 6
-#define rose 7
-#define fermer 8
-#define blanc 9
 
-/*NOIR: 0
-BLEU: 1
-VERT: 2
-CYAN: 3
-ROUGE: 4
-MAUVE: 5
-JAUNE: 6
-BLANC: 7*/
+
 
 #define DIRECTION_gd 0
 #define DIREECTION_dg 1
