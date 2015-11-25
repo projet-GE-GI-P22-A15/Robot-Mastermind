@@ -132,7 +132,7 @@ void AFFICHAGE::rafraichirMatrice(){
 		for(int j = 0; j < 30; ++j){
 			matrice->Pset(j, i, couleurs1[j / 6] * (lettresHaut[i][j]));
 			if (state == 0){
-				matrice->Pset(j, i + 8, couleurs2[j / 6] * (lettresBas[i][j]));
+				matrice->Pset(j, i + 9, couleurs2[j / 6] * (lettresBas[i][j]));
 			}
 		}
 	}
