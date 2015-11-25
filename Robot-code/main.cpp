@@ -16,6 +16,7 @@
 #include "valeurs.h"
 #include "logique.h"
 #include "charma.h"
+#include "mouvement.h"
 
 void threadCapteur();
 void threadCRJ();
@@ -53,72 +54,69 @@ int main() {
 	DIGITALIO_Write(sepO, 0);
 	DIGITALIO_Write(sigO, 0);
 	InitCouleurs();
+	transmettreMot(1, "PRET ");
+
+	THREAD thread = THREAD_CreateSimple(mainCapteur);
 	//Fin Init
-	int depart = 0;
-	while (depart == 0) {
-		depart = DIGITALIO_Read(BMP_REAR);
-		if (depart != 0) {
-			LCD_Printf("Bumper ON == Main ON\n");
-			//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
-			/*
-			char texte1[6];
-			texte1[0] = 'G';
-			texte1[1] = 'E';
-			texte1[2] = 'N';
-			texte1[3] = 'I';
-			texte1[4] = 'E';
 
-			char texte2[6];
-			texte2[0] = 'N';
-			texte2[1] = 'a';
-			texte2[2] = 't';
-			texte2[3] = 'u';
-			texte2[4] = 's';
+	//Create thread here for Robot and Capteur ET CEST LA SEULE CHOSE QUIL FAIT!
+	/*
+	 char texte1[6];
+	 texte1[0] = 'G';
+	 texte1[1] = 'E';
+	 texte1[2] = 'N';
+	 texte1[3] = 'I';
+	 texte1[4] = 'E';
 
-			//charmaEcrire("#1BRAVOabcdd~");
+	 char texte2[6];
+	 texte2[0] = 'N';
+	 texte2[1] = 'a';
+	 texte2[2] = 't';
+	 texte2[3] = 'u';
+	 texte2[4] = 's';
 
-			transmettreMot(1, texte1);
-			transmettreMot(2, texte2);
+	 //charmaEcrire("#1BRAVOabcdd~");
 
-			char texte3[8];
-			texte3[0] = eJAUNE;
-			texte3[1] = eROUGE;
-			texte3[2] = eVERT;
-			texte3[3] = eBLEU;
-			texte3[4] = eVERT;
-			texte3[5] = eVERT;
-			texte3[6] = eJAUNE;
-			texte3[7] = eROUGE;
+	 transmettreMot(1, texte1);
+	 transmettreMot(2, texte2);
 
-			transmettreEssai(1, texte3);
+	 char texte3[8];
+	 texte3[0] = eJAUNE;
+	 texte3[1] = eROUGE;
+	 texte3[2] = eVERT;
+	 texte3[3] = eBLEU;
+	 texte3[4] = eVERT;
+	 texte3[5] = eVERT;
+	 texte3[6] = eJAUNE;
+	 texte3[7] = eROUGE;
 
-			afficherJeu();
-			THREAD_MSleep(2000);
-			afficherMot();
-			*/
+	 transmettreEssai(1, texte3);
 
-			int i, couleur;
-			for (i = 0; i < 20; i++)
-			{
-				couleur = lireCouleur();
-				if (couleur == eROUGE)
-					LCD_Printf("rouge\n");
-				else if (couleur == eVERT)
-					LCD_Printf("vert\n");
-				else if (couleur == eJAUNE)
-					LCD_Printf("jaune\n");
-				else if (couleur == eBLEU)
-					LCD_Printf("bleu\n");
-				else if (couleur == eROSE)
-					LCD_Printf("rose\n");
-				else
-					LCD_Printf("Aucune couleur détectée\n");
-				THREAD_MSleep(1000);
-			}
+	 afficherJeu();
+	 THREAD_MSleep(2000);
+	 afficherMot();
+	 */
 
-		}
+	/*int i, couleur;
+	 for (i = 0; i < 20; i++) {
+	 couleur = lireCouleur();
+	 if (couleur == eROUGE)
+	 LCD_Printf("rouge\n");
+	 else if (couleur == eVERT)
+	 LCD_Printf("vert\n");
+	 else if (couleur == eJAUNE)
+	 LCD_Printf("jaune\n");
+	 else if (couleur == eBLEU)
+	 LCD_Printf("bleu\n");
+	 else if (couleur == eROSE)
+	 LCD_Printf("rose\n");
+	 else
+	 LCD_Printf("Aucune couleur détectée\n");
+	 THREAD_MSleep(1000);
+	 }*/
+	while (1) {
+		suivreLigne();
 	}
-
 	return 0;
 }
 

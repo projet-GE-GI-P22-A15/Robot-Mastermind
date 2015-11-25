@@ -21,7 +21,7 @@ main.d main.o: ../main.cpp \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../valeurs.h ../logique.h ../charma.h
+  ../valeurs.h ../logique.h ../charma.h ../mouvement.h
 
 D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/libarmus.h:
 
@@ -72,3 +72,5 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 ../logique.h:
 
 ../charma.h:
+
+../mouvement.h:

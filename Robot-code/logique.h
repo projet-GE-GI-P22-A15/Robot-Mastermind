@@ -13,12 +13,10 @@
 
 //FONCTIONS POUR LA LOGIQUE DU ROBOT
 
-
-
 #define DIRECTION_gd 0
 #define DIREECTION_dg 1
 
-typedef struct formatEnvoi{
+typedef struct formatEnvoi {
 	int couleur1;
 	int couleur2;
 	int couleur3;
@@ -97,8 +95,6 @@ void jeuxLedCouleurContreHumain(int ledsJeux[4]);
  */
 int randomGeneratedNumbers();
 
-
-
 /**
  * @brief [brief description]
  * @details [long description]
@@ -109,16 +105,15 @@ int mainCRJ();
 /**
  * @brief [brief description]
  * @details [long description]
- * @return [description]
- */
-int mainCapteur();
+ * @return [description]*/
+void mainCapteur();
 
 /**
  * @brief [brief description]
  * @details [long description]
  * @return [description]
  */
-void stockerCouleur(int couleurCapter,int esssai,int numPastille);
+void stockerCouleur(int couleurCapter, int esssai, int numPastille);
 
 /**
  * @details [long description]

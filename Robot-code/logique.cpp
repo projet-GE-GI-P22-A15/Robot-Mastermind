@@ -17,74 +17,74 @@ char formatEssai[9];
 /********************************************************************************/
 int mainCRJ() {
 	/*
-	gestionAvantDeCommencer();
+	 gestionAvantDeCommencer();
 
-	int essai, pastille = 0;
-	int direction = 1;
-	int gagner = 0;
-	while (essai != 10 || gagner != 1) {
-		while (capt_boutonEssai == 1) {
-			suivreLigne();
-			if (direction == 1) {
-				while (pastille != nbPastilles) {
-					int couleurCaptee = lireCouleur();
-					if (couleurCaptee != blanc) {
-						stockerCouleur(couleurCaptee, essai, pastille);
-						pastille++;
-						do {
-							int couleur = lireCouleur();
-							THREAD_MSleep(200);
-						} while (couleur != blanc);
-					}
-				}
-				direction *= (-1);
-				MOTOR_SetSpeed(MOTOR_LEFT, 0);
-				MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-				tourner(180, DROITE);
-			} else {
-				pastille = (nbPastilles - 1);
-				while (pastille != (-1)) {
-					int couleurCaptee = lireCouleur();
-					if (couleurCaptee != blanc) {
-						stockerCouleur(couleurCaptee, essai, pastille);
-						pastille--;
-						do {
-							int couleur = lireCouleur();
-							THREAD_MSleep(200);
-						} while (couleur != blanc);
-					}
-				}
-				direction *= (-1);
-				MOTOR_SetSpeed(MOTOR_LEFT, 0);
-				MOTOR_SetSpeed(MOTOR_RIGHT, 0);
-			}
-			THREAD_MSleep(200);
-			verifNbrCouleurOK(essai);
-			verifNbrCouleurABonnePlace(essai);
-			storeDansStructure(essai);
-			envoieStringStructure(essai);
-			debugAffichage(direction, essai);
-			//Ajouter : Fonction d'affichage sur la matrice de LED
-			int i = 0;
-			int j = 0;
-			for (i = 0; i < nbPastilles; i++) {
-				if (tableau_a_verifier[i][essai] == vert)
-					j++;
-			}
-			if (j == nbPastilles)
-				gagner = 1;
-			essai++;
-		}
-		THREAD_MSleep(200);
-	}
+	 int essai, pastille = 0;
+	 int direction = 1;
+	 int gagner = 0;
+	 while (essai != 10 || gagner != 1) {
+	 while (capt_boutonEssai == 1) {
+	 suivreLigne();
+	 if (direction == 1) {
+	 while (pastille != nbPastilles) {
+	 int couleurCaptee = lireCouleur();
+	 if (couleurCaptee != blanc) {
+	 stockerCouleur(couleurCaptee, essai, pastille);
+	 pastille++;
+	 do {
+	 int couleur = lireCouleur();
+	 THREAD_MSleep(200);
+	 } while (couleur != blanc);
+	 }
+	 }
+	 direction *= (-1);
+	 MOTOR_SetSpeed(MOTOR_LEFT, 0);
+	 MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+	 tourner(180, DROITE);
+	 } else {
+	 pastille = (nbPastilles - 1);
+	 while (pastille != (-1)) {
+	 int couleurCaptee = lireCouleur();
+	 if (couleurCaptee != blanc) {
+	 stockerCouleur(couleurCaptee, essai, pastille);
+	 pastille--;
+	 do {
+	 int couleur = lireCouleur();
+	 THREAD_MSleep(200);
+	 } while (couleur != blanc);
+	 }
+	 }
+	 direction *= (-1);
+	 MOTOR_SetSpeed(MOTOR_LEFT, 0);
+	 MOTOR_SetSpeed(MOTOR_RIGHT, 0);
+	 }
+	 THREAD_MSleep(200);
+	 verifNbrCouleurOK(essai);
+	 verifNbrCouleurABonnePlace(essai);
+	 storeDansStructure(essai);
+	 envoieStringStructure(essai);
+	 debugAffichage(direction, essai);
+	 //Ajouter : Fonction d'affichage sur la matrice de LED
+	 int i = 0;
+	 int j = 0;
+	 for (i = 0; i < nbPastilles; i++) {
+	 if (tableau_a_verifier[i][essai] == vert)
+	 j++;
+	 }
+	 if (j == nbPastilles)
+	 gagner = 1;
+	 essai++;
+	 }
+	 THREAD_MSleep(200);
+	 }
 
-	if (gagner == 1)
-		victoire();
-	else
-		defaite();
+	 if (gagner == 1)
+	 victoire();
+	 else
+	 defaite();
 
-	THREAD_MSleep(50);	// Sleep for 50ms
-	*/
+	 THREAD_MSleep(50);	// Sleep for 50ms
+	 */
 	return 0;
 
 }
@@ -94,13 +94,14 @@ void stockerCouleur(int couleurCapter, int essai, int numPastille) {
 	tableau_de_joueur[numPastille][essai] = couleurCapter;
 }
 /******************************************************************/
-int mainCapteur() {
-	capt_ligne = lireCapteurLigne();
-	capt_bumper = lireBumpers();
-	capt_couleur = lireCouleur();
-	capt_boutonEssai = lireBoutonPhysiqueEssai();
-	THREAD_MSleep(10);
-	return 0;
+void mainCapteur() {
+	while (1) {
+		capt_ligne = lireCapteurLigne();
+		capt_bumper = lireBumpers();
+		capt_couleur = lireCouleur();
+		capt_boutonEssai = lireBoutonPhysiqueEssai();
+		THREAD_MSleep(20);
+	}
 }
 /******************************************************************/
 int randomGeneratedNumbers() {
@@ -109,7 +110,7 @@ int randomGeneratedNumbers() {
 }
 /******************************************************************/
 void jeuxLedCouleurContreHumain() {
-	srand (time(NULL));
+	srand(time(NULL));
 	tableau_de_robot[0] = randomGeneratedNumbers();
 	tableau_de_robot[1] = randomGeneratedNumbers();
 	tableau_de_robot[2] = randomGeneratedNumbers();

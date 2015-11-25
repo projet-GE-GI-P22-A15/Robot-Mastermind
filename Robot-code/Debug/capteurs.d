@@ -21,7 +21,7 @@ capteurs.d capteurs.o: ../capteurs.cpp ../capteurs.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/system_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/thread_api.h \
   D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h \
-  ../valeurs.h ../mouvement.h ../logique.h
+  ../valeurs.h ../mouvement.h ../logique.h ../charma.h
 
 ../capteurs.h:
 
@@ -74,3 +74,5 @@ D:/Program\ Files\ (x86)/Armus/ArmusIDE/librairie/include/i2c_api.h:
 ../mouvement.h:
 
 ../logique.h:
+
+../charma.h:
