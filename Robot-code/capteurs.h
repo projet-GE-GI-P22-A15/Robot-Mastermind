@@ -23,7 +23,7 @@ int lireCouleur();
  * @details [long description]
  * @return [description]
  */
-int lireCapteurLigne();
+void lireCapteurLigne();
 
 /**
  * @brief [brief description]
@@ -52,4 +52,7 @@ int lireBoutonPhysiqueNbPastilles();
  * @return [description]
  */
 int lireBoutonPhysiqueResetGame();
+int comparerCouleur(int rouge, int vert, int bleu);
+void resetCouleurs();
+int trouverCouleur();
 #endif // CAPTEURS_H_

@@ -51,6 +51,7 @@
 #define eROSE 	5
 #define eJAUNE 	6
 #define eBLANC 	7
+#define eORANGE 8
 
 void charmaEcrire(char buf[]);
 void transfererChar(char c);

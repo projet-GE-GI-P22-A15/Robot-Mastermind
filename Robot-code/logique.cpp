@@ -16,13 +16,61 @@ formatEnvoi formatEnvoiArray[10];
 char formatEssai[9];
 /********************************************************************************/
 int mainCRJ() {
+
+	int essai, comptePastille, pastille = 0;
+	int vitesse = 50;
+	int direction = 1;
+	int gagner = 0;
+
+	gestionAvantDeCommencer();
+	transmettreMot(1, "A TOI");
+
+	for (essai = 1; essai < 11 && !gagner; ++essai) {
+		if (essai % 2 == 1) {
+			pastille = 0;
+		} else {
+			pastille = 3;
+		}
+		while (capt_boutonEssai != 1) {
+			THREAD_MSleep(20);
+		}
+		MOTOR_SetSpeed(MOTOR_RIGHT, vitesse * vitesseDroitePRGauche);
+		MOTOR_SetSpeed(MOTOR_LEFT, vitesse);
+		suivreLigne();
+
+		for (comptePastille = 0; comptePastille < 4; ++comptePastille) {
+			while (couleur == eBLANC || couleur == eNOIR || couleur == eORANGE) {
+				suivreLigne();
+				THREAD_MSleep(20);
+			}
+			stockerCouleur(couleur, essai, pastille);
+			if (essai % 2 == 1) {
+				++pastille;
+			} else {
+				--pastille;
+			}
+			while (couleur != eBLANC) {
+				suivreLigne();
+				THREAD_MSleep(20);
+			}
+		}
+		while (couleur != eORANGE) {
+			suivreLigne();
+			THREAD_MSleep(20);
+		}
+
+		tourner(180, DROITE);
+		//transmettre essai, verif couleurs, etc
+		int verifNbrCouleurABonnePlace(essai);
+
+	}
 	/*
 	 gestionAvantDeCommencer();
 
 	 int essai, pastille = 0;
 	 int direction = 1;
 	 int gagner = 0;
-	 while (essai != 10 || gagner != 1) {
+	 while (essai != 10 && gagner != 1) {
 	 while (capt_boutonEssai == 1) {
 	 suivreLigne();
 	 if (direction == 1) {
@@ -96,9 +144,9 @@ void stockerCouleur(int couleurCapter, int essai, int numPastille) {
 /******************************************************************/
 void mainCapteur() {
 	while (1) {
-		capt_ligne = lireCapteurLigne();
-		capt_bumper = lireBumpers();
-		capt_couleur = lireCouleur();
+		lireCapteurLigne();
+		capt_bumper = DIGITALIO_Read(12);
+		couleur = lireCouleur();
 		capt_boutonEssai = lireBoutonPhysiqueEssai();
 		THREAD_MSleep(20);
 	}
@@ -118,15 +166,20 @@ void jeuxLedCouleurContreHumain() {
 }
 /******************************************************************/
 int verifNbrCouleurOK(int ligne) {
-	int i = 0;
+	int i = 0, j = 0;
 	for (i = 0; i < nbPastilles; i++) {
-		if (tableau_de_joueur[i][ligne] == tableau_de_robot[0]
-				|| tableau_de_joueur[i][ligne] == tableau_de_robot[1]
-				|| tableau_de_joueur[i][ligne] == tableau_de_robot[2]
-				|| tableau_de_joueur[i][ligne] == tableau_de_robot[3])
-			tableau_a_verifier[i][ligne] = eJAUNE;
-		else
-			tableau_a_verifier[i][ligne] = eNOIR;
+		if (tableau_a_verifier[i][ligne] != eVERT) {
+			for (j = 0; j < nbPastilles; ++j) {
+				if (tableau_a_verifier[j][ligne] != eBLANC
+						&& tableau_a_verifier[j][ligne] != eVERT
+						&& tableau_de_joueur[i][ligne] == tableau_de_robot[j]) {
+					tableau_a_verifier[j][ligne] = eBLANC;
+					j = nbPastilles;
+				} else {
+					tableau_a_verifier[i][ligne] = eROUGE;
+				}
+			}
+		}
 	}
 	return 0;
 }
@@ -134,10 +187,10 @@ int verifNbrCouleurOK(int ligne) {
 int verifNbrCouleurABonnePlace(int ligne) {
 	int i = 0;
 	for (i = 0; i < nbPastilles; i++) {
-		if (tableau_a_verifier[i][ligne] == eJAUNE) {
-			if (tableau_de_joueur[i][ligne] == tableau_de_robot[i])
-				tableau_a_verifier[i][ligne] = eVERT;
-		}
+
+		if (tableau_de_joueur[i][ligne] == tableau_de_robot[i])
+			tableau_a_verifier[i][ligne] = eVERT;
+
 	}
 	return 0;
 }
@@ -185,7 +238,7 @@ int debugAffichage(int direction, int essai) {
 /******************************************************************/
 void gestionAvantDeCommencer() {
 	jeuxLedCouleurContreHumain();
-	nbPastilles = choixNbPastilles();
+	nbPastilles = 4; //choixNbPastilles();
 	resetTableau();
 }
 /******************************************************************/

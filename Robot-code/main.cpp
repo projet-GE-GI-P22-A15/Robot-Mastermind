@@ -115,7 +115,9 @@ int main() {
 	 THREAD_MSleep(1000);
 	 }*/
 	while (1) {
-		suivreLigne();
+		LCD_Printf("%i\n", couleur);
+		THREAD_MSleep(250);
+		//suivreLigne();
 	}
 	return 0;
 }
